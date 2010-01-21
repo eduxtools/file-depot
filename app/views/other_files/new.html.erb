@@ -1,0 +1,40 @@
+<h1>Upload Additional Files for <%= @work.student_name %>'s project</h1>
+<div id="progress_overlay" style="display:none;"><div id="progress">Saving<br /><img src="/images/progress.gif"><br /><div id="progress_patience" style="display: none;">Please be patient, files may take a while to process...</div></div></div>
+
+<% form_for(@other_file, :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+
+	<fieldset class="student">
+		<legend>Student Info and Project Info</legend>
+		<div class="field">
+			<br />
+			<b>Student Name:</b> <%= @work.student_name %><br />
+			<b>Title of Work:</b> <%= @work.name == nil ? "<em>None</em>" : @work.name %><br />
+			<b>Semester:</b> <%= @work.semester %><br />
+			<b>Course:</b> <%= @work.course_name %><br />
+			<b>Project Name:</b>  <%= @work.project_name %>
+		</div>
+	</fieldset>
+	
+	<fieldset class="file">
+		<legend>Upload File(s)</legend>
+		<div class="info">Choose a document, video, or additional file type to be uploaded. <%= link_to "Click here to upload images for the project", { :controller => 'images', :action => 'new', :work_id => @work } %>.</strong> <br />A maximum of 10 files can be uploaded at one time.</div>
+		<p>
+			<div id="file-field-1"><%= file_field_tag 'file_data[]', :onchange => "showImageField('2');" %></div>
+			<div id="file-field-2" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('3');" %></div>
+			<div id="file-field-3" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('4');" %></div>
+			<div id="file-field-4" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('5');" %></div>
+			<div id="file-field-5" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('6');" %></div>
+			<div id="file-field-6" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('7');" %></div>
+			<div id="file-field-7" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('8');" %></div>
+			<div id="file-field-8" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('9');" %></div>
+			<div id="file-field-9" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('10');" %></div>
+			<div id="file-field-10" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('11');" %></div>
+			<div id="file-field-11" class="info" style="display: none;">(maximum of 10 images reached)</div>
+		</p>
+	</fieldset>
+	<%= hidden_field(:work, :id ) %>
+  <p>
+    <%= f.submit 'Save', :onclick => "showProgressOverlay();" %> or <%= link_to 'Cancel', work_path(@work) %>
+  </p>
+<% end -%>

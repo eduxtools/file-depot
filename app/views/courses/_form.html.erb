@@ -1,0 +1,25 @@
+<fieldset>
+	<legend>Course Info</legend>
+	<%= f.error_messages %>
+	<div>
+	  <%= f.label :course_number %>
+	 	ART <%= f.text_field :course_number, :size => 6 %> 
+	</div>
+	<div>
+	  <%= f.label :name %>
+	 	<%= f.text_field :name %> 
+	</div>
+	<div>
+	  <%= f.label :level %>
+		<select name="course[level]">
+		    <option <%= "selected='selected'" if @course.level == 'Freshman'%> >Freshman</option>
+		    <option <%= "selected='selected'" if @course.level == 'Sophomore'%> >Sophomore</option>
+		    <option <%= "selected='selected'" if @course.level == 'Junior'%> >Junior</option>
+		    <option <%= "selected='selected'" if @course.level == 'Senior'%> >Senior</option>
+		  </select>
+	</div>
+	<div>
+	  <%= f.label :course_description %>
+	 	<%= f.text_area :course_description, :rows => 10, :cols => 60 %> 
+	</div>
+</fieldset>

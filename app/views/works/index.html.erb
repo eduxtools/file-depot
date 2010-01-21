@@ -1,0 +1,32 @@
+<h1>Student Work</h1>
+
+<%= link_to 'Upload Student Work >>', new_work_path, :class => "button" %>
+
+<br /><br />
+
+<fieldset class="student">
+	<legend>Student Work</legend>
+	<table>
+	  <tr>
+	    <th class="student">Student</th>
+	    <th class="course">Course</th>
+	    <th class="project">Project</th>
+	    <th class="actions"></th>
+	    <th class="actions"></th>
+			<th class="actions"></th>
+	  </tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+	<% @works.each do |work| %>
+	  <tr>
+	    <td><%=h work.student_name %></td>
+	    <td>ART <%= work.course.course_number != nil ? work.course.course_number : "&nbsp;----" %></td>
+	    <td><%=h work.project_name %></td>
+	    <td><%= link_to 'Show', work %></td>
+	    <td><%= link_to 'Edit', edit_work_path(work) %></td>
+	    <td><%= link_to( 'Destroy', work, :confirm => 'Are you sure?', :method => :delete ) if hide? == false %></td>
+	  </tr>
+	<% end %>
+	</table>
+	
+	<div style="margin-top: 15px;"><%= will_paginate @works %></div>
+</fieldset>

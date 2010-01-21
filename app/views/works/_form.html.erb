@@ -1,0 +1,99 @@
+<% edit ||= false %>
+
+<div id="progress_overlay" style="display:none;"><div id="progress">Saving<br /><img src="/images/progress.gif"><br /><div id="progress_patience" style="display: none;">Please be patient, large images may take a while to process...</div></div></div>
+<% form_for(@work, :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>	
+	<fieldset class="">
+		<legend>Course Info</legend>
+		<div class="">
+			<%= f.label :semester %>
+			<select name="work[semester]">
+			    <!-- <option></option> -->
+			    <!-- <option <%= "selected='selected'" if @work.semester == "Fall 2009" %>>Fall 2010</option> -->
+			    <!-- <option <%= "selected='selected'" if @work.semester == "Spring 2009" %>>Spring 2010</option> -->
+			    <option <%= "selected='selected'" if @work.semester == "Fall 2009" %>>Fall 2009</option>
+			    <option <%= "selected='selected'" if @work.semester == "Spring 2009" %>>Spring 2009</option>
+			    <option <%= "selected='selected'" if @work.semester == "Fall 2008" %>>Fall 2008</option>
+			    <option <%= "selected='selected'" if @work.semester == "Spring 2008" %>>Spring 2008</option>
+			    <option <%= "selected='selected'" if @work.semester == "Fall 2007" %>>Fall 2007</option>
+			    <option <%= "selected='selected'" if @work.semester == "Spring 2007" %>>Spring 2007</option>
+			    <option <%= "selected='selected'" if @work.semester == "Fall 2006" %>>Fall 2006</option>
+			    <option <%= "selected='selected'" if @work.semester == "Spring 2006" %>>Spring 2006</option>
+			    <option <%= "selected='selected'" if @work.semester == "Fall 2005" %>>Fall 2005</option>
+			    <option <%= "selected='selected'" if @work.semester == "Spring 2005" %>>Spring 2005</option>
+			    <option <%= "selected='selected'" if @work.semester == "Fall 2004" %>>Fall 2004</option>
+			    <option <%= "selected='selected'" if @work.semester == "Spring 2004" %>>Spring 2004</option>
+			    <option <%= "selected='selected'" if @work.semester == "Fall 2003" %>>Fall 2003</option>
+			    <option <%= "selected='selected'" if @work.semester == "Spring 2003" %>>Spring 2003</option>
+			  </select>
+		</div>
+		<div class="field">
+			<%= f.label :course_name %>
+	    <%= text_field_with_auto_complete :work, :course_name, {:size => 35, :onchange => "document.getElementById('work_project_name').value=''; hideTooltip('course_name');", :onfocus => "showTooltip('course_name');", :onblur => "hideTooltip('course_name');" }, { :url => courses_path(:js), :method => :get, :with => "'search=' + element.value" } %>
+			<%= tooltip('course_name', 'As you start typing, a list of courses of matching will appear. Choose the correct course or enter a new name to create a new course.')%>
+		</div>
+		<div class="field">
+			<%= f.label :project_name %>
+			<%= text_field_with_auto_complete :work, :project_name, { :size => 35, :onfocus => "showTooltip('project_name');", :onblur => "hideTooltip('project_name');" }, { :url => projects_path(:js), :method => :get, :with => "'search=' + element.value + '&course=' + document.getElementById('work_course_name').value" } %>
+			<%= tooltip('project_name', 'You must first choose (or enter a new) course then choose or create a new project.')%>
+		</div>
+		<div class="field">
+			<%= f.label :instructor_name %>
+			<%= text_field_with_auto_complete :work, :instructor_name, {:size => 35, :onfocus => "showTooltip('instructor_name');", :onblur => "hideTooltip('instructor_name');" }, { :url => instructors_path(:js), :method => :get, :with => "'search=' + element.value" } %>
+			<%= tooltip('instructor_name', 'Choose or enter the instructor\'s name that taught this student during this course.')%>
+		</div>
+	</fieldset>
+	<fieldset class="student">
+		<legend>Student Info</legend>
+		<div class="field">
+			<%= f.label :student_name %>
+			<%= text_field_with_auto_complete :work, :student_name, { :size => 35, :onfocus => "showTooltip('student_name');", :onblur => "hideTooltip('student_name');" }, { :url => students_path(:js), :method => :get, :with => "'search=' + element.value" } %>
+			<%= tooltip('student_name', 'Choose or enter the student\'s name for this project.')%>
+		</div>
+	  <div class="field">
+	    <label for="work_name">Title of Student's Work (optional)</label>
+	    <%= f.text_field :name, :size => 35, :onfocus => "showTooltip('student_info');", :onblur => "hideTooltip('student_info');" %>
+			<%= tooltip('student_info', 'A title and description for the student\'s work is optional, but could be beneficial to give more details about the work.')%>
+	  </div>
+	  <div class="field">
+	    <label for="work_description">Description of Student's Work (optional)</label>
+	    <%= f.text_area :description, :rows => '5' %>
+	  </div>
+	</fieldset>
+	
+	<% if edit == false %>
+		<fieldset class="file half image">
+			<legend>Upload Image(s)</legend>
+			<div class="info">Choose a JPEG or PNG image file to upload.<br />A maximum of 5 images can be uploaded at one time.</div>
+			<p>
+				<div id="image-field-1"><%= file_field_tag 'image_data[]', :onchange => "showImageField('2');" %></div>
+				<div id="image-field-2" style="display: none;"><%= file_field_tag 'image_data[]', :onchange => "showImageField('3');" %></div>
+				<div id="image-field-3" style="display: none;"><%= file_field_tag 'image_data[]', :onchange => "showImageField('4');" %></div>
+				<div id="image-field-4" style="display: none;"><%= file_field_tag 'image_data[]', :onchange => "showImageField('5');" %></div>
+				<div id="image-field-5" style="display: none;"><%= file_field_tag 'image_data[]', :onchange => "showImageField('6');" %></div>
+				<div id="image-field-6" class="info" style="display: none;">(maximum of 5 images reached)</div>
+			</p>
+		</fieldset>
+		
+		<fieldset class="file half other">
+			<legend>Upload File(s)</legend>
+			<div class="info">Choose a video, animation or additional file type.<br />A maximum of 10 files can be uploaded at one time.</div>
+			<p>
+				<div id="file-field-1"><%= file_field_tag 'file_data[]', :onchange => "showFileField('2');" %></div>
+				<div id="file-field-2" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('3');" %></div>
+				<div id="file-field-3" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('4');" %></div>
+				<div id="file-field-4" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('5');" %></div>
+				<div id="file-field-5" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('6');" %></div>
+				<div id="file-field-6" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('7');" %></div>
+				<div id="file-field-7" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('8');" %></div>
+				<div id="file-field-8" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('9');" %></div>
+				<div id="file-field-9" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('10');" %></div>
+				<div id="file-field-10" style="display: none;"><%= file_field_tag 'file_data[]', :onchange => "showFileField('11');" %></div>
+				<div id="file-field-11" class="info" style="display: none;">(maximum of 10 images reached)</div>
+			</p>
+		</fieldset>
+	<% end %>
+  <p class="clear">
+    <%= f.submit 'Save', :onclick => "showProgressOverlay();" %> or <%= edit == true ? link_to('Cancel', work_path(@work)) : link_to('Cancel', works_path) %>
+  </p>
+<% end %>

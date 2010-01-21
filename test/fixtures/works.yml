@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  semester: MyString
+  description: MyText
+  student_id: 1
+  project_id: 1
+  instructor_id: 1
+
+two:
+  name: MyString
+  semester: MyString
+  description: MyText
+  student_id: 1
+  project_id: 1
+  instructor_id: 1
