@@ -1,0 +1,20 @@
+<h1>Edit <%= @project.name %> Project</h1>
+
+<% form_for(@project) do |f| %>
+  <%= f.error_messages %>
+	<fieldset>
+		<legend>Project info for <em><%= @project.course.name %></em> course</legend>
+		  <div class="field">
+		    <%= f.label :name %>
+		    <%= f.text_field :name, :size => 35, :onfocus => "showTooltip('project_name');", :onblur => "hideTooltip('project_name');" %>
+			<%= tooltip('project_name', 'The project name will be displayed with each student\'s work.')%>
+		  </div>
+		  <div class="field">
+		    <%= f.label :description %>
+		    <%= f.text_area :description, :rows => 7, :cols => 55 %>
+		  </div>
+		</fieldset>
+  <p>
+    <%= f.submit 'Update' %> or <%= link_to 'Cancel', works_path %>
+  </p>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>Enter New Course</h1>
+
+<% form_for(@course) do |f| %>
+
+	<%= render :partial => 'form', :locals => { :f => f } %>
+	<p>
+	  <%= f.submit 'Save' %> or <%= link_to 'Cancel', courses_path %>
+	</p>
+
+<% end %>

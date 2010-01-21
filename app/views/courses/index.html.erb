@@ -1,0 +1,31 @@
+<h1>All Courses</h1>
+
+<%= link_to 'Enter New Course >>', new_course_path, :class => "button" %>
+<br /><br />
+
+<fieldset class="student">
+	<legend>Courses</legend>
+	<table>
+	  <tr>
+	    <th class="course">Number</th>
+	    <th class="course_name">Name</th>
+	    <th class="level">Level</th>
+			<th class="actions"></th>
+			<th class="actions"></th>
+			<th class="actions"></th>
+	  </tr>
+		<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+	<% @courses.each do |course| %>
+	  <tr>
+	    <td>ART <%= course.course_number != nil ? course.course_number : "&nbsp;----" %></td>
+		  <td><%=h course.name %></td>
+			<td><%=h course.level %></td>
+	    <td><%= link_to 'Show', course %></td>
+	    <td><%= link_to 'Edit', edit_course_path(course) %></td>
+	    <td><%= link_to( 'Destroy', course, :confirm => 'Are you sure?', :method => :delete ) if hide? == false %></td>
+	  </tr>
+	<% end %>
+	</table>
+</fieldset>
+

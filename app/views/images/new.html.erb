@@ -1,0 +1,35 @@
+<h1>Upload Additional Images for <%= @work.student_name %>'s project</h1>
+<div id="progress_overlay" style="display:none;"><div id="progress">Saving<br /><img src="/images/progress.gif"><br /><div id="progress_patience" style="display: none;">Please be patient, files may take a while to process...</div></div></div>
+
+<% form_for(@image, :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+
+	<fieldset class="student">
+		<legend>Student Info and Project Info</legend>
+		<div class="field">
+			<br />
+			<b>Student Name:</b> <%= @work.student_name %><br />
+			<b>Title of Work:</b> <%= @work.name == nil ? "<em>None</em>" : @work.name %><br />
+			<b>Semester:</b> <%= @work.semester %><br />
+			<b>Course:</b> <%= @work.course_name %><br />
+			<b>Project Name:</b>  <%= @work.project_name %>
+		</div>
+	</fieldset>
+	
+	<fieldset class="file">
+		<legend>Upload Image(s)</legend>
+		<div class="info">Choose a JPEG or PNG image file to upload. You may upload additional file types on the next page. <br />A maximum of 5 images can be uploaded at one time.</div>
+		<p>
+			<div id="image-field-1"><%= file_field_tag 'image_data[]', :onchange => "showImageField('2');" %></div>
+			<div id="image-field-2" style="display: none;"><%= file_field_tag 'image_data[]', :onchange => "showImageField('3');" %></div>
+			<div id="image-field-3" style="display: none;"><%= file_field_tag 'image_data[]', :onchange => "showImageField('4');" %></div>
+			<div id="image-field-4" style="display: none;"><%= file_field_tag 'image_data[]', :onchange => "showImageField('5');" %></div>
+			<div id="image-field-5" style="display: none;"><%= file_field_tag 'image_data[]', :onchange => "showImageField('6');" %></div>
+			<div id="image-field-6" class="info" style="display: none;">(maximum of 5 images reached)</div>
+		</p>
+	</fieldset>
+	<%= hidden_field(:work, :id ) %>
+  <p>
+    <%= f.submit 'Save', :onclick => "showProgressOverlay();" %> or <%= link_to 'Cancel', work_path(@work) %>
+  </p>
+<% end -%>

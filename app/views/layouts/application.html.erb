@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Student Work for NASAD || <%= controller.action_name.capitalize %> <%= controller.controller_name.capitalize.singularize %></title>
+  <%= stylesheet_link_tag 'reset-fonts.css', 'gt-styles.css', 'admin.css' %>
+	<%= javascript_include_tag :defaults %>
+</head>
+<body>
+	<div class="gt-hd clearfix">
+		<!-- logo -->
+		<div class="gt-logo">
+			NASAD File Depot
+		</div>
+		<!-- / logo -->
+		<!-- navigation -->
+		<div class="gt-nav">
+			<ul>
+			    <li><%= link_to('Student Work', works_path) %></li>
+			    <li><%= link_to('Courses', courses_path) %></li>
+			    <% if hide? == false %>
+					<li><%= link_to('Students', students_path) %></li>
+			    <li><%= link_to('Instructors', instructors_path) %></li>
+					<% end %>
+			</ul>
+			<div class="upload">
+				<%= link_to( "Upload Student Work", new_work_path ) unless controller.controller_name == "works" and controller.action_name == "new" %>
+			</div>
+		</div>
+		<!-- / navigation -->
+	</div>
+	<!-- / head -->
+	
+	
+	<div class="gt-bd gt-cols clearfix">
+		
+		<!-- main content -->
+		<div class="gt-content">
+			
+			<%= flash[:notice] %>
+			<%= yield %>
+			
+		</div>
+		<!-- / main content -->
+		
+		<!-- sidebar -->
+		<div class="gt-sidebar">
+			<%= yield :sidebar %>
+		</div>
+		<!-- / sidebar -->
+		
+	</div>
+	<!-- / body -->
+	
+	<!-- footer -->
+	<div class="gt-footer">
+	</div>
+	<!-- /footer -->
+</body>
+</html>
