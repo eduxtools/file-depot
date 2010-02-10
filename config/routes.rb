@@ -6,7 +6,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :images
   map.resources :instructors
   map.resources :projects
+  
+  map.coursenumber 'courses/ART/:number', :controller => 'courses', :action => 'show'
   map.resources :courses
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
 
