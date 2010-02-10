@@ -81,6 +81,12 @@ table th.actions {
 table tr:hover {
 	background: #D5DFFB url(/images/alert-overlay.png) repeat-x scroll 0 0;
 }
+table tr.has-work {
+	
+}
+table tr.has-no-work, .has-no-work {
+	color: gray;
+}
 table td {
 	padding: 1px 0;
 }
