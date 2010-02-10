@@ -69,6 +69,9 @@ table th.student {
 table th.project {
 	width: 250px;
 }
+table th.instructor {
+	width: 180px;
+}
 table th.level {
 	width: 100px;
 }
