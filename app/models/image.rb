@@ -4,7 +4,7 @@ class Image < ActiveRecord::Base
   has_attachment :content_type => :image, 
                  :storage => :file_system, 
                  :size => 0.kilobytes..21144.kilobytes, 
-                 :thumbnails => { :thumb => '100x100>', :medium => '950x700>', :large => '1000x800', :xlarge => '3000x3000' },
+                 :thumbnails => { :thumb => '100x100>', :medium => '950x700>', :large => '1200x1000', :xlarge => '2000x2000' },
                  :processor => 'Rmagick'
 
   validates_as_attachment
