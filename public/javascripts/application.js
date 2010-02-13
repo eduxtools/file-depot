@@ -1,10 +1,8 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
 
 // Tootlip
 
 preload = new Image(100,25); 
-preload.src="/images/tooltip.png";
+preload.src="../images/tooltip.png";
 
 var first = true
 
