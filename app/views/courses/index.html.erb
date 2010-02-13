@@ -21,9 +21,9 @@
 	    <td>ART <%= course.course_number != nil ? course.course_number : "&nbsp;----" %></td>
 		  <td><%=h course.name %></td>
 			<td><%=h course.level %></td>
-	    <td><%= link_to 'Show', coursenumber_url(:number => course.course_number) %></td>
+	    <td><%= link_to 'Show', coursenumber_url(:id => course, :number => course.course_number) %></td>
 	    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-	    <td><%= link_to( 'Destroy', course, :confirm => 'Are you sure?', :method => :delete ) if hide? == false %></td>
+	    <td><%= link_to 'Upload', new_work_path(:course => course.name)%></td>
 	  </tr>
 	<% end %>
 	</table>
