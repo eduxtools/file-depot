@@ -17,7 +17,7 @@
 	  </tr>
 		<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 	<% @works.each do |work| %>
-	  <tr>
+	  <tr onclick="parent.location='<%= url_for(work) %>'">
 	    <td><%=h work.student_name %></td>
 	    <td>ART <%= work.course.course_number != nil ? work.course.course_number : "&nbsp;----" %></td>
 	    <td><%=h work.project_name %></td>

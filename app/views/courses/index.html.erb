@@ -17,7 +17,7 @@
 		<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 
 	<% @courses.each do |course| %>
-	  <tr class="<%= course.works.size == 0 ? "has-no-work" : "has-work" %>">
+	  <tr class="<%= course.works.size == 0 ? "has-no-work" : "has-work" %>" onclick="parent.location='<%= coursenumber_url(:id => course, :number => course.course_number) %>'">
 	    <td>ART <%= course.course_number != nil ? course.course_number : "&nbsp;----" %></td>
 		  <td><%=h course.name %></td>
 			<td><%=h course.level %></td>
