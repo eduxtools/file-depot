@@ -33,6 +33,7 @@ class WorksController < ApplicationController
     @work.instructor_name ||= session[:work][:instructor_name]  if session[:work]
     @work.course_name     ||= session[:work][:course_name]      if session[:work]
     @work.course_name     ||= params[:course]                   if params[:course]
+    @work.semester        ||= session[:work][:semester]         if session[:work]
     @work.project_name    ||= session[:work][:project_name]     if session[:work]
 
     respond_to do |format|
