@@ -79,7 +79,7 @@ table th.actions {
 	width: 40px;
 }
 table tr:hover {
-	background: #D5DFFB url(/images/alert-overlay.png) repeat-x scroll 0 0;
+	background: #D5DFFB url(../images/alert-overlay.png) repeat-x scroll 0 0;
 }
 table tr.has-work {
 	
@@ -145,7 +145,7 @@ input[type="submit"], a.button {
 	cursor: pointer;
 	display: inline-block;
 	color: #FFFFFF !important;
-	background: #87B92E url(/images/alert-overlay.png) repeat-x scroll 0 0;
+	background: #87B92E url(../images/alert-overlay.png) repeat-x scroll 0 0;
 	border: none;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -206,7 +206,7 @@ form a:hover { /* cancel link */
 	width:456px;
 }
 .tooltip div {
-	background: url('/images/tooltip.png');
+	background: url('../images/tooltip.png');
 	padding: 0 25px;
 }
 .tooltip .top {
@@ -222,7 +222,7 @@ form a:hover { /* cancel link */
 
 /* Progress overlay */
 #progress_overlay {
-	background:url('/images/faded-bkg.png');
+	background:url('../images/faded-bkg.png');
 	position:fixed;
 	width:100%;
 	height:100%;
@@ -247,7 +247,7 @@ form a:hover { /* cancel link */
 }
 /* Notices */
 .notice {
-	background: #EAF0FB url(/images/alert-overlay.png) repeat-x scroll 0 0;
+	background: #EAF0FB url(../images/alert-overlay.png) repeat-x scroll 0 0;
 	/*text-shadow:0 -1px 1px rgba(0, 0, 0, 0.25);*/
 	border: 1px solid #C8D7F2;
 	-moz-border-radius: 5px;
@@ -332,7 +332,7 @@ h5 {
 }
 .previews .file-container:hover {
 	padding: 0;
-	background: #EAF0FB url(/images/alert-overlay.png) repeat-x scroll 0 0;
+	background: #EAF0FB url(../images/alert-overlay.png) repeat-x scroll 0 0;
 	border: 1px solid #C8D7F2;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -341,6 +341,6 @@ h5 {
 	
 }
 .previews .file-container:active {
-	background: #D5DFFB url(/images/alert-overlay.png) repeat-x scroll 0 0;
+	background: #D5DFFB url(../images/alert-overlay.png) repeat-x scroll 0 0;
 	
 }
