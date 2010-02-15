@@ -4,7 +4,8 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-
+  before_filter :authenticate 
+  
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
@@ -12,4 +13,13 @@ class ApplicationController < ActionController::Base
     session[:hide]
   end
   helper_method :hide?
+  
+  private
+     def authenticate
+        authenticate_or_request_with_http_basic 'Department of Art, Belmont University - Student Work' do |id, password| 
+            id == 'art' && password == '4606770'
+        end
+     end
+     
+     
 end
