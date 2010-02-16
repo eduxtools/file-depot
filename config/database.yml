@@ -28,7 +28,8 @@ production:
   # timeout: 5000
   
   adapter: mysql
-  database: nasad-production
-  username: root
+  database: nasad
+  username: nasadapp
+  password: HPBeErbj
   host: localhost
   timeout: 5000

@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :instructors
   map.resources :projects
   
-  map.coursenumber 'course/:id/ART/:number', :controller => 'courses', :action => 'show'
+  map.coursenumber 'courses/:id/ART/:number', :controller => 'courses', :action => 'show'
   map.resources :courses
   
 
