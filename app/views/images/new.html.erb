@@ -1,5 +1,5 @@
 <h1>Upload Additional Images for <%= @work.student_name %>'s project</h1>
-<div id="progress_overlay" style="display:none;"><div id="progress">Saving<br /><img src="/images/progress.gif"><br /><div id="progress_patience" style="display: none;">Please be patient, files may take a while to process...</div></div></div>
+<div id="progress_overlay" style="display:none;"><div id="progress">Saving<br /><%= image_tag("progress.gif") %><br /><div id="progress_patience" style="display: none;">Please be patient, files may take a while to process...</div></div></div>
 
 <% form_for(@image, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
