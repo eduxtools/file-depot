@@ -8,23 +8,26 @@
 		<div class="">
 			<%= f.label :semester %>
 			<select name="work[semester]">
+			    <% semester = @work.semester %>
+			    <% semester = session[:work][:semester] if session[:work] != nil %>
+
 			    <!-- <option></option> -->
-			    <!-- <option <%= "selected='selected'" if @work.semester == "Fall 2009" %>>Fall 2010</option> -->
-			    <!-- <option <%= "selected='selected'" if @work.semester == "Spring 2009" %>>Spring 2010</option> -->
-			    <option <%= "selected='selected'" if @work.semester == "Fall 2009" %>>Fall 2009</option>
-			    <option <%= "selected='selected'" if @work.semester == "Spring 2009" %>>Spring 2009</option>
-			    <option <%= "selected='selected'" if @work.semester == "Fall 2008" %>>Fall 2008</option>
-			    <option <%= "selected='selected'" if @work.semester == "Spring 2008" %>>Spring 2008</option>
-			    <option <%= "selected='selected'" if @work.semester == "Fall 2007" %>>Fall 2007</option>
-			    <option <%= "selected='selected'" if @work.semester == "Spring 2007" %>>Spring 2007</option>
-			    <option <%= "selected='selected'" if @work.semester == "Fall 2006" %>>Fall 2006</option>
-			    <option <%= "selected='selected'" if @work.semester == "Spring 2006" %>>Spring 2006</option>
-			    <option <%= "selected='selected'" if @work.semester == "Fall 2005" %>>Fall 2005</option>
-			    <option <%= "selected='selected'" if @work.semester == "Spring 2005" %>>Spring 2005</option>
-			    <option <%= "selected='selected'" if @work.semester == "Fall 2004" %>>Fall 2004</option>
-			    <option <%= "selected='selected'" if @work.semester == "Spring 2004" %>>Spring 2004</option>
-			    <option <%= "selected='selected'" if @work.semester == "Fall 2003" %>>Fall 2003</option>
-			    <option <%= "selected='selected'" if @work.semester == "Spring 2003" %>>Spring 2003</option>
+			    <!-- <option <%= "selected='selected'" if semester == "Fall 2010" %>>Fall 2010</option> -->
+			    <option <%= "selected='selected'" if semester == "Spring 2010" %>>Spring 2010</option>
+			    <option <%= "selected='selected'" if semester == "Fall 2009" %>>Fall 2009</option>
+			    <option <%= "selected='selected'" if semester == "Spring 2009" %>>Spring 2009</option>
+			    <option <%= "selected='selected'" if semester == "Fall 2008" %>>Fall 2008</option>
+			    <option <%= "selected='selected'" if semester == "Spring 2008" %>>Spring 2008</option>
+			    <option <%= "selected='selected'" if semester == "Fall 2007" %>>Fall 2007</option>
+			    <option <%= "selected='selected'" if semester == "Spring 2007" %>>Spring 2007</option>
+			    <option <%= "selected='selected'" if semester == "Fall 2006" %>>Fall 2006</option>
+			    <option <%= "selected='selected'" if semester == "Spring 2006" %>>Spring 2006</option>
+			    <option <%= "selected='selected'" if semester == "Fall 2005" %>>Fall 2005</option>
+			    <option <%= "selected='selected'" if semester == "Spring 2005" %>>Spring 2005</option>
+			    <option <%= "selected='selected'" if semester == "Fall 2004" %>>Fall 2004</option>
+			    <option <%= "selected='selected'" if semester == "Spring 2004" %>>Spring 2004</option>
+			    <option <%= "selected='selected'" if semester == "Fall 2003" %>>Fall 2003</option>
+			    <option <%= "selected='selected'" if semester == "Spring 2003" %>>Spring 2003</option>
 			  </select>
 		</div>
 		<div class="field">
