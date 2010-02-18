@@ -17,13 +17,14 @@
 		<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
 
 	<% @courses.each do |course| %>
-	  <tr class="<%= course.works.size == 0 ? "has-no-work" : "has-work" %>" onclick="parent.location='<%= course.course_number == nil ? url_for(course) :  coursenumber_url(:id => course, :number => course.course_number) %>'">
-	    <td>ART <%= course.course_number != nil ? course.course_number : "&nbsp;----" %></td>
-		  <td><%=h course.name %></td>
+	  <tr class="<%= course.works.size == 0 ? "has-no-work" : "has-work" %>">
+	    <td class="clickable" onclick="parent.location='<%= course.course_number == nil ? url_for(course) :  coursenumber_url(:id => course, :number => course.course_number) %>'">ART <%= course.course_number != nil ? course.course_number : "&nbsp;----" %></td>
+		  <td class="clickable" onclick="parent.location='<%= course.course_number == nil ? url_for(course) :  coursenumber_url(:id => course, :number => course.course_number) %>'"><%=h course.name %></td>
 			<td><%=h course.level %></td>
-	    <td><%= course.course_number == nil ? (link_to 'Show', url_for(course)) : (link_to 'Show', coursenumber_url(:number => course.course_number, :id => course)) %></td>
-	    <td><%=  link_to 'Edit', edit_course_path(course) %></td>
+	    <!-- <td><%= course.course_number == nil ? (link_to 'Show', url_for(course)) : (link_to 'Show', coursenumber_url(:number => course.course_number, :id => course)) %></td> -->
+	    <td><%= link_to 'Edit', edit_course_path(course) %></td>
 	    <td><%= link_to 'Upload', new_work_path(:course => course.name)%></td>
+			<td class="delete"><%= link_to( 'Delete', course, :confirm => 'Are you sure?', :method => :delete ) if course.works.size == 0 %></td>
 	  </tr>
 	<% end %>
 	</table>

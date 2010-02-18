@@ -45,5 +45,16 @@ class CoursesController < ApplicationController
     end
   end
   
+  # DELETE /works/1
+  # DELETE /works/1.xml
+  def destroy
+    @course = Course.find(params[:id])
+    @course.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(courses_url) }
+      format.xml  { head :ok }
+    end
+  end
   
 end
