@@ -59,12 +59,15 @@ table th {
 }
 table th.course {
 	width: 80px;
+	cursor: pointer;
 }
 table th.course_name {
 	width: 310px;
+	cursor: pointer;
 }
 table th.student {
 	width: 140px;
+	cursor: pointer;
 }
 table th.project {
 	width: 250px;
@@ -89,6 +92,18 @@ table tr.has-no-work, .has-no-work {
 }
 table td {
 	padding: 1px 0;
+}
+td.clickable {
+	cursor: pointer;
+}
+td.delete {
+	padding: 0 15px;
+}
+td.delete a {
+	color: #9baa81;
+}
+td.delete a:hover {
+	color: #c73a3a;
 }
 
 
