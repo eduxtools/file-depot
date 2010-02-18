@@ -21,7 +21,7 @@
 	    <td class="clickable" onclick="parent.location='<%= url_for(work) %>'"><%=h work.student_name %></td>
 	    <td class="clickable" onclick="parent.location='<%= url_for(work) %>'">ART <%= work.course.course_number != nil ? work.course.course_number : "&nbsp;----" %></td>
 	    <td class="clickable" onclick="parent.location='<%= url_for(work) %>'"><%=h work.project_name %></td>
-	    <!-- <td><%= link_to 'Show', work %></td> -->
+	    <td><%= link_to 'Show', work %></td>
 	    <td><%= link_to 'Edit', edit_work_path(work) %></td>
 	    <td class="delete"><%= link_to( 'Destroy', work, :confirm => 'Are you sure?', :method => :delete ) if hide? == false %></td>
 	  </tr>
