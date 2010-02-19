@@ -1,2 +1,21 @@
-<h1>Instructors#index</h1>
-<p>Find me in app/views/instructors/index.html.erb</p>
+<h1>Instructors</h1>
+<fieldset>
+	<legend>List of Instructors</legend>
+	<table>
+	  <tr>
+	    <th class="instructor">Name</th>
+			<th class="actions"></th>
+			<th class="actions"></th>
+			<th class="actions"></th>
+	  </tr>
+
+	<% @instructors.each do |instructor| %>
+	  <tr>
+	    <td><%=h instructor.name %></td>
+	    <td><%= link_to 'Show', instructor %></td>
+	    <td><%= link_to 'Edit', edit_instructor_path(instructor) %></td>
+	    <!-- <td class="delete"><%= link_to 'Destroy', instructor, :confirm => 'Are you sure?', :method => :delete if hide? == false %></td> -->
+	  </tr>
+	<% end %>
+	</table>
+</fieldset>

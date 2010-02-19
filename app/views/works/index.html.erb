@@ -1,4 +1,5 @@
-<h1>Student Work</h1>
+<h1>Student Work <%= ("for " + @student.name) if @student %> <span class="filter-options"><%= ('(' + link_to( 'show all students', works_path ) + ')') if @student %></span></h1>
+
 
 <%= link_to 'Upload Student Work >>', new_work_path, :class => "button" %>
 

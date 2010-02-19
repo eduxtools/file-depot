@@ -1,4 +1,8 @@
 <h1>Students</h1>
+
+<%= link_to 'Upload Student Work >>', new_work_path, :class => "button" %>
+<br /><br />
+
 <fieldset>
 	<legend>List of Students</legend>
 	<table>
@@ -12,9 +16,9 @@
 	<% @students.each do |student| %>
 	  <tr>
 	    <td><%=h student.name %></td>
-	    <td><%= link_to 'Show', student %></td>
+	    <td><%= link_to 'Show', works_path(:student_id => student) %></td>
 	    <td><%= link_to 'Edit', edit_student_path(student) %></td>
-	    <td><%= link_to 'Destroy', student, :confirm => 'Are you sure?', :method => :delete %></td>
+	    <td class="delete"><%= link_to 'Destroy', student, :confirm => 'Are you sure?', :method => :delete if hide? == false %></td>
 	  </tr>
 	<% end %>
 	</table>

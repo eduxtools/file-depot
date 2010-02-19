@@ -209,6 +209,7 @@ form a:hover { /* cancel link */
 .fieldWithErrors label {
 	color: #AA0000;
 }
+
 /* Tooltip */
 .field { /*any div containing a tooltip*/
 	position: relative;
@@ -358,4 +359,16 @@ h5 {
 .previews .file-container:active {
 	background: #D5DFFB url(../images/alert-overlay.png) repeat-x scroll 0 0;
 	
+}
+h1 .filter-options, .filter-options, .filter-options a {
+	font-size: 12px;
+	color: gray;
+	text-decoration: none;
+}
+.filter-options:hover { /*to change color other than link*/
+	color: #6CAA00;
+}
+.filter-options a:hover {
+	text-decoration: underline;
+	color: #6CAA00;
 }
