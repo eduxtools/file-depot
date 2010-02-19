@@ -10,7 +10,7 @@ class StudentsController < ApplicationController
     #   format.xml  { render :xml => @students }
     # end
     
-    @students = Student.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    @students = Student.find(:all, :order => 'name ASC', :conditions => ['name LIKE ?', "%#{params[:search]}%"])
   end
 
   # GET /students/1
