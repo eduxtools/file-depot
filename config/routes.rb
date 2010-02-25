@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :syllabus_files
+
   map.resources :other_files
   map.resources :images
   map.resources :students

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091207150938) do
+ActiveRecord::Schema.define(:version => 20100225053217) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -65,6 +65,21 @@ ActiveRecord::Schema.define(:version => 20091207150938) do
     t.string   "name"
     t.integer  "major_id"
     t.integer  "minor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "syllabus_files", :force => true do |t|
+    t.string   "semester"
+    t.integer  "instructor_id"
+    t.integer  "course_id"
+    t.integer  "parent_id"
+    t.string   "content_type"
+    t.string   "filename"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.integer  "width"
+    t.integer  "height"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
