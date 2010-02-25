@@ -48,7 +48,8 @@ class SyllabusFilesController < ApplicationController
   def create
     @syllabus_file = SyllabusFile.new(params[:syllabus_file])
     
-    session[:work][:instructor_name] = @syllabus_file.instructor_name
+    # # The below line doesn't work if the session[:work] doesn't already exists, therefore it has been removed for now
+    # session[:work][:instructor_name] = @syllabus_file.instructor_name
     
     respond_to do |format|
       if @syllabus_file.save
