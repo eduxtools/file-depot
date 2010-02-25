@@ -78,6 +78,9 @@ table th.instructor {
 table th.level {
 	width: 100px;
 }
+table th.semester {
+	width: 100px;
+}
 table th.actions {
 	width: 40px;
 }
