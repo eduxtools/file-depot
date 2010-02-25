@@ -43,7 +43,7 @@ end
 # ActionController::Base.relative_url_root = "/nasad"
 require "will_paginate"
 
-require 'association_proxy'
+# require 'association_proxy'
 ExceptionNotifier.exception_recipients = %w(server@pixolio.me)
 ExceptionNotifier.sender_address = %("Application Error" <app.error@mpixolio.me>)  
 # defaults to "[ERROR] "  
