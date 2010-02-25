@@ -44,18 +44,10 @@ end
 require "will_paginate"
 
 # require 'association_proxy'
-ExceptionNotifier.exception_recipients = %w(server@pixolio.me)
-ExceptionNotifier.sender_address = %("Application Error" <app.error@mpixolio.me>)  
+ExceptionNotifier.exception_recipients = %w(james.pierce@belmont.edu)
+ExceptionNotifier.sender_address = %("Application Error" <localhost@glab.belmont.edu>)  
 # defaults to "[ERROR] "  
-ExceptionNotifier.email_prefix = "[APP] "
+ExceptionNotifier.email_prefix = "[NASAD APP] "
 
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-:address => 'smtpout.secureserver.net',
-:port => 25,
-:domain => 'pixolio.me',
-:user_name => 'server@pixolio.me',
-:password => '0belmont7',
-:authentication => :plain
-}
