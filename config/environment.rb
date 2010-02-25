@@ -51,3 +51,11 @@ ExceptionNotifier.email_prefix = "[NASAD APP] "
 
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+:address => 'smtpout.secureserver.net',
+:port => 25,
+:domain => 'pixolio.me',
+:user_name => 'server@pixolio.me',
+:password => '0belmont7',
+:authentication => :plain
+}
