@@ -11,9 +11,9 @@
 
 	<% @instructors.each do |instructor| %>
 	  <tr>
-	    <td><%=h instructor.name %></td>
+	    <td class="clickable" onclick="parent.location='<%= url_for(instructor) %>'"><%=h instructor.name %></td>
 	    <td><%= link_to 'Show', instructor %></td>
-	    <td><%= link_to 'Edit', edit_instructor_path(instructor) %></td>
+	    <!-- <td><%= link_to 'Edit', edit_instructor_path(instructor) %></td> -->
 	    <!-- <td class="delete"><%= link_to 'Destroy', instructor, :confirm => 'Are you sure?', :method => :delete if hide? == false %></td> -->
 	  </tr>
 	<% end %>
