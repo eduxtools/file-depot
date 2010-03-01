@@ -5,7 +5,7 @@ class WorksController < ApplicationController
   def index
     # @works = Work.all
     
-    @works = Work.paginate( :page => params[:page], :per_page => 50, :order => 'created_at DESC', :conditions => ['student_id LIKE ?', "#{params[:student_id] ? params[:student_id] : '%' }"] )
+    @works = Work.paginate( :page => params[:page], :per_page => 50, :order => 'created_at DESC', :include => ['project', 'course', 'student'], :conditions => ['student_id LIKE ?', "#{params[:student_id] ? params[:student_id] : '%' }"] )
     @student = Student.find(params[:student_id]) if params[:student_id]
     respond_to do |format|
       format.html # index.html.erb
