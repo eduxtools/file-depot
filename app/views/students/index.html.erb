@@ -8,7 +8,7 @@
 	<table>
 	  <tr>
 	    <th class="student">Name</th>
-			<th class="actions"></th>
+			<th class="actions show-work-action"></th>
 			<th class="actions"></th>
 			<th class="actions"></th>
 	  </tr>
@@ -16,7 +16,7 @@
 	<% @students.each do |student| %>
 	  <tr>
 	    <td><%=h student.name %></td>
-	    <td><%= link_to 'Show', works_path(:student_id => student) %></td>
+	    <td><%= link_to 'Show Work', works_path(:student_id => student) %></td>
 	    <td><%= link_to 'Edit', edit_student_path(student) %></td>
 	    <td class="delete"><%= link_to 'Destroy', student, :confirm => 'Are you sure?', :method => :delete if hide? == false %></td>
 	  </tr>
