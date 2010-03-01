@@ -84,6 +84,9 @@ table th.semester {
 table th.actions {
 	width: 40px;
 }
+table th.show-work-action {
+	width: 80px;
+}
 table tr:hover {
 	background: #D5DFFB url(../images/alert-overlay.png) repeat-x scroll 0 0;
 }
