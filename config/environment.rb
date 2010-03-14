@@ -55,7 +55,7 @@ ActionMailer::Base.smtp_settings = {
 :address => 'smtpout.secureserver.net',
 :port => 25,
 :domain => 'pixolio.me',
-:user_name => 'server@pixolio.me',
-:password => '0belmont7',
+:user_name => 'mailer@pixolio.me',
+:password => 'E7965A32sGao',
 :authentication => :plain
 }
