@@ -29,7 +29,7 @@ class Work < ActiveRecord::Base
   end
   
   def project_name=(name)
-    self.project = Project.find_or_initialize_by_name(name) unless name.blank?
+    self.project = Project.find_or_initialize_by_name_and_course_id(name, self.course.id) unless name.blank?
   end
   
   def course_name
