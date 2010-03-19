@@ -1,0 +1,30 @@
+<div id="nav">
+	<ul id="menu">
+		<li id="one" class="one"><%= link_to "<span id=\"home\">home</span>", browse_root_url, :class => "one sel" %></li>
+		<li id="two" class="two"><a href="#" class="three">levels</a>
+			<ul class="s_menu">
+			 	<li><%= link_to "freshman", browse_works_url(:course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => "freshman") %>
+				<li><%= link_to "sophomore", browse_works_url(:course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => "sopohomore") %></li>
+				<li><%= link_to "junior", browse_works_url(:course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => "junior")%></li>
+				<li><%= link_to "senior", browse_works_url(:course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => "senior")%></li>
+			</ul>
+		</li>
+		<li id="three" class="three"><%= @course ? link_to( "<span class=\"close\">&nbsp;</span>" + @course.name, browse_works_url(:course_id => nil, :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => 'three sel') : link_to("courses", "#", :class => 'three') %>
+			<ul class="s_menu">
+				<% @courses.each do |course| %>
+					<li><%= link_to course.name, browse_works_url(:course_id => course.id, :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level])%></li>
+				<% end %>
+			</ul>
+		</li>
+		<li id="four" class="four"><%= @instructor ? link_to( "<span class=\"close\">&nbsp;</span>" + @instructor.name, browse_works_url(:course_id => params[:course_id], :instructor_id => nil, :student_id => params[:student_id], :level => params[:level]), :class => 'four sel') : link_to("instructors", "#", :class => 'four') %>
+		<ul class="s_menu">
+				<% @instructors.each do |instructor| %>
+					<li><%= link_to instructor.name, browse_works_url(:course_id => params[:course_id], :instructor_id => instructor.id, :student_id => params[:student_id], :level => params[:level])%></li>
+				<% end %>
+			</ul>
+		</li>
+	</ul>
+	<form method="get" action="" id="search">
+		<input type="text" id="s" name="s" value="search artwork" onfocus="if(this.value=='search artwork') return this.value='';" onblur="if(this.value=='') return this.value='search artwork';" />
+	</form>
+</div>
