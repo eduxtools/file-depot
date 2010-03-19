@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   
+  def load_navigation
+    @course = Course.find(params[:course_id]) if params[:course_id]
+    @instructor = Instructor.find(params[:instructor_id]) if params[:instructor_id]
+    @courses = Course.all
+    @instructors = Instructor.all
+  end
+  
   def hide?
     session[:hide]
   end

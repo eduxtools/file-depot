@@ -37,7 +37,12 @@ ActionController::Routing::Routes.draw do |map|
   #     products.resources :comments
   #     products.resources :sales, :collection => { :recent => :get }
   #   end
-
+  
+  map.namespace :browse do |browse|
+    browse.resources :works
+    browse.root :controller => "works"
+  end
+  
   # Sample resource route within a namespace:
   #   map.namespace :admin do |admin|
   #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
