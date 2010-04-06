@@ -1,3 +1,13 @@
+<script type="text/javascript">
+	window.onload = fadeInImage;
+	
+	function fadeInImage()
+	{
+		new Effect.Appear("image", { duration: .5 });
+	}
+</script>
+
+
 <%= render :partial => 'header' %>
 <p><%= link_to "&lt;-- back to images", browse_works_url(:course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]) %></a></p>
 <div id="gallery">
@@ -13,9 +23,15 @@
 	<br class="clear" /><br />
 	
 	<!-- image -->
-	<%= link_to( image_tag(@image.public_filename(:medium)), browse_work_url(@next_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "full" ) %>
+		<%= link_to( ("<div class='loading' style='width: 100%; min-height: 400px;'>" + image_tag(@image.public_filename(:medium), :id => "image") + "</div>"), browse_work_url(@next_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "full" ) %>
+		<script type="text/javascript" charset="utf-8"> $("image").setStyle({display: 'none'}) </script>
+		
 	
 	<!-- prev / next -->
 	<%= link_to("&lt;- previous", browse_work_url(@prev_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "prev" ) %>
 	<%= link_to("next -&gt;", browse_work_url(@next_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "next" ) %>
 </div>
+
+<!-- <script type="text/javascript" charset="utf-8">
+	new Effect.Appear('image', { duration: 3.0, delay: 5 });
+</script> -->
