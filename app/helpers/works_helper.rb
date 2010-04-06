@@ -9,6 +9,14 @@ module WorksHelper
 	    image_tag('icons2/File_Pdf.png')
 	  when "application/msword"
 	    image_tag('icons2/Word.png')
+	  when "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+	    image_tag('icons2/Word.png')
+		when "text/php"
+	    image_tag('icons2/Adobe_Dreamweaver.png')
+    # when "text/html"
+    #   image_tag('icons2/Adobe_Dreamweaver.png')
+		when /^text/
+	    image_tag('icons2/News.png')
 		when /^audio/
 	    image_tag('icons2/Audio.png')
 		when /^video/
