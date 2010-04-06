@@ -80,3 +80,8 @@ p { color: #666666; padding: 4px 0px; }
 	background-color: #EEEEEE !important;
 	border-color: #CCCCCC;
 }
+.loading { /* height and width set inline with values from db */
+	margin: 0 auto;
+	background: url(../images/browse/loader.gif) no-repeat center center;
+}
+}
