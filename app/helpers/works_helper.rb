@@ -15,6 +15,8 @@ module WorksHelper
 	    image_tag('icons2/Adobe_Dreamweaver.png')
     # when "text/html"
     #   image_tag('icons2/Adobe_Dreamweaver.png')
+    when "application/octet-stream" # seems to be attached to Word documents that were uploaded to Blackboard
+      image_tag('icons2/News.png')
 		when /^text/
 	    image_tag('icons2/News.png')
 		when /^audio/
