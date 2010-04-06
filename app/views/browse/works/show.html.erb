@@ -1,10 +1,21 @@
 <%= render :partial => 'header' %>
 <p><%= link_to "&lt;-- back to images", browse_works_url(:course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]) %></a></p>
 <div id="gallery">
-	<h2><%= @image.work.project.name %></h2>
-	<p><%= @image.work.project.description %></p>
-	<a href="#next" class="full">
-		<%= image_tag(@image.public_filename(:medium)) %>
-	</a>
-	<a href="#prev" class="prev">&lt;- previous</a><a href="#next" class="next">next -&gt;</a>
+	<div class="" style="float: left; width: 50%;">
+		<b>Course:</b> <%= @work.course.name %> (<%= @work.course.level %> level)<br />
+		<b>Project:</b> <%= @work.project.name %><br />
+		<b>Instructor:</b> <%= @work.instructor.name %>
+	</div>
+	<div class="float: left; width: 50%;">
+		<b>Student:</b> <%= @work.student.name %> <br />
+		<b>Work Title:</b> <%= @work.name.strip !=  "" ? content_tag('em', @work.name) : "N/A" %> <%= "(" + @work.images.count.to_s + " images in set)" if @work.images.count > 1 %>
+	</div>
+	<br class="clear" /><br />
+	
+	<!-- image -->
+	<%= link_to( image_tag(@image.public_filename(:medium)), browse_work_url(@next_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "full" ) %>
+	
+	<!-- prev / next -->
+	<%= link_to("&lt;- previous", browse_work_url(@prev_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "prev" ) %>
+	<%= link_to("next -&gt;", browse_work_url(@next_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "next" ) %>
 </div>

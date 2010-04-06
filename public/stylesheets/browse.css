@@ -53,7 +53,7 @@ span#home { display: block; width: 20px; text-indent: -1000px; background: url(.
 
 /* @group ======================================================================== main */
 #main { margin: 25px auto; width: 90%; text-align: left; }
-#main #gallery { width: 100%; padding: 0px; margin-top: 40px; }
+#main #gallery { width: 100%; padding: 0px; margin-top: 20px; }
 #main #start_nav { width: 513px; height: 150px; padding: 0px; margin-top: 40px; background: url(../images/browse/start_nav.png) no-repeat left top; position: absolute; left: 10%;}
 #main #start_search { width: 461px; height: 175px; padding: 0px; margin-top: 40px; background: url(../images/browse/start_search.png) no-repeat left bottom; position: absolute; right: 10%;}
 
