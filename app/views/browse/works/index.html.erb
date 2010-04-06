@@ -5,6 +5,7 @@
 		<% work.images.each do |image| %>
 			<!-- <%= link_to(image_tag(image.public_filename(:thumb)), { :controller => "browse/works", :action => "show", :id => image }, :class => "thumb" ) %> -->
 			<%= link_to("", browse_work_url(image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "thumb", :style => "background-image: url('#{ ActionController::Base.relative_url_root + image.public_filename(:thumb) }');" ) %>
+			
 		<% end %>
 	<% end %>
 </div>

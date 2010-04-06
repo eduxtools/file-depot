@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   belongs_to :work
+  has_one :course, :through => :work
   
   has_attachment :content_type => :image, 
                  :storage => :file_system, 

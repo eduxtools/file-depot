@@ -11,7 +11,7 @@
 		</li> -->
 		<li id="three" class="three"><%= @level ? browse_nav_link_to("<span class=\"close\">&nbsp;</span>" + @level, { :course_id => nil, :level => nil, :project_id => nil }, :class => 'three sel') : link_to("level", "#", :class => 'three') %>
 			<ul class="s_menu">
-			 	<li><%= browse_nav_link_to("freshman", :course_id => nil, :project_id => nil, :level => "freshman") %>
+			 	<li><%= browse_nav_link_to("freshman", :course_id => nil, :project_id => nil, :level => "freshman") %></li>
 				<li><%= browse_nav_link_to("sophomore", :course_id => nil, :project_id => nil, :level => "sophomore") %></li>
 				<li><%= browse_nav_link_to("junior", :course_id => nil, :project_id => nil, :level => "junior") %></li>
 				<li><%= browse_nav_link_to("senior", :course_id => nil, :project_id => nil, :level => "senior")%></li>
