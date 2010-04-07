@@ -4,7 +4,7 @@ class Browse::WorksController < ApplicationController
   
   def index
     
-    if ( @course || @instructor || params[:student_id] ) # @level was removed because sorting by all freshman takes a long time
+    if ( (@level && params[:level_only] == 'true' ) || @course || @instructor || params[:student_id] ) 
       level         = ( @level ? @level : "%" )
       course_id     = ( @course ? @course.id : "%" )
       project_id    = ( @project ? @project.id : "%" )
