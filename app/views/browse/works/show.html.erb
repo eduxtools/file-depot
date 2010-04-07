@@ -23,7 +23,7 @@
 	<br class="clear" /><br />
 	
 	<!-- image -->
-		<%= link_to( ("<div class='loading' style='width: 100%; min-height: 400px;'>" + image_tag(@image.public_filename(:medium), :id => "image") + "</div>"), browse_work_url(@next_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "full" ) %>
+		<%= link_to( ("<div class='loading' style='width: 100%; height: 100%;'>" + image_tag(@image.public_filename(:medium), :id => "image") + "</div>"), browse_work_url(@next_image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "full", :style => "height: #{ image_height(@image, 'medium') }px;" ) %>
 		<script type="text/javascript" charset="utf-8"> $("image").setStyle({display: 'none'}) </script>
 		
 	
