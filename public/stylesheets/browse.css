@@ -9,7 +9,9 @@
 body { text-align: center; color: #333333; font: 11px Verdana, "Lucida Grande", Lucida, sans-serif; }
 .clear { clear: both; }
 br.clear { clear: both; line-height: 0px; height: 0px; }
-a { color: #666666; } a:hover { color: #333333; }
+a { color: #666666; outline: none; } 
+a:hover { color: #333333; }
+h2 a { text-decoration: underline; }
 /* @end */
 
 /* @group ======================================================================== nav, menu, + searchbar */
