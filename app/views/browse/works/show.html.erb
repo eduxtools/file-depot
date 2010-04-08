@@ -9,7 +9,7 @@
 
 
 <%= render :partial => 'header' %>
-<p><%= link_to "&lt;-- back to images", browse_works_url(:course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]) %></a></p>
+<p><%= browse_nav_link_to("&lt;-- back to images") %></a></p>
 <div id="gallery">
 	<div class="" style="float: left; width: 50%;">
 		<b>Course:</b> <%= @work.course.name %> (<%= @work.course.level %> level)<br />
