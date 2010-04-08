@@ -4,7 +4,7 @@
 	<% @works.each do |work| %>
 		<% work.images.each do |image| %>
 			<!-- <%= link_to(image_tag(image.public_filename(:thumb)), { :controller => "browse/works", :action => "show", :id => image }, :class => "thumb" ) %> -->
-			<%= link_to("", browse_work_url(image, :course_id => params[:course_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level]), :class => "thumb", :style => "background-image: url('#{ ActionController::Base.relative_url_root + image.public_filename(:thumb) }');" ) %>
+			<%= link_to("", browse_work_url(image, :course_id => params[:course_id], :project_id => params[:project_id], :instructor_id => params[:instructor_id], :student_id => params[:student_id], :level => params[:level], :level_only => params[:level_only]), :class => "thumb", :style => "background-image: url('#{ ActionController::Base.relative_url_root + image.public_filename(:thumb) }');" ) %>
 			
 		<% end %>
 	<% end %>
