@@ -13,14 +13,15 @@ module ApplicationHelper
   
   def browse_nav_link_to(name, options = {}, html_options = {})
     options = { 
-      :term           => params[:term],
-      :course_id      => params[:course_id], 
-      :instructor_id  => params[:instructor_id], 
-      :project_id     => params[:project_id], 
-      :student_id     => params[:student_id], 
-      :level          => params[:level],
-      :level_only     => params[:level_only],
-      :only_images    => params[:only_images]
+      :term                 => params[:term],
+      :course_id            => params[:course_id], 
+      :instructor_id        => params[:instructor_id], 
+      :project_id           => params[:project_id], 
+      :student_id           => params[:student_id], 
+      :level                => params[:level],
+      :level_only           => params[:level_only],
+      :only_images          => params[:only_images],
+      :one_per_collection   => params[:one_per_collection]
     }.merge(options)
     link_to name, browse_works_url(options), html_options
   end 

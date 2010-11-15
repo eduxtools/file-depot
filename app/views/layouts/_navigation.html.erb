@@ -54,6 +54,8 @@
 <div id="browse_options">
 	<div id="browse_filter">
 		<% params[:only_images] ? only_images = true : only_images = false %>
-		<%= browse_nav_link_to("Show only images?", {:only_images => !only_images}, :class => "filter_only_images toggle_#{only_images.to_s}" ) %>
+		<% params[:one_per_collection] ? one_per_collection = true : one_per_collection = false %>
+		<%= browse_nav_link_to("Show only images?", {:only_images => !only_images}, :class => "filter_only_images toggle_#{only_images}" ) %>
+		<!-- <%= browse_nav_link_to("Show multiple files per collection?", {:one_per_collection => !one_per_collection}, :class => "filter_only_images toggle_#{!one_per_collection}" ) %> -->
 	</div>
 </div>
