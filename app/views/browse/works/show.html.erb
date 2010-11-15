@@ -13,7 +13,10 @@
 <div id="gallery">
 	<div class="" style="float: left; width: 50%;">
 		<b>Course:</b> <%= @work.course.name %> (<%= @work.course.level %> level)<br />
-		<b>Project:</b> <%= @work.project.name %><br />
+		<b>Project:</b> <a href="#" onclick="javascript: document.getElementById('project-description').style.display='block';"><%= @work.project.name %></a><br />
+		<div id="project-description">
+			<%= @work.project.description != nil ? @work.project.description : "No project description given for this project." %>
+		</div>
 		<b>Instructor:</b> <%= @work.instructor.name %>
 	</div>
 	<div class="float: left; width: 50%;">
