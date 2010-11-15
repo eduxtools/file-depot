@@ -12,8 +12,14 @@
 			<% end %>
 			
 		<% end %>
-		<!-- <% work.other_files.each do |image| %>
-			<a href="#">(other)</a>
-		<% end %> -->
+		<% if params[:only_images] != "true" %>
+			<% work.other_files.each do |file| %>
+				<% if RAILS_ENV=="production" %>
+					<%=	link_to(file_icon(file.content_type) + file.filename, "#{ ActionController::Base.relative_url_root + file.public_filename }", :target => "_blank", :class => "thumb thumb-icon")%>
+				<% else %>
+					<%=	link_to(file_icon(file.content_type) + file.filename, "#{ file.public_filename }", :target => "_blank", :class => "thumb thumb-icon")%>
+				<% end %>
+			<% end %>
+		<% end %>
 	<% end %>
 </div>

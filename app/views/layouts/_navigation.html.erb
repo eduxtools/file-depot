@@ -47,7 +47,13 @@
 			</ul>
 		</li>
 	</ul>
-	<form method="get" action="" id="search">
+	<!-- <form method="get" action="" id="search">
 		<input type="text" id="s" name="s" value="search artwork" onfocus="if(this.value=='search artwork') return this.value='';" onblur="if(this.value=='') return this.value='search artwork';" />
-	</form>
+	</form> -->
+</div>
+<div id="browse_options">
+	<div id="browse_filter">
+		<% params[:only_images] ? only_images = true : only_images = false %>
+		<%= browse_nav_link_to("Show only images?", {:only_images => !only_images}, :class => "filter_only_images toggle_#{only_images.to_s}" ) %>
+	</div>
 </div>
