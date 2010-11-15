@@ -19,7 +19,8 @@ module ApplicationHelper
       :project_id     => params[:project_id], 
       :student_id     => params[:student_id], 
       :level          => params[:level],
-      :level_only     => params[:level_only]
+      :level_only     => params[:level_only],
+      :only_images    => params[:only_images]
     }.merge(options)
     link_to name, browse_works_url(options), html_options
   end 
