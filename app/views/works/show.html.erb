@@ -44,7 +44,11 @@
 			<h5>Image Preview</h5>
 			<div class="image-container">
 				<% @work.images.each do |image| %>
-					<%= link_to(image_tag(image.public_filename(:thumb)), "#{ ActionController::Base.relative_url_root + image.public_filename(:medium) }", :rel => "lightbox[preview]") %>
+					<% if RAILS_ENV=="production" %>
+						<%= link_to(image_tag(image.public_filename(:thumb)), "#{ ActionController::Base.relative_url_root + image.public_filename(:medium) }", :rel => "lightbox[preview]") %>
+					<% else %>
+					<%= link_to(image_tag(image.public_filename(:thumb)), "#{ image.public_filename(:medium) }", :rel => "lightbox[preview]") %>
+					<% end %>
 				<% end %>
 				<%= "<div class='info'>No image files are associated with #{@work.student_name}'s</em> work for the #{@work.project_name} project.</div>" if @work.images.size == 0 %>
 			</div>
@@ -55,7 +59,11 @@
 			<div class="image-container">
 				<% @work.other_files.each do |file| %>
 					<div class="file-container">
-						<%=	link_to(file_icon(file.content_type), "#{ ActionController::Base.relative_url_root + file.public_filename }", :target => "_blank")%>
+						<% if RAILS_ENV=="production" %>
+							<%=	link_to(file_icon(file.content_type), "#{ ActionController::Base.relative_url_root + file.public_filename }", :target => "_blank")%>
+						<% else %>
+							<%=	link_to(file_icon(file.content_type), "#{ file.public_filename }", :target => "_blank")%>
+						<% end %>
 						<%= file.filename %>
 					</div>
 				<% end %>
