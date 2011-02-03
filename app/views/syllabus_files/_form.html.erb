@@ -11,6 +11,7 @@
 			    <% semester = @syllabus_file.semester %>
 
 			    <option></option>
+			    <option <%= "selected='selected'" if semester == "Spring 2011" %>>Spring 2011</option>
 			    <option <%= "selected='selected'" if semester == "Fall 2010" %>>Fall 2010</option>
 			    <option <%= "selected='selected'" if semester == "Spring 2010" %>>Spring 2010</option>
 			    <option <%= "selected='selected'" if semester == "Fall 2009" %>>Fall 2009</option>
