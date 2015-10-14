@@ -1,16 +1,12 @@
-<h1>Edit Student<%= ": " + @student.name if @student %></h1>
+<section class="row">
+  <h1 class="small-12 columns">Edit Student</h1>
+</section>
 
-<% form_for(@student) do |f| %>
-  <%= f.error_messages %>
+<%= render 'form' %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+<section class="row">
+  <div class="small-12 columns">
+    <%= link_to 'Show', @student %> |
+    <%= link_to 'Cancel', students_path %>
+  </div>
+</section>

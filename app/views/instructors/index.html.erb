@@ -1,21 +1,31 @@
-<h1>Instructors</h1>
-<fieldset>
-	<legend>List of Instructors</legend>
-	<table>
-	  <tr>
-	    <th class="instructor">Name</th>
-			<th class="actions"></th>
-			<th class="actions"></th>
-			<th class="actions"></th>
-	  </tr>
+<section class="row">
+  <div class="small-12 columns">
+    <h1>Instructors</h1>
+  </div>
 
-	<% @instructors.each do |instructor| %>
-	  <tr>
-	    <td class="clickable" onclick="parent.location='<%= url_for(instructor) %>'"><%=h instructor.name %></td>
-	    <td><%= link_to 'Show', instructor %></td>
-	    <!-- <td><%= link_to 'Edit', edit_instructor_path(instructor) %></td> -->
-	    <!-- <td class="delete"><%= link_to 'Destroy', instructor, :confirm => 'Are you sure?', :method => :delete if hide? == false %></td> -->
-	  </tr>
-	<% end %>
-	</table>
-</fieldset>
+  <div class="small-12 columns">
+    <table class="responsive">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @instructors.each do |instructor| %>
+          <tr>
+            <td><%= instructor.name %></td>
+            <td><%= link_to 'Show', instructor %></td>
+            <td><%= link_to 'Edit', edit_instructor_path(instructor) %></td>
+            <td><%= link_to 'Destroy', instructor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="small-6 columns end">
+    <%= button_link_to 'New Instructor', new_instructor_path %>
+  </div>
+</section>

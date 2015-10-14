@@ -1,10 +1,12 @@
-<h1>Edit <%= @course.name != nil ? "'" + @course.name + "'" : "Course" %> </h1>
+<section class="row">
+  <h1 class="small-12 columns">Edit Course</h1>
+</section>
 
-<% form_for(@course) do |f| %>
+<%= render 'form' %>
 
-	<%= render :partial => 'form', :locals => { :f => f } %>
-	<p>
-	  <%= f.submit 'Save' %> or <%= link_to 'Cancel', courses_path %>
-	</p>
-
-<% end %>
+<section class="row">
+  <div class="small-12 columns">
+    <%= link_to 'Show', @course %> |
+    <%= link_to 'Cancel', courses_path %>
+  </div>
+</section>

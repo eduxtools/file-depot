@@ -1,34 +1,37 @@
-<h1>All Courses</h1>
+<section class="row">
+  <div class="small-12 columns">
+    <h1>Courses</h1>
+  </div>
 
-<%= link_to 'Enter New Course >>', new_course_path, :class => "button" %>
-<br /><br />
+  <div class="small-12 columns">
+    <table class="responsive">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Level</th>
+          <th>Number</th>
+          <th>Credits</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<fieldset class="student">
-	<legend>Courses</legend>
-	<table>
-	  <tr>
-	    <th class="course">Number</th>
-	    <th class="course_name">Name</th>
-	    <th class="level">Level</th>
-			<th class="actions"></th>
-			<th class="actions"></th>
-			<th class="actions"></th>
-	  </tr>
-		<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tbody>
+        <% @courses.each do |course| %>
+          <tr>
+            <td><%= course.name %></td>
+            <td><%= course.level %></td>
+            <td><%= course.number %></td>
+            <td><%= course.credit_hours %></td>
+            <td><%= link_to 'Show', course %></td>
+            <td><%= link_to 'Edit', edit_course_path(course) %></td>
+            <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-	<% @courses.each do |course| %>
-	  <tr class="<%= course.works.size == 0 && course.syllabus_files.size == 0 ? "has-no-work" : "has-work" %>">
-	    <td class="clickable" onclick="parent.location='<%= course.course_number == nil ? url_for(course) :  coursenumber_url(:id => course, :number => course.course_number) %>'">ART <%= course.course_number != nil ? course.course_number : "&nbsp;----" %></td>
-		  <td class="clickable" onclick="parent.location='<%= course.course_number == nil ? url_for(course) :  coursenumber_url(:id => course, :number => course.course_number) %>'"><%=h course.name %></td>
-			<td><%=h course.level %></td>
-	    <!-- <td><%= course.course_number == nil ? (link_to 'Show', url_for(course)) : (link_to 'Show', coursenumber_url(:number => course.course_number, :id => course)) %></td> -->
-	    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-	    <td><%= link_to 'Upload', new_work_path(:course => course.name)%></td>
-			<td class="delete"><%= link_to( 'Delete', course, :confirm => 'Are you sure?', :method => :delete ) if course.works.size == 0 %></td>
-	  </tr>
-	<% end %>
-	</table>
-	<br />
-	<span class="has-no-work">* Courses listed in gray do not currently have work associated with it.</span>
-</fieldset>
-
+  <div class="small-6 columns end">
+    <%= button_link_to 'New Course', new_course_path %>
+  </div>
+</section>

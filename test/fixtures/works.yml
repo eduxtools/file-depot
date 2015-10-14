@@ -1,17 +1,19 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   name: MyString
-  semester: MyString
+  term: MyString
   description: MyText
-  student_id: 1
-  project_id: 1
-  instructor_id: 1
+  student_id: 
+  project_id: 
+  instructor_id: 
+  course_id: 
 
 two:
   name: MyString
-  semester: MyString
+  term: MyString
   description: MyText
-  student_id: 1
-  project_id: 1
-  instructor_id: 1
+  student_id: 
+  project_id: 
+  instructor_id: 
+  course_id: 

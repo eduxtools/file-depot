@@ -1,32 +1,47 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100225053217) do
+ActiveRecord::Schema.define(version: 20151013201850) do
 
-  create_table "courses", :force => true do |t|
-    t.string   "name"
-    t.string   "level"
-    t.string   "course_number"
-    t.text     "course_description"
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  add_index "attachments", ["parent_type", "parent_id"], name: "index_attachments_on_parent_type_and_parent_id"
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.string   "level",        limit: 255
+    t.string   "number",       limit: 255
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "credit_hours"
   end
 
-  create_table "images", :force => true do |t|
+  create_table "images", force: :cascade do |t|
     t.integer  "work_id"
     t.integer  "parent_id"
-    t.string   "content_type"
-    t.string   "filename"
-    t.string   "thumbnail"
+    t.string   "content_type", limit: 255
+    t.string   "filename",     limit: 255
+    t.string   "thumbnail",    limit: 255
     t.integer  "size"
     t.integer  "width"
     t.integer  "height"
@@ -34,18 +49,18 @@ ActiveRecord::Schema.define(:version => 20100225053217) do
     t.datetime "updated_at"
   end
 
-  create_table "instructors", :force => true do |t|
-    t.string   "name"
+  create_table "instructors", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "other_files", :force => true do |t|
+  create_table "other_files", force: :cascade do |t|
     t.integer  "work_id"
     t.integer  "parent_id"
-    t.string   "content_type"
-    t.string   "filename"
-    t.string   "thumbnail"
+    t.string   "content_type", limit: 255
+    t.string   "filename",     limit: 255
+    t.string   "thumbnail",    limit: 255
     t.integer  "size"
     t.integer  "width"
     t.integer  "height"
@@ -53,24 +68,32 @@ ActiveRecord::Schema.define(:version => 20100225053217) do
     t.datetime "updated_at"
   end
 
-  create_table "projects", :force => true do |t|
-    t.string   "name"
+  create_table "projects", force: :cascade do |t|
+    t.string   "name",        limit: 255
     t.text     "description"
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "students", :force => true do |t|
-    t.string   "name"
-    t.integer  "major_id"
-    t.integer  "minor_id"
+  create_table "student_works", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "student_works", ["student_id"], name: "index_student_works_on_student_id"
+  add_index "student_works", ["work_id"], name: "index_student_works_on_work_id"
+
+  create_table "students", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "syllabus_files", :force => true do |t|
-    t.string   "semester"
+  create_table "syllabus_files", force: :cascade do |t|
+    t.string   "term"
     t.integer  "instructor_id"
     t.integer  "course_id"
     t.integer  "parent_id"
@@ -84,11 +107,10 @@ ActiveRecord::Schema.define(:version => 20100225053217) do
     t.datetime "updated_at"
   end
 
-  create_table "works", :force => true do |t|
-    t.string   "name"
-    t.string   "semester"
+  create_table "works", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "term",          limit: 255
     t.text     "description"
-    t.integer  "student_id"
     t.integer  "project_id"
     t.integer  "instructor_id"
     t.datetime "created_at"

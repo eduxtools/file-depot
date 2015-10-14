@@ -1,8 +1,34 @@
-<p>
-  <b>Name:</b>
-  <%=h @student.name %>
-</p>
+<section class="row">
+  <h1 class="large-12 columns"><%= @student.name %></h1>
+</section>
 
+<section class="row">
+  <% @student.works.each do |work| %>
+    <div class="small-12 columns">
+      <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
+        <%= work.term %> | <%= work.course %> | <%= work.project %>
+      </paper-material>
+      <hr>
+    </div>
+  <% end %>
+</section>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<section class="row">
+  <div class="small-12 columns">
+    <%= link_to 'Edit', edit_student_path(@student) %> |
+    <%= link_to 'Back', students_path %>
+  </div>
+</section>
+
+<% if Rails.env == 'development' %>
+<hr>
+<pre>
+notes: show timeline view
+icons could either be:
+  1) Single person for one student attached and two for 'group' project
+  2) Icon when images exist and icon when just files attached
+
+I'm leaning toward the first choice because the header for each of the timeline events 
+could do the same as showing either one image or some sort of icon for files
+</pre>
+<% end %>

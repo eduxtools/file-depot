@@ -1,11 +1,7 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   name: MyString
-  major_id: 1
-  minor_id: 1
 
 two:
   name: MyString
-  major_id: 1
-  minor_id: 1

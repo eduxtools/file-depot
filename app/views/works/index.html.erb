@@ -1,33 +1,41 @@
-<h1>Student Work <%= ("for " + @student.name) if @student %> <span class="filter-options"><%= ('(' + link_to( 'show all students', works_path ) + ')') if @student %></span></h1>
+<section class="row">
+  <div class="small-12 columns">
+    <h1>Student Work</h1>
+  </div>
 
+  <div class="small-12 columns">
+    <table class="responsive">
+      <thead>
+        <tr>
+          <th>Students</th>
+          <th>Name</th>
+          <th>Term</th>
+          <th>Project</th>
+          <th>Instructor</th>
+          <th>Course</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<%= link_to 'Upload Student Work >>', new_work_path, :class => "button" %>
+      <tbody>
+        <% @works.each do |work| %>
+          <tr>
+            <td><%= work.student_names %></td>
+            <td><%= work.name %></td>
+            <td><%= work.term %></td>
+            <td><%= link_to work.project, work.project %></td>
+            <td><%= link_to work.instructor, work.instructor %></td>
+            <td><%= link_to work.course, work.course %></td>
+            <td><%= link_to 'Show', work %></td>
+            <td><%= link_to 'Edit', edit_work_path(work) %></td>
+            <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<br /><br />
-
-<fieldset class="student">
-	<legend>Student Work (Most Recent Work First)</legend>
-	<table>
-	  <tr>
-	    <th class="student">Student</th>
-	    <th class="course">Course</th>
-	    <th class="project">Project</th>
-	    <th class="actions"></th>
-	    <th class="actions"></th>
-			<th class="actions"></th>
-	  </tr>
-		<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-	<% @works.each do |work| %>
-	  <tr>
-	    <td class="clickable" onclick="parent.location='<%= url_for(work) %>'"><%=h work.student_name %></td>
-	    <td class="clickable" onclick="parent.location='<%= url_for(work) %>'">ART <%= work.course.course_number != nil ? work.course.course_number : "&nbsp;----" %></td>
-	    <td class="clickable" onclick="parent.location='<%= url_for(work) %>'"><%=h work.project_name %></td>
-	    <td><%= link_to 'Show', work %></td>
-	    <td><%= link_to 'Edit', edit_work_path(work) %></td>
-	    <td class="delete"><%= link_to( 'Destroy', work, :confirm => 'Are you sure?', :method => :delete ) if hide? == false %></td>
-	  </tr>
-	<% end %>
-	</table>
-	
-	<div style="margin-top: 15px;"><%= will_paginate @works %></div>
-</fieldset>
+  <div class="small-6 columns end">
+    <%= button_link_to 'New Work', new_work_path %>
+  </div>
+</section>

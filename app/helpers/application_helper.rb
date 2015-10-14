@@ -1,5 +1,29 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+
+  def build_terms(options)
+    # eventually make this config options
+    term_options = ['Spring', 'Summer', 'Fall']
+    year = 1.year.from_now.year
+    terms = []
+
+    11.times do 
+      term_years = []
+      term_options.reverse.each do |term|
+        term_years << "#{term} #{year}"
+      end
+
+      if options[:group_year] == true
+        terms += [[year, term_years]]
+      else
+        terms += term_years
+      end
+
+      year -= 1
+    end
+
+    return terms
+  end
   
   def tooltip(name, message)
     

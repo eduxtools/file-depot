@@ -1,43 +1,47 @@
 class Work < ActiveRecord::Base
-  belongs_to :student
+  has_many :student_works
+  has_many :students, through: :student_works
+  has_many :attachments, as: :parent
   belongs_to :project
   belongs_to :instructor
   belongs_to :course
-  has_many :images
-  has_many :other_files
+
+  attr_accessor :student_ids, :temp_image_token
   
-  validates_presence_of :semester, :course_name, :instructor_name, :project_name, :student_name
-  
-  def student_name
-    student.name if student
+
+  def student_names
+    self.students.map(&:name).join(', ')
   end
 
-  def student_name=(name)
-    self.student = Student.find_or_create_by_name(name) unless name.blank?
-  end
-  
+
+  # ----- legacy
+  attr_accessor :instructor_name, :student_name, :project_name, :course_name
   def instructor_name
-    instructor.name if instructor
+    self.instructor.try(:name)
   end
-  
-  def instructor_name=(name)
-    self.instructor = Instructor.find_or_create_by_name(name) unless name.blank?
+  def instructor_name=(value)
+    self.instructor = Instructor.find_or_create_by(name: value) unless value.blank?
   end
-  
+
+  def student_name
+    self.student.try(:name)
+  end
+  def student_name=(value)
+    self.student = Student.find_or_create_by(name: value) unless value.blank?
+  end
+
   def project_name
-    project.name if project
+    self.project.try(:name)
   end
-  
-  def project_name=(name)
-    self.project = Project.find_or_initialize_by_name_and_course_id(name, self.course.id) unless name.blank?
+  def project_name=(value)
+    self.project = Project.find_or_create_by(name: value) unless value.blank?
   end
-  
+
   def course_name
-    course.name if course
+    self.course.try(:name)
   end
-  
-  def course_name=(name)
-    self.course = Course.find_or_create_by_name(name) unless name.blank?
+  def course_name=(value)
+    self.course = Course.find_or_create_by(name: value) unless value.blank?
   end
-  
+  # ----- end legacy
 end
