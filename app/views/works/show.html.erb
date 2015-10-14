@@ -9,7 +9,7 @@
   <div class="small-12 columns">
     <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
       <% @work.attachments.each do |attachment| %>
-        <%= image_tag attachment.attachment.url(:medium) %>
+        <%= image_tag attachment.file.url(:medium) %>
       <% end %>
     </paper-material>
     <hr>

@@ -6,7 +6,7 @@ class CreateAttachments < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_attachment :attachments, :attachment
+    add_attachment :attachments, :file
   end
 
   def down

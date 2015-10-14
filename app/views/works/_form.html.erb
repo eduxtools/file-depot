@@ -24,7 +24,7 @@
     <script type="text/javascript">
       var myDropzone = new Dropzone("div#myId", { 
         url: "<%= attachments_path(temp_image_token: @work.temp_image_token) %>",
-        paramName: "attachment[attachment]"
+        paramName: "attachment[file]"
 
       });
     </script>
