@@ -1,79 +1,9 @@
-<h2><%= @instructor.name %></h2>
-<style type="text/css" media="screen">
-	.spacer { /*because tables are dumb*/
-		padding: 5px;
-	}
-</style>
-<table border="0">
-	<tr>
-		<td><strong>Syllabi</strong>:<span class="spacer"></span></td><td><%= @instructor.syllabus_files.count %> files</td>
-	</tr>
-	<tr>
-		<td><strong>Works</strong>:<span class="spacer"></span></td><td><%= @instructor.works.count %> works in <%= @instructor.projects.count %> projects</td>
-	</tr>
-	<tr>
-		<td><strong>Courses</strong>:<span class="spacer"></span></td><td><%= @instructor.courses.count %></td>
-	</tr>
-	<!-- <tr>
-		<td><strong>Semesters</strong>:<span class="spacer"></span></td><td><em>TBA</em></td>
-	</tr> -->
-</table>
-<br />
+<p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Name:</strong>
+  <%= @instructor.name %>
+</p>
 
-<!-- uploaded work -->
-	<fieldset class="student">
-		<legend>Courses With Uploaded Work</legend>
-		<table>
-		  <tr>
-		    <th class="course">Number</th>
-		    <th class="course_name">Name</th>
-		    <th class="level">Level</th>
-				<th class="actions"></th>
-				<th class="actions"></th>
-				<th class="actions"></th>
-		  </tr>
-			<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-
-		<% @instructor.courses.each do |course| %>
-		  <tr class="<%= course.works.size == 0 && course.syllabus_files.size == 0 ? "has-no-work" : "has-work" %>">
-		    <td class="clickable" onclick="parent.location='<%= course.course_number == nil ? url_for(course) :  coursenumber_url(:id => course, :number => course.course_number) %>'">ART <%= course.course_number != nil ? course.course_number : "&nbsp;----" %></td>
-			  <td class="clickable" onclick="parent.location='<%= course.course_number == nil ? url_for(course) :  coursenumber_url(:id => course, :number => course.course_number) %>'"><%=h course.name %></td>
-				<td><%=h course.level %></td>
-		    <!-- <td><%= course.course_number == nil ? (link_to 'Show', url_for(course)) : (link_to 'Show', coursenumber_url(:number => course.course_number, :id => course)) %></td> -->
-		    <td><%= link_to 'Edit', edit_course_path(course) %></td>
-		    <td><%= link_to 'Upload', new_work_path(:course => course.name)%></td>
-				<td class="delete"><%= link_to( 'Delete', course, :confirm => 'Are you sure?', :method => :delete ) if course.works.size == 0 %></td>
-		  </tr>
-		<% end %>
-		</table>
-	</fieldset>
-	
-	
-	
-	<!-- Syllabi -->
-	<!-- <fieldset class="student">
-		<legend>All Syllabus Files (Most Recent First)</legend>
-		<div class="info">If you have having issues viewing files in the browser, try right clicking to the "show" link to download the file.</div>
-		<table>
-		  <tr>
-		    <th class="semester">Semester</th>
-		    <th class="course_name">Course Name</th>
-				<th class="actions"></th>
-				<th class="actions"></th>
-				<th class="actions"></th>
-		  </tr>
-			<tr><td></td><td></td><td></td><td></td><td></td></tr>
-		<% @instructor.syllabus_files.each do |syllabus_file| %>
-		  <tr>
-		    <td class="" onclick=""><%=h syllabus_file.semester %></td>
-		    <td class="" onclick=""><%= syllabus_file.course_name %></td>
-
-				<td><%= link_to 'Show', ActionController::Base.relative_url_root + syllabus_file.public_filename, :target => '_blank' %></td>
-		    <td><%= link_to 'Edit', edit_syllabus_file_path(syllabus_file) %></td>
-		    <td class="delete"><%= link_to( 'Destroy', syllabus_file, :confirm => 'Are you sure?', :method => :delete) if hide? == false %></td>
-		  </tr>
-		<% end %>
-		</table>
-
-	</fieldset> -->
+<%= link_to 'Edit', edit_instructor_path(@instructor) %> |
+<%= link_to 'Back', instructors_path %>

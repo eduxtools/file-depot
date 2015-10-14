@@ -1,3 +1,12 @@
-<h1>Edit Work Info for <%= @work.student_name %></h1>
+<section class="row">
+  <h1 class="small-12 columns">Edit Student Work</h1>
+</section>
 
-<%= render :partial => 'form', :locals => { :edit => true } %>
+<%= render 'form' %>
+
+<section class="row">
+  <div class="small-12 columns">
+    <%= link_to 'Show', @work %> |
+    <%= link_to 'Cancel', works_path %>
+  </div>
+</section>

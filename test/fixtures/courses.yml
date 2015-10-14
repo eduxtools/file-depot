@@ -1,13 +1,15 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   name: MyString
   level: MyString
-  course_number: MyString
-  course_description: MyText
+  number: MyString
+  description: MyText
+  credit_hours: 1
 
 two:
   name: MyString
   level: MyString
-  course_number: MyString
-  course_description: MyText
+  number: MyString
+  description: MyText
+  credit_hours: 1

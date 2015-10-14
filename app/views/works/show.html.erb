@@ -1,74 +1,57 @@
-	<% if @work.project.description == nil %>
-		<div id="msg-description" class="notice message" style="display: none;">
-			<span>The project <%= link_to(@work.project_name, edit_project_path(@work.project)) %> does not have a description. <%= link_to('Click', edit_project_path(@work.project)) %> to update this project.</span>
-		</div>
-		<script type="text/javascript" charset="utf-8">
-			new Effect.BlindDown('msg-description', { duration: .6, delay: .3 })
-		</script>
-	<% end %>
-	<% if flash[:file_count] != flash[:success_count] %>
-		<div id="msg-images" class="notice warning" style="display: none;">
-			<span><%= flash[:file_count] - flash[:success_count] %> out of your <%= flash[:file_count] %> images did not save correctly. Please check to make sure your images are JPEG or PNG and <%= link_to('re-upload', { :controller => 'images', :action => 'new', :work_id => @work.id }) %>.</span>
-		</div>
-		<script type="text/javascript" charset="utf-8">
-			new Effect.BlindDown('msg-images', { duration: .6, delay: .7 })
-		</script>
-	<% end %>
-	<% if flash[:alt_file_count] != flash[:alt_success_count] %>
-		<div id="msg-images" class="notice warning" style="display: none;">
-			<span><%= flash[:alt_file_count] - flash[:alt_success_count] %> out of your <%= flash[:alt_file_count] %> files did not save correctly. Please check your files and <%= link_to('re-upload', { :controller => 'other_files', :action => 'new', :work_id => @work.id }) %>.</span>
-		</div>
-		<script type="text/javascript" charset="utf-8">
-			new Effect.BlindDown('msg-images', { duration: .6, delay: .7 })
-		</script>
-	<% end %>
+<section class="row">
+  <div class="small-12 columns">
+    <h1><%= @work.name.blank? ? 'Student Work' : @work.name %></h1>
+    <h4><%= @work.term %> | <%= @work.course %></h4>
+  </div>
+</section>
 
-  <h4><span class="big_name"><%= @work.course_name %></span> <%= @work.course.course_number != nil ? "ART" + @work.course.course_number + " | ": "" %> <%= @work.semester %></h4>
-  <div>
-		Instructor: <%= @work.instructor_name %><br />
-		Student: <%= @work.student_name %>
-	</div>
-	<div class="class-project">
-		<div>Class project: <%= @work.project_name %></div>
-	</div>
-	<div class="student-description">
-		<div><%= @work.name %></div>
-  	<div><%= @work.description != "" ? @work.description : "No description given for this work." %></div>
-	</div>
-	
-	<%= link_to 'Edit', edit_work_path(@work) %> |
-	<%= link_to 'Back', works_path %>
-	
-	<div class="previews">
-		<div class="image">
-			<h5>Image Preview</h5>
-			<div class="image-container">
-				<% @work.images.each do |image| %>
-					<% if RAILS_ENV=="production" %>
-						<%= link_to(image_tag(image.public_filename(:thumb)), "#{ ActionController::Base.relative_url_root + image.public_filename(:medium) }", :rel => "lightbox[preview]") %>
-					<% else %>
-					<%= link_to(image_tag(image.public_filename(:thumb)), "#{ image.public_filename(:medium) }", :rel => "lightbox[preview]") %>
-					<% end %>
-				<% end %>
-				<%= "<div class='info'>No image files are associated with #{@work.student_name}'s</em> work for the #{@work.project_name} project.</div>" if @work.images.size == 0 %>
-			</div>
-			<%= link_to("Upload Additional Images >>", { :controller => 'images', :action => 'new', :work_id => @work.id }, :class => "button" )%>
-		</div>
-		<div class="other">
-			<h5>Additional Files</h5>
-			<div class="image-container">
-				<% @work.other_files.each do |file| %>
-					<div class="file-container">
-						<% if RAILS_ENV=="production" %>
-							<%=	link_to(file_icon(file.content_type), "#{ ActionController::Base.relative_url_root + file.public_filename }", :target => "_blank")%>
-						<% else %>
-							<%=	link_to(file_icon(file.content_type), "#{ file.public_filename }", :target => "_blank")%>
-						<% end %>
-						<%= file.filename %>
-					</div>
-				<% end %>
-			</div>
-			<%= "<div class='info'>No additional file types are associated with #{@work.student_name}'s</em> work for the #{@work.project_name} project.</div>" if @work.other_files.size == 0 %>
-			<%= link_to("Upload Additional File Types >>", { :controller => 'other_files', :action => 'new', :work_id => @work.id }, :class => "button" )%>
-		</div>
-</div>
+<section class="row">
+  <div class="small-12 columns">
+    <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
+      <% @work.attachments.each do |attachment| %>
+        <%= image_tag attachment.attachment.url(:medium) %>
+      <% end %>
+    </paper-material>
+    <hr>
+  </div>
+
+    <div class="small-12 columns">
+      <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
+        <p>
+          <strong>Project:</strong>
+          <%= link_to @work.project, @work.project %>
+        </p>
+        <p>
+          <strong>Student<%= 's' if @work.students.count != 1 %>:</strong>
+          <%=raw @work.students.map{|student| link_to(student, student).html_safe }.to_sentence.gsub(', and ', ' &amp; ') %>
+          <%= 'None' if @work.students.count == 0 %>
+        </p>
+
+        <%= content_tag(:div, @work.description) unless @work.description.blank? %>
+      </paper-material>
+      <hr>
+    </div>
+
+  <div class="small-12 columns">
+    <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
+      <p>
+        <strong>Instructor:</strong>
+        <%= link_to @work.instructor, @work.instructor %>
+      </p>
+
+      <p>
+        <strong>Course:</strong>
+        <%= link_to @work.course, @work.course %>
+      </p>
+    </paper-material>
+    <hr>
+  </div>
+</section>
+
+
+<section class="row">
+  <div class="small-12 columns">
+    <%= link_to 'Edit', edit_work_path(@work) %> |
+    <%= link_to 'Back', works_path %>
+  </div>
+</section>

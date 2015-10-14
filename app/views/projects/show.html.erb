@@ -1,22 +1,19 @@
-<h4><span class="big_name"><%= @project.name %></span> <%= @project.course.course_number != nil ? "ART" + @project.course.course_number + " | ": "" %> <%= @project.course.name %></h4>
-<div class="description">
-	<div>Project Description:</div>
-	<div><%= @project.description != nil ? @project.description : "<em>No description given for this work.</em>" %></div>
-</div>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @project.course %>
+</p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
-
-
-<div class="previews">
-	<div class="other">
-		<h5>Instructors</h5>
-
-			<%= "<div class='info'>No instructors are associated with #{@project.name} for #{@project.course.name}</em>.</div>" if 0 == 0 %>
-	</div>
-	<div class="other">
-		<h5>Students</h5>
-		
-		<%= "<div class='info'>No students are associated with #{@project.name} for #{@project.course.name}</em>.</div>" if 0 == 0 %>
-	</div>
-</div>

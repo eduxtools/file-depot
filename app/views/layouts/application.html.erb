@@ -1,63 +1,172 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Student Work for NASAD || <%= controller.action_name.capitalize %> <%= controller.controller_name.capitalize.singularize %></title>
-  <%= stylesheet_link_tag 'reset-fonts.css', 'gt-styles.css', 'admin.css' %>
-	<%= javascript_include_tag :defaults %>
+  <title>Projectolio</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%#= html_import_tag 'application'%>
+  <%= csrf_meta_tags %>
+
+
+  <script src="/assets/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="/assets/paper-styles/demo-pages.html">
+  <link rel="import" href="/assets/paper-button/paper-button.html">
+  <link rel="import" href="/assets/paper-drawer-panel/paper-drawer-panel.html">
+  <link rel="import" href="/assets/paper-card/paper-card.html">
+
+
+    <style is="custom-style">
+
+      #paperDrawerPanel [main] {
+        background-color: var(--google-grey-100);
+      }
+
+      #paperDrawerPanel [drawer] {
+        border-right: 1px solid var(--google-grey-300);
+      }
+
+      #paperDrawerPanel[right-drawer] [drawer] {
+        border-left: 1px solid var(--google-grey-300);
+      }
+
+      paper-button {
+        color: white;
+        margin: 10px;
+        background-color: var(--google-blue-700);
+        white-space: nowrap;
+      }
+
+    </style>
+
+    <style is="custom-style">
+    .horizontal-section {
+      min-width: 130px;
+    }
+
+    paper-button {
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    paper-button.colorful {
+      color: #4285f4;
+    }
+
+    paper-button[raised].colorful {
+      background: #4285f4;
+      color: #fff;
+    }
+
+    paper-button[toggles] {
+      transition: all 0.3s;
+    }
+
+    paper-button[toggles][active] {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+
+    paper-button[toggles][active].colorful {
+      background-color: rgba(66, 133, 244, 0.25);
+    }
+
+    paper-button[toggles][active][raised].colorful {
+      background-color: rgba(66, 133, 244, 0.75);
+    }
+
+    paper-button.blue {
+      color: var(--paper-light-blue-500);
+      --paper-button-flat-focus-color: var(--paper-light-blue-50);
+    }
+    paper-button.blue:hover {
+      background: var(--paper-light-blue-50);
+    }
+    paper-button.red {
+      color: var(--paper-red-500);
+      --paper-button-flat-focus-color: var(--paper-red-50);
+    }
+    paper-button.red:hover {
+      background: var(--paper-red-50);
+    }
+    paper-button.green {
+      color: var(--paper-green-500);
+      --paper-button-flat-focus-color: var(--paper-green-50);
+    }
+    paper-button.green:hover {
+      background: var(--paper-green-50);
+    }
+    paper-button.orange {
+      color: var(--paper-orange-500);
+      --paper-button-flat-focus-color: var(--paper-orange-50);
+    }
+    paper-button.orange:hover {
+      background: var(--paper-orange-50);
+    }
+
+    paper-button.hover:hover {
+      background: #eee;
+    }
+
+    paper-button.ripple {
+      --paper-button-ink-color: var(--paper-pink-a200);
+    }
+
+  </style>
+      <style is="custom-style">
+
+      #paperDrawerPanel [main] {
+        background-color: var(--google-grey-100);
+      }
+
+      #paperDrawerPanel [drawer] {
+        border-right: 1px solid var(--google-grey-300);
+      }
+
+      #paperDrawerPanel[right-drawer] [drawer] {
+        border-left: 1px solid var(--google-grey-300);
+      }
+
+      paper-button {
+        color: white;
+        margin: 10px;
+        background-color: #eee;
+        white-space: nowrap;
+      }
+
+
+
+    </style>
+
 </head>
-<body>
-	<div class="gt-hd clearfix">
-		<!-- logo -->
-		<div class="gt-logo">
-			NASAD File Depot
-		</div>
-		<!-- / logo -->
-		<!-- navigation -->
-		<div class="gt-nav">
-			<ul>
-			    <li><%= link_to('Student Work', works_path) %></li>
-			    <li><%= link_to('Courses', courses_path) %></li>
-					<li><%= link_to('Syllabi', syllabus_files_path) %></li>
-					<li><%= link_to('Students', students_path) %></li>
-			    <li><%= link_to('Instructors', instructors_path) %></li>
-			    <% if hide? == false %>
-					<% end %>
-			</ul>
-			<div class="upload">
-				<%= link_to( "Upload Student Work", new_work_path ) unless controller.controller_name == "works" and controller.action_name == "new" %>
-			</div>
-		</div>
-		<!-- / navigation -->
-	</div>
-	<!-- / head -->
-	
-	
-	<div class="gt-bd gt-cols clearfix">
-		
-		<!-- main content -->
-		<div class="gt-content">
-			
-			<%= flash[:notice] %>
-			<%= yield %>
-			
-		</div>
-		<!-- / main content -->
-		
-		<!-- sidebar -->
-		<div class="gt-sidebar">
-			<%= yield :sidebar %>
-		</div>
-		<!-- / sidebar -->
-		
-	</div>
-	<!-- / body -->
-	
-	<!-- footer -->
-	<div class="gt-footer">
-	</div>
-	<!-- /footer -->
+<body unresolved>
+
+<!-- <paper-button tabindex="0">noink</paper-button> -->
+
+<paper-drawer-panel id="paperDrawerPanel">
+  <div drawer>
+    <nav class="row">
+      <div class="small-12 columns">
+        <h1>Projectolio</h1>
+      </div>
+      <ul class="small-12 columns main-nav">
+        <li><%= button_link_to 'Works', works_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
+        <li><%= button_link_to 'Courses', courses_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
+        <li><%= button_link_to 'Syllabi', '#', {}, {tabindex: 0, class: 'colorful'} %></li>
+        <li><%= button_link_to 'Instructors', instructors_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
+        <li><%= button_link_to 'Students', students_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
+      </ul>
+    </nav>
+  </div>
+  <div main style="overflow: scroll;">
+    <div>
+      <paper-button paper-drawer-toggle raised>toggle drawer</paper-button>
+    </div>
+
+    <%= yield %>
+  </div>
+</paper-drawer-panel> 
+
+
+
+
 </body>
 </html>
