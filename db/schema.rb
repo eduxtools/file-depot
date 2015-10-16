@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013201850) do
+ActiveRecord::Schema.define(version: 20151015194629) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "parent_id"
@@ -91,6 +91,21 @@ ActiveRecord::Schema.define(version: 20151013201850) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "syllabi", force: :cascade do |t|
+    t.string   "term"
+    t.integer  "instructor_id"
+    t.integer  "course_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+  end
+
+  add_index "syllabi", ["course_id"], name: "index_syllabi_on_course_id"
+  add_index "syllabi", ["instructor_id"], name: "index_syllabi_on_instructor_id"
 
   create_table "syllabus_files", force: :cascade do |t|
     t.string   "term"

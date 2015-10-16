@@ -1,0 +1,23 @@
+
+<p>
+  <strong>Term:</strong>
+  <%= @syllabus.term %>
+</p>
+
+<p>
+  <strong>Instructor:</strong>
+  <%= @syllabus.instructor %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @syllabus.course %>
+</p>
+
+<p>
+  <strong>File:</strong>
+  <%= link_to @syllabus.document_file_name.gsub('_', ' '), @syllabus.document.url() %>
+</p>
+
+<%= link_to 'Edit', edit_syllabus_path(@syllabus) %> |
+<%= link_to 'Back', syllabi_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :syllabi
   resources :projects
   resources :courses
   resources :instructors

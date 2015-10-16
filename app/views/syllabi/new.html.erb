@@ -1,0 +1,33 @@
+<section class="row">
+  <h1 class="small-12 columns">Upload Syllabi</h1>
+</section>
+
+<section class="row">
+  <div class="small-12 columns">
+    <paper-material elevation="2" style="background: #fff; padding: 10px 20px;">
+      <%= label_tag nil, 'Syllabus Documents', class: 'required' %>
+      <div id="upload-syllabi" style="border: 1px dashed #ccc;" class="dropzone"></div>
+    </paper-material>
+    <hr>
+  </div>
+
+  <!-- TEMP -->
+  <script type="text/javascript">
+    var myDropzone = new Dropzone("div#upload-syllabi", { 
+      url: "<%= syllabi_path() %>",
+      paramName: "syllabus[document]"
+
+    });
+  </script>
+  <!-- END TEMP -->
+</section>
+
+
+<!-- if not javascript -->
+<%#= render 'form' %>
+
+<section class="row">
+  <div class="small-12 columns">
+    <%= link_to 'Cancel', syllabi_path %>
+  </div>
+</section>

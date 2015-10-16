@@ -1,0 +1,35 @@
+<section class="row">
+  <div class="small-12 columns">
+    <h1>Syllabi</h1>
+  </div>
+
+  <div class="small-12 columns">
+    <table class="responsive">
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Instructor</th>
+          <th>Term</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @syllabi.each do |syllabus| %>
+          <tr>
+            <td><%= link_to syllabus.course, syllabus.course if syllabus.course %></td>
+            <td><%= link_to syllabus.instructor, syllabus.instructor if syllabus.instructor %></td>
+            <td><%= syllabus.term %></td>
+            <td><%= link_to 'Show', syllabus %></td>
+            <td><%= link_to 'Edit', edit_syllabus_path(syllabus) %></td>
+            <td><%= link_to 'Destroy', syllabus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="small-6 columns end">
+    <%= link_to 'Upload Syllabi', new_syllabus_path %>
+  </div>
+</section>

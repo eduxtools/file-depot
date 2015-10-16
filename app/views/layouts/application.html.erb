@@ -7,6 +7,8 @@
   <%#= html_import_tag 'application'%>
   <%= csrf_meta_tags %>
 
+  <meta name="viewport" content="width=device-width">
+
 
   <script src="/assets/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="/assets/paper-styles/demo-pages.html">
@@ -150,7 +152,7 @@
       <ul class="small-12 columns main-nav">
         <li><%= button_link_to 'Works', works_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
         <li><%= button_link_to 'Courses', courses_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
-        <li><%= button_link_to 'Syllabi', '#', {}, {tabindex: 0, class: 'colorful'} %></li>
+        <li><%= button_link_to 'Syllabi', syllabi_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
         <li><%= button_link_to 'Instructors', instructors_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
         <li><%= button_link_to 'Students', students_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
       </ul>

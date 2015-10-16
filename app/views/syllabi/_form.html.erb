@@ -1,0 +1,55 @@
+<section class="row">
+  <%= form_for(@syllabus) do |f| %>
+    <% if @syllabus.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@syllabus.errors.count, "error") %> prohibited this syllabus from being saved:</h2>
+
+        <ul>
+        <% @syllabus.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="small-12 columns">
+      <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
+        <div class="field">
+          <%= f.label :term %>
+          <%= f.text_field :term %>
+        </div>
+        <div class="field">
+          <%= f.label :instructor_id, class: 'required' %>
+          <%= 
+            chosen_select(f, :instructor_id, options_from_collection_for_select(Instructor.all, 'id', 'name', @syllabus.instructor_id), {include_blank: true}, 
+              data: {
+                placeholder: 'Select an instructor',
+                no_results_text: 'No instructors match'
+              }
+            ) 
+          %>
+        </div>
+        <div class="field">
+          <%= f.label :course_id, class: 'required' %>
+          <%= 
+            chosen_select(f, :course_id, options_from_collection_for_select(Course.all, 'id', 'number_and_name', @syllabus.course_id), {include_blank: true}, 
+              data: {
+                placeholder: 'Select a course',
+                no_results_text: 'No courses match'
+              }
+            ) 
+          %>
+        </div>
+        <div class="field">
+          <%= f.label :document, 'New Document' %>
+          <%= f.file_field :document %>
+        </div>
+      </paper-material>
+      <hr>
+    </div>
+
+    <div class="small-12 columns">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</section>
