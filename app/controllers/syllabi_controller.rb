@@ -35,7 +35,7 @@ class SyllabiController < ApplicationController
     respond_to do |format|
       if @syllabus.save
         format.html { redirect_to @syllabus, notice: 'Syllabus was successfully created.' }
-        format.json { render :show, status: :created, location: @syllabus }
+        format.json { render json: @syllabus.as_json, status: :created, location: @syllabus }
       else
         format.html { render :new }
         format.json { render json: @syllabus.errors, status: :unprocessable_entity }
