@@ -15,14 +15,14 @@
     <div class="small-12 columns">
       <paper-material elevation="2" style="background: #fff; padding: 10px 20px;">
         <%= label_tag nil, 'Images and Files', class: 'required' %>
-        <div id="myId" style="border: 1px dashed #ccc;" class="dropzone"></div>
+        <div id="upload-works" style="border: 1px dashed #ccc;" class="dropzone"></div>
       </paper-material>
       <hr>
     </div>
 
     <!-- TEMP -->
     <script type="text/javascript">
-      var myDropzone = new Dropzone("div#myId", { 
+      var myDropzone = new Dropzone("div#upload-works", { 
         url: "<%= attachments_path(temp_image_token: @work.temp_image_token) %>",
         paramName: "attachment[file]"
 
