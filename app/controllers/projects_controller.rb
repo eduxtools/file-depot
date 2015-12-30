@@ -4,7 +4,18 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if params[:course_id]
+      @course = Course.find(params[:course_id])
+      @projects = @course.projects
+    else
+      @projects = Project.all
+    end
+
+    respond_to do |format|
+      format.html {}
+      format.json {render :json => @projects.as_json}
+      format.js {}
+    end
   end
 
   # GET /projects/1

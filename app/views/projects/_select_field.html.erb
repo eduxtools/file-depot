@@ -1,0 +1,18 @@
+<%
+  f         ||= ActionView::Helpers::FormBuilder.new(:work, Work.new, self, {})
+  projects  ||= @projects
+  projects  ||= @work.course.projects rescue nil
+  projects  ||= @course.projects rescue nil
+  projects  ||= Project.all
+%>
+<%= 
+  chosen_select(f, :project_id, options_from_collection_for_select(projects, 'id', 'name', @work.try(:project_id)), {include_blank: true}, 
+    'data-no_results_text' => 'No projects found. Press enter/return to create new project named',
+    'data-max_selected_options' => '1',
+    multiple: true,
+    data: {
+      placeholder: 'Select or create a project',
+      allow_new: true
+    }
+  ) 
+%>

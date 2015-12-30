@@ -1,0 +1,27 @@
+// alert("Number of projects: <%= @projects.count %>");
+
+$('#projects-container').html("<%= escape_javascript render(partial: 'projects/select_field') %>");
+
+
+// dynamically load project description
+$('#work_project_id').change(function() {
+  project_id = $('#work_project_id').val();
+  if (project_id != null) {
+    url = '<%= project_path("--placeholder--", format: :json) %>'.replace('--placeholder--', project_id[0]);
+    $.ajax({
+      url: url,
+      beforeSend: function() {
+        // $().html('<div class="ajax-loading-spinner"></div>');
+      },
+      success: function(data) {
+        // do other things
+        $('#project_description').removeAttr('disabled').removeAttr('placeholder');
+        $('#project_description').val(data.description);
+      }
+    })
+  } else {
+    $('#project_description').attr('disabled', 'disabled').attr('placeholder', 'Select or create a project first');
+    $('#project_description').val('');
+  }
+  
+})
