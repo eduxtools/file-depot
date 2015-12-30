@@ -30,6 +30,10 @@ gem "paperclip", "~> 4.3"
 # gem 'polymer-rails'
 # gem 'nokogumbo', '1.4.2'
 
+group :production do 
+  gem 'mysql2'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
