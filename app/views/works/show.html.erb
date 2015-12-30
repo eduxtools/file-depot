@@ -9,7 +9,14 @@
   <div class="small-12 columns">
     <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
       <% @work.attachments.each do |attachment| %>
-        <%= image_tag attachment.file.url(:medium) %>
+        <% if attachment.file_content_type.include?('image') %>
+          <%= image_tag attachment.file.url(:medium) %>
+        <% else %>
+          <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
+            <%= file_icon(attachment.file_content_type) %><br>
+            <%= attachment.file_file_name %>
+          <% end %>
+        <% end %>
       <% end %>
     </paper-material>
     <hr>
