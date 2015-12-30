@@ -25,5 +25,10 @@ module Projectolio
 
     # include vendor image assets
     config.assets.paths << Rails.root.join("vendor", "assets", "images")
+
+    config.after_initialize do
+      AppConfig['name'] ||= 'Projectolio'
+    end
+    
   end
 end
