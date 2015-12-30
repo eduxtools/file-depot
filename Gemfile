@@ -31,7 +31,7 @@ gem "paperclip", "~> 4.3"
 # gem 'nokogumbo', '1.4.2'
 
 group :production do 
-  gem 'mysql2'
+  gem 'mysql2', '~> 0.3.10'
 end
 
 group :development, :test do
