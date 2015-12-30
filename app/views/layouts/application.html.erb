@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Projectolio</title>
+  <title><%= AppConfig['name'] %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%#= html_import_tag 'application'%>
@@ -147,7 +147,7 @@
   <div drawer>
     <nav class="row">
       <div class="small-12 columns">
-        <h1>Projectolio</h1>
+        <h1><%= AppConfig['name'] %></h1>
       </div>
       <ul class="small-12 columns main-nav">
         <li><%= button_link_to 'Works', works_path(), {}, {tabindex: 0, class: 'colorful'} %></li>
