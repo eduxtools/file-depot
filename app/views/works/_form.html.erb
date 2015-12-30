@@ -36,9 +36,9 @@
           <%= f.label :instructor_id, class: 'required' %>
           <%= 
             chosen_select(f, :instructor_id, options_from_collection_for_select(Instructor.all, 'id', 'name', @work.instructor_id), {include_blank: true}, 
+              'data-no_results_text' => 'No instructors match',
               data: {
-                placeholder: 'Select an instructor',
-                no_results_text: 'No instructors match'
+                placeholder: 'Select an instructor'
               }
             ) 
           %>
@@ -48,21 +48,31 @@
           <%= f.label :course_id, class: 'required' %>
           <%= 
             chosen_select(f, :course_id, options_from_collection_for_select(Course.all, 'id', 'number_and_name', @work.course_id), {include_blank: true}, 
+              'data-no_results_text' => 'No courses match',
               data: {
-                placeholder: 'Select a course',
-                no_results_text: 'No courses match'
+                placeholder: 'Select a course'
               }
             ) 
           %>
         </div>
         <div class="field">
           <%= f.label :project_id, class: 'required' %>
-          <%= text_field_with_bar f, :project_id %>
+          <div id="projects-container">
+            <% if @work.course %>
+              <%= render partial: 'projects/select_field', locals: {f: f} %>
+            <% else %>
+              <%= text_field_with_bar f, :project_id, disabled: true, placeholder: 'Select a course first' %>
+            <% end %>
+          </div>
+        </div>
+        <div class="field" id="project-description-container">
+          <%= text_area_tag_with_bar :project_description, @work.project.try(:description), label: 'Project Description', disabled: !@work.project, placeholder: "#{'Select or create a project first' if !@work.project}" %>
         </div>
         <div class="field">
           <%= f.label :term, class: 'required' %>
           <%=
             chosen_select(f, :term, grouped_options_for_select(build_terms(group_year: true), @work.term), {include_blank: true},
+              'data-no_results_text' => 'No terms match',
               data: {
                 placeholder: 'Select a term'
               }
@@ -80,19 +90,21 @@
           <%= 
             chosen_select(f, :student_ids, options_from_collection_for_select(Student.all, 'id', 'name', @work.student_works.map(&:student_id)), {include_blank: true},
               multiple: true,
+              'data-no_results_text' => 'No student found. Press enter/return to create new student named',
               data: {
-                placeholder: 'Select one or more students'
+                placeholder: 'Select one or more students',
+                allow_new: true
               }
             )
           %>
         </div>
         <div class="field">
-          <%= f.label :name, 'Title' %>
+          <%= f.label :name, "Title of Student Work" %>
           <%= text_field_with_bar f, :name %>
         </div>
 
         <div class="field">
-          <%= f.label :description %>
+          <%= f.label :description, "Description of Student Work" %>
           <%= text_area_with_bar f, :description %>
         </div>
       </paper-material>
@@ -105,3 +117,30 @@
     </div>
   <% end %>
 </section>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+  // dynamically load projects for course
+  $('#work_course_id').change(function() {
+    course_id = $('#work_course_id').val();
+    $.ajax({
+      // url: '<%= Rails.application.routes.url_helpers.projects_path(format: :js) %>',
+      url: '<%= projects_path(format: :js) %>',
+      data: {
+        course_id: course_id
+      },
+      beforeSend: function() {
+        // add spinner?
+        $('#project_description').attr('disabled', 'disabled').attr('placeholder', 'Select or create a project first');
+        $('#project_description').val('');
+      },
+      success: function() {
+        init_chosen('#projects-container');
+        // do other things
+      }
+    })
+  })
+
+});
+</script>
