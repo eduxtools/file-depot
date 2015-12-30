@@ -1,0 +1,5 @@
+# http://stackoverflow.com/questions/592554/best-way-to-create-custom-config-options-for-my-rails-app
+# You may need YAML::ENGINE.yamler = 'syck' for this to work stackoverflow.com/a/6140900/414220
+
+name: File Depot
+
