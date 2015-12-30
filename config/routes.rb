@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/nasad', to: redirect('/')
+
   resources :syllabi
   resources :projects
   resources :courses
