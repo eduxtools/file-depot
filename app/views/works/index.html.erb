@@ -8,11 +8,9 @@
       <thead>
         <tr>
           <th>Students</th>
-          <th>Name</th>
           <th>Term</th>
-          <th>Project</th>
-          <th>Instructor</th>
           <th>Course</th>
+          <th>Project</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -21,14 +19,12 @@
         <% @works.each do |work| %>
           <tr>
             <td><%= work.student_names %></td>
-            <td><%= work.name %></td>
             <td><%= work.term %></td>
-            <td><%= link_to work.project, work.project %></td>
-            <td><%= link_to work.instructor, work.instructor %></td>
             <td><%= link_to work.course, work.course %></td>
-            <td><%= link_to 'Show', work %></td>
+            <td><%= link_to work.project, work.project %></td>
+            <td><%= link_to 'View', work %></td>
             <td><%= link_to 'Edit', edit_work_path(work) %></td>
-            <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Delete', work, method: :delete, data: { confirm: 'Are you sure? This cannot be undone.' } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -36,6 +32,6 @@
   </div>
 
   <div class="small-6 columns end">
-    <%= button_link_to 'New Work', new_work_path %>
+    <%= button_link_to 'Upload New Student Work', new_work_path %>
   </div>
 </section>

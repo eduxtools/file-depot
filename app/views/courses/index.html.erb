@@ -22,9 +22,9 @@
             <td><%= course.level %></td>
             <td><%= course.number %></td>
             <td><%= course.credit_hours %></td>
-            <td><%= link_to 'Show', course %></td>
+            <td><%= link_to 'View', course %></td>
             <td><%= link_to 'Edit', edit_course_path(course) %></td>
-            <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%#= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>

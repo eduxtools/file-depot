@@ -20,9 +20,9 @@
             <td><%= link_to syllabus.course, syllabus.course if syllabus.course %></td>
             <td><%= link_to syllabus.instructor, syllabus.instructor if syllabus.instructor %></td>
             <td><%= syllabus.term %></td>
-            <td><%= link_to 'Show', syllabus %></td>
+            <td><%= link_to 'View', syllabus.document.url() %></td>
             <td><%= link_to 'Edit', edit_syllabus_path(syllabus) %></td>
-            <td><%= link_to 'Destroy', syllabus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Delete', syllabus, method: :delete, data: { confirm: 'Are you sure? This cannot be undone' } %></td>
           </tr>
         <% end %>
       </tbody>

@@ -1,31 +1,36 @@
-<p id="notice"><%= notice %></p>
+<section class="row">
+  <div class="small-12 columns">
+    <h1>Projects</h1>
+  </div>
 
-<h1>Listing Projects</h1>
+  <div class="small-12 columns">
+    <table class="responsive">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Course</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Course</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><%= project.name %></td>
+            <td><%= project.description %></td>
+            <td><%= project.course %></td>
+            <td><%= link_to 'Show', project %></td>
+            <td><%= link_to 'Edit', edit_project_path(project) %></td>
+            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+ </div>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.description %></td>
-        <td><%= project.course %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="small-6 columns end">
+    <%#= button_link_to 'New Project', new_project_path %>
+  </div>
+</section>
 
-<br>
-
-<%= link_to 'New Project', new_project_path %>
