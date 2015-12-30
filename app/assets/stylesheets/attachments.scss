@@ -1,3 +1,11 @@
 // Place all the styles related to the attachments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+a.file-attachment {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+
+  &.medium { width: 350px; }
+}
