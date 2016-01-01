@@ -4,7 +4,7 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+    @works = Work.all.limit(500).reorder('created_at DESC')
   end
 
   # GET /works/1
