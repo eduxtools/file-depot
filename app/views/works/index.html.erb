@@ -22,9 +22,9 @@
             <td><%= work.term %></td>
             <td><%= link_to work.course, work.course %></td>
             <td><%= link_to work.project, work.project %></td>
-            <td><%= link_to 'View', work %></td>
-            <td><%= link_to 'Edit', edit_work_path(work) %></td>
-            <td><%= link_to 'Delete', work, method: :delete, data: { confirm: 'Are you sure? This cannot be undone.' } %></td>
+            <td class="actions"><%= link_to 'View', work %></td>
+            <td class="actions"><%= link_to 'Edit', edit_work_path(work) %></td>
+            <td class="actions"><%= link_to 'Delete', work, method: :delete, data: { confirm: 'Are you sure? This cannot be undone.' } %></td>
           </tr>
         <% end %>
       </tbody>
