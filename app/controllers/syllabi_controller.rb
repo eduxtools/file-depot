@@ -96,6 +96,11 @@ class SyllabiController < ApplicationController
         results[:course] ||= Course.where('lower(number) = ?', pattern.gsub(/[\s+_-]/, '').downcase).first
       end
 
+      filename.scan(/[\d]{3,4}/i).each do |pattern|
+        # search pattern 1234
+        results[:course] ||= Course.where('lower(number) = ?', pattern.gsub(/[\s+_-]/, '').downcase).first
+      end
+
       # determine instructor
       possible_names = []
       instructor_names = Instructor.all.map(&:name).join(' ').split(' ')
