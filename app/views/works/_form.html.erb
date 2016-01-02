@@ -61,7 +61,7 @@
             <% if @work.course %>
               <%= render partial: 'projects/select_field', locals: {f: f} %>
             <% else %>
-              <%= text_field_with_bar f, :project_id, disabled: true, placeholder: 'Select a course first' %>
+              <%= text_field_tag_with_bar :project_id, nil, disabled: true, placeholder: 'Select a course first' %>
             <% end %>
           </div>
         </div>
