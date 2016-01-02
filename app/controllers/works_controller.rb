@@ -19,7 +19,8 @@ class WorksController < ApplicationController
     @work = Work.new(
       instructor_id: previous_work.try(:instructor_id), 
       term: previous_work.try(:term),
-      project_id: previous_work.try(:project_id),
+      course_id: previous_work.try(:course_id),
+      project_id: previous_work.try(:course) ? previous_work.try(:project_id) : nil,
       temp_image_token: Random.rand(10000000..999999999)
     )
   end
