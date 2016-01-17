@@ -15,8 +15,15 @@
     <div class="small-12 columns">
       <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
         <div class="field">
-          <%= f.label :term %>
-          <%= f.text_field :term %>
+          <%= f.label :term, class: 'required' %>
+          <%=
+            chosen_select(f, :term, grouped_options_for_select(build_terms(group_year: true), @syllabus.term), {include_blank: true},
+              'data-no_results_text' => 'No terms match',
+              data: {
+                placeholder: 'Select a term'
+              }
+            ) 
+          %>
         </div>
         <div class="field">
           <%= f.label :instructor_id, class: 'required' %>
@@ -40,16 +47,25 @@
             ) 
           %>
         </div>
-        <div class="field">
-          <%= f.label :document, 'New Document' %>
-          <%= f.file_field :document %>
+
+        <div class="row">
+          <% unless @syllabus.new_record? %>
+            <div class="medium-6 columns">
+              <%= label_tag 'Current file' %>
+              <%= link_to @syllabus.document_file_name, @syllabus.document.url() %>
+            </div>
+          <% end %>
+          <div class="medium-6 columns end">
+            <%= f.label :document, 'New Document' %>
+            <%= f.file_field :document %>
+          </div>
         </div>
       </paper-material>
       <hr>
     </div>
 
     <div class="small-12 columns">
-      <%= f.submit %>
+      <%= f.submit %> <%= link_to 'Cancel', syllabi_path, class: 'cancel' %>
     </div>
   <% end %>
 </section>
