@@ -89,10 +89,10 @@ class WorksController < ApplicationController
       student_ids = [student_ids] unless student_ids.is_a? Array
       student_ids = student_ids - [''] - [nil]
 
-      unless student_ids.blank? 
-        # clear previous
-        work.student_works.clear
+      # clear previous
+      work.student_works.clear
 
+      unless student_ids.blank? 
         # reassign students
         student_ids.each do |id|
           if id.to_s.start_with?(new_record_prefix) && id.to_s.gsub(new_record_prefix, '') != ''
