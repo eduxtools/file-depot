@@ -34,6 +34,10 @@
 
           $('#uploaded-syllabi').append(response.syllabiPartial)
         });
+        this.on("error", function(file) {
+          $('#uploaded-syllabi-container').show();
+          $('#uploaded-syllabi').append('<div class="notice error">There was an error while uploading <span class="filename">' + file.name + '</span>. Please make sure the file is either a PDF or text document.</div>');
+        });
       }
     });
   </script>
