@@ -15,6 +15,26 @@ $input-background: rgba(243,243,243,0.5);
 $input-background: #fff; 
 
 
+
+// ----- Errors
+
+#error_explanation {
+  background: #F9D0D0;
+  border-left: 3px solid #DA6B6B;
+  margin: 1em 15px;
+  padding: 1px 15px;
+
+  h2 {
+    font-size: 28px;
+  }
+}
+
+#error_explanation, #error_explanation * {
+  color: #B10000;
+}
+
+
+
 // ----- finalized / cleaned up
 
 label {
@@ -486,4 +506,6 @@ tr.allocation-row td:first-child {
       opacity: 0;
     }
 }
+
+
 

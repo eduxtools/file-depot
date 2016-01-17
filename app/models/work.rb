@@ -7,6 +7,8 @@ class Work < ActiveRecord::Base
   belongs_to :course
 
   attr_accessor :student_ids, :temp_image_token
+
+  validates_presence_of :instructor, :course, :project_id, :term
   
 
   def student_names

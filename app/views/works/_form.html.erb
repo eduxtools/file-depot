@@ -16,6 +16,15 @@
       <paper-material elevation="2" style="background: #fff; padding: 10px 20px;">
         <%= label_tag nil, 'Images and Files', class: 'required' %>
         <div id="upload-works" style="border: 1px dashed #ccc;" class="dropzone"></div>
+
+        <% if @work.errors %>
+          <% previously_uploaded_count = Attachment.where(parent_type: 'temp', parent_id: @work.temp_image_token).count %>
+          <% if previously_uploaded_count > 0 %>
+            <div class="notice success">
+              <%= pluralize(previously_uploaded_count, 'file') %> <%= previously_uploaded_count == 1 ? 'has' : 'have' %> already been uploaded. You do not need to re-upload <%= previously_uploaded_count == 1 ? 'the file' : 'those files' %>.
+            </div>
+          <% end %>
+        <% end %>
       </paper-material>
       <hr>
     </div>
