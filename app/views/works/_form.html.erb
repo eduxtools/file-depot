@@ -30,19 +30,19 @@
           <div class="notice success">
             <%= pluralize(previously_uploaded.count, 'file') %> <%= previously_uploaded.count == 1 ? 'has' : 'have' %> already been uploaded. You do not need to re-upload <%= previously_uploaded.count == 1 ? 'this file' : 'these files' %>:
           </div>
-        <% end %>
-        <div>
-          <% previously_uploaded.each do |attachment| %>
-            <% if attachment.file_content_type.include?('image') %>
-              <%= image_tag attachment.file.url(:small) %>
-            <% else %>
-              <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
-                <%= file_icon(attachment.file_content_type) %><br>
-                <%= attachment.file_file_name %>
+          <div>
+            <% previously_uploaded.each do |attachment| %>
+              <% if attachment.file_content_type.include?('image') %>
+                <%= image_tag attachment.file.url(:small) %>
+              <% else %>
+                <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
+                  <%= file_icon(attachment.file_content_type) %><br>
+                  <%= attachment.file_file_name %>
+                <% end %>
               <% end %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </paper-material>
       <hr>
     </div>
