@@ -58,6 +58,8 @@ class WorksController < ApplicationController
     respond_to do |format|
       if @work.update(work_params)
         set_student_work(params[:work][:student_ids], @work)
+        create_new_project(work_params[:project_id], @work.course, @work)
+        set_project_description(params[:project_description], @work.project)
 
         format.html { redirect_to @work, notice: 'Work was successfully updated.' }
         format.json { render :show, status: :ok, location: @work }
