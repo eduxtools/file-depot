@@ -17,14 +17,32 @@
         <%= label_tag nil, 'Images and Files', class: 'required' %>
         <div id="upload-works" style="border: 1px dashed #ccc;" class="dropzone"></div>
 
-        <% if @work.errors %>
-          <% previously_uploaded_count = Attachment.where(parent_type: 'temp', parent_id: @work.temp_image_token).count %>
-          <% if previously_uploaded_count > 0 %>
-            <div class="notice success">
-              <%= pluralize(previously_uploaded_count, 'file') %> <%= previously_uploaded_count == 1 ? 'has' : 'have' %> already been uploaded. You do not need to re-upload <%= previously_uploaded_count == 1 ? 'the file' : 'those files' %>.
-            </div>
-          <% end %>
+        <% 
+          if @work.new_record? && @work.errors.any? 
+            previously_uploaded = Attachment.where(parent_type: 'temp', parent_id: @work.temp_image_token)
+          elsif !@work.new_record?
+            previously_uploaded = @work.attachments
+          else
+            previously_uploaded = nil
+          end
+        %>
+        <% if previously_uploaded && previously_uploaded.count > 0 %>
+          <div class="notice success">
+            <%= pluralize(previously_uploaded.count, 'file') %> <%= previously_uploaded.count == 1 ? 'has' : 'have' %> already been uploaded. You do not need to re-upload <%= previously_uploaded.count == 1 ? 'this file' : 'these files' %>:
+          </div>
         <% end %>
+        <div>
+          <% previously_uploaded.each do |attachment| %>
+            <% if attachment.file_content_type.include?('image') %>
+              <%= image_tag attachment.file.url(:small) %>
+            <% else %>
+              <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
+                <%= file_icon(attachment.file_content_type) %><br>
+                <%= attachment.file_file_name %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
       </paper-material>
       <hr>
     </div>
@@ -139,6 +157,7 @@ submit_button.data('defaultVal', submit_button.val());
 var myDropzone = new Dropzone("div#upload-works", { 
   url: "<%= attachments_path(temp_image_token: @work.temp_image_token) %>",
   paramName: "attachment[file]",
+  dictDefaultMessage: 'Drop <%= "additional" if !@work.new_record? %> files here or click to upload',
   init: function() {
     this.on("addedfile", function(file) { 
       dropzoneFileCount += 1;
