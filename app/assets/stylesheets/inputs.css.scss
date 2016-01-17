@@ -4,6 +4,11 @@ $wrapper-color: #EFEFEF;
 $input-color: #484848;
 $sorted-column-color: #975CA7;
 $error-red-color: #a30000;
+$true-green: #008d52;
+$true-green-hover: #3ea24a;
+$value-red: #a30000;
+$value-red-hover: #9E0505;
+$gray: #787878;
 
 $input-background: #F9F9F9;
 $input-background: rgba(243,243,243,0.5); 
@@ -137,6 +142,142 @@ table.input-grid.truncated-rows tr:nth-child(6) td, table.input-grid.truncated-r
 }
 
 // ** end testing **
+
+// buttons
+
+input[type="submit"], button, .button, .module a.button, .k-upload-button, input[type='button'] {
+  text-align: center;
+  display: inline-block;
+  line-height: 32px;
+  color: white;
+  text-decoration: none !important;
+  margin: 0;
+  padding: 3px 13px;
+  margin-right:10px;
+  border: none;
+  font-size: 14px;
+  font-weight:normal;
+  cursor: pointer;
+  position: relative;
+  background-color: $true-green;
+  position: relative;
+  text-shadow: 0px 1px 4px rgba(0,0,0,0.25);
+  -webkit-appearance: none;
+  border-radius: 2px;
+  letter-spacing: .75px;
+
+  border-bottom: 3px solid darken($true-green, 5);
+
+  // Transitions
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+
+  &.button-small {
+    font-size: 12px;
+    padding: 8px 8px 6px 8px;
+    line-height: 12px;
+  }
+
+  &.minimal {
+    color: $true-green;
+    background-color: #fff !important;
+    border-bottom: 3px solid $true-green;
+    text-shadow: none;
+
+    &:hover {
+      color: #fff;
+      background-color: $true-green-hover !important;
+      box-shadow: 0px 2px 4px #f5f5f5;
+      border-bottom-color: darken($true-green, 5);
+    }
+  }
+
+  &.both-margins {
+    margin-left: 10px;
+  }
+
+  &.inline {
+    width: auto;
+    line-height: 1.6em;
+  }
+  &.full {
+    width: 100%;
+  }
+
+  &.round {
+    border-bottom: none !important; // !important covers the hover state too
+  }
+
+  &.delete {
+    color: white;
+    background-color: $value-red;
+    border-bottom: 3px solid darken($value-red, 5);
+    &:hover {
+      color: #fff;
+      background-color: $value-red-hover !important;
+      box-shadow: 0px 2px 4px #f5f5f5;
+      border-bottom-color: darken($value-red-hover, 5);
+    }
+  }
+
+  &.cancel {
+    color: white;
+    background-color: $gray;
+    border-bottom: 3px solid darken($gray, 5);
+
+    &.lighter {
+      background-color: #ccc;
+      border-bottom-color: $gray;
+      text-shadow: none;
+    }
+
+    &:hover {
+      color: #fff;
+      background-color: $value-red-hover !important;
+      box-shadow: 0px 2px 4px #f5f5f5;
+      border-bottom-color: darken($value-red-hover, 5);
+    }
+  }
+}
+
+// hover
+input[type="submit"]:hover, button:hover, .button:hover, .module a.button:hover, .k-upload-button:hover {
+  background-color: $true-green-hover !important;
+  box-shadow: 0px 2px 4px #f5f5f5;
+}
+
+// active
+input[type="submit"]:active, button:active, .button:active {
+  background-color: $true-green-hover;
+  top: 1px;
+  box-shadow:none;
+
+  transition:none;
+  border-bottom: 2px solid darken($true-green, 5);
+}
+
+//  inactive
+input[type="submit"].inactive, button.inactive, .button.inactive, input[type="submit"]:disabled {
+  background-image: none;
+  background-color: #f7f7f7 !important;
+  border-bottom: 2px solid darken(#f2f2f2, 5);
+  cursor: default;
+  color: #a5a5a5;
+  box-shadow: none;
+  text-shadow: none;
+  top: 0;
+  cursor: not-allowed;
+}
+
+a.cancel, a.cancel:focus {
+  color: $gray;
+}
+a.cancel:hover {
+  color: $value-red;
+}
+a.cancel:active {
+  color: $value-red-hover;
+}
+
 
 // input wrapper
 .input-wrapper {
