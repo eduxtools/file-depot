@@ -20,16 +20,6 @@
       <hr>
     </div>
 
-    <!-- TEMP -->
-    <script type="text/javascript">
-      var myDropzone = new Dropzone("div#upload-works", { 
-        url: "<%= attachments_path(temp_image_token: @work.temp_image_token) %>",
-        paramName: "attachment[file]"
-
-      });
-    </script>
-    <!-- END TEMP -->
-
     <div class="small-12 columns">
       <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
         <div class="field">
@@ -111,6 +101,15 @@
       <hr>
     </div>
 
+    <div id="notice-container" class="small-12 columns">
+      <div class="notice success hide">
+        <span class="file-count">0</span> file<span class="plural hide">s</span> uploaded
+      </div>
+      <div class="notice uploading hide">
+        You must wait until <span class="plural hide">all of</span> the file<span class="plural hide">s</span> finish uploading before continuing&hellip;
+      </div>
+    </div>
+
     <div class="small-12 columns">
       <%= f.hidden_field :temp_image_token %>
       <%= f.submit %>
@@ -119,7 +118,53 @@
   <% end %>
 </section>
 
+
 <script type="text/javascript">
+var dropzoneFileCount = 0;
+var dropzoneFileCompleted = 0;
+var dropzoneFileSuccessCount = 0;
+
+var submit_button = $('#new_work input[type="submit"]');
+submit_button.data('defaultVal', submit_button.val());
+
+var myDropzone = new Dropzone("div#upload-works", { 
+  url: "<%= attachments_path(temp_image_token: @work.temp_image_token) %>",
+  paramName: "attachment[file]",
+  init: function() {
+    this.on("addedfile", function(file) { 
+      dropzoneFileCount += 1;
+
+      submit_button.val('Uploading file, please wait...')
+      submit_button.attr('disabled', 'disabled');
+
+      $('#notice-container .notice.uploading').show();
+
+      if (dropzoneFileCount > 1) {
+        $('#notice-container .plural').show();
+      }
+    });
+    this.on('error', function(file) {
+      $('#notice-container').append('<div class="notice error">There was an error while uploading <span class="filename">' + file.name + '</span></div>');
+    }); 
+    this.on("success", function(file) {
+      dropzoneFileSuccessCount += 1;
+
+      $('#notice-container .success').show();
+      $('#notice-container .file-count').html(dropzoneFileSuccessCount);
+    });
+    this.on("complete", function(file) { 
+      dropzoneFileCompleted += 1;
+
+      if (dropzoneFileCompleted == dropzoneFileCount) {
+        $('#notice-container .notice.uploading').hide();
+        submit_button.val(submit_button.data('defaultVal'));
+        submit_button.removeAttr('disabled');
+      }
+    });
+  }
+});
+
+
 $(document).ready(function() {
 
   // dynamically load projects for course

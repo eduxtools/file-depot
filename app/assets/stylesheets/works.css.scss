@@ -1,0 +1,29 @@
+#notice-container {
+  margin-bottom: 1em;
+}
+
+.notice {
+  padding: 10px;
+  margin-bottom: .25em;
+  border-left-style: solid;
+  border-left-width: 3px; 
+
+  &.success {
+    background: #D0E6F9;
+    border-left-color: #6B92DA;
+  }
+
+  &.uploading {
+    background: #F9ECD0;
+    border-left-color: #DAB76B;
+  }
+
+  &.error {
+    background: #F9D0D0;
+    border-left-color: #DA6B6B;
+
+    .filename {
+      font-weight: bold;
+    }
+  }
+}
