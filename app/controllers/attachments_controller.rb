@@ -15,9 +15,9 @@ class AttachmentsController < ApplicationController
     
     respond_to do |format|
       if @attachment.save
-        format.any{ render :text => 'success (temp page)' }
+        format.any{ render :text => 'success' }
       else
-        format.any{ render :text => 'error (temp page)' }
+        format.any{ render :text => "File could not be uploaded: #{@attachment.errors.full_messages.to_sentence}", status: :unprocessable_entity }
       end
     end
   end
