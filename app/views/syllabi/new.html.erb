@@ -9,14 +9,32 @@
       <div id="upload-syllabi" style="border: 1px dashed #ccc;" class="dropzone"></div>
     </paper-material>
     <hr>
+
+    <div id="uploaded-syllabi-container" class="">
+      <paper-material elevation="1" style="background: #fff; padding: 10px 20px;">
+        <div id="uploaded-syllabi">
+
+        </div>
+      </paper-material>
+      <hr>
+    </div>
   </div>
 
   <!-- TEMP -->
   <script type="text/javascript">
     var myDropzone = new Dropzone("div#upload-syllabi", { 
       url: "<%= syllabi_path() %>",
-      paramName: "syllabus[document]"
+      paramName: "syllabus[document]",
+      dictDefaultMessage: 'Drop files here or click to upload. <br>The server will attempt to determine the course, term and instructor automatically.',
+      init: function() {
+        this.on("success", function(file, response) {
+          console.log(file);
+          console.log(response);
+          $('#uploaded-syllabi-container').show();
 
+          $('#uploaded-syllabi').append(response.syllabiPartial)
+        });
+      }
     });
   </script>
   <!-- END TEMP -->
@@ -28,6 +46,6 @@
 
 <section class="row">
   <div class="small-12 columns">
-    <%= link_to 'Cancel', syllabi_path %>
+    <%= link_to 'Done', syllabi_path %>
   </div>
 </section>

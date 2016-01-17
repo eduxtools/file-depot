@@ -1,0 +1,21 @@
+<%
+  syllabus ||= @syllabus
+%>
+
+<div class="row">
+  <div class="medium-1 column">
+    <%= file_icon(syllabus.document_content_type) %><br>
+  </div>
+  <div class="medium-3 column">
+    <%= syllabus.instructor ? link_to(@syllabus.instructor, syllabus.instructor) : '[Unknown Instructor]' %>
+  </div>
+  <div class="medium-3 column">
+    <%= syllabus.course ? link_to(@syllabus.course, syllabus.course) : '[Unknown Course]' %>
+  </div>
+  <div class="medium-3 column">
+    <%= syllabus.term ? @syllabus.term : '[Unknown Term]' %>
+  </div>
+  <div class="medium-2 column">
+    <%= link_to 'edit', edit_syllabus_path(syllabus) %>
+  </div>
+</div>
