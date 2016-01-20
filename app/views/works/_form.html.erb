@@ -130,7 +130,9 @@
 
     <div id="notice-container" class="small-12 columns">
       <div class="notice success hide">
-        <span class="file-count">0</span> file<span class="plural hide">s</span> uploaded
+        <span class="file-count">0</span> 
+        <span class="plural hide">of <span class="total-file-count"></span></span> 
+        file<span class="plural hide">s</span> uploaded
       </div>
       <div class="notice uploading hide">
         You must wait until <span class="plural hide">all of</span> the file<span class="plural hide">s</span> finish uploading before continuing&hellip;
@@ -169,6 +171,7 @@ var myDropzone = new Dropzone("div#upload-works", {
 
       if (dropzoneFileCount > 1) {
         $('#notice-container .plural').show();
+        $('#notice-container .total-file-count').html(dropzoneFileCount);
       }
     });
     this.on('error', function(file) {
