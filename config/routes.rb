@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :browse do
+    resources :works, only: [:index, :show]
+  end
+
   get '/nasad', to: redirect('/')
 
   resources :syllabi

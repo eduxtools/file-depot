@@ -1,0 +1,86 @@
+// -- Variables
+
+$nav-gray:        #f6f6f6;
+$nav-gray-hover:  #9a9a9a;
+
+
+// -- Rules
+
+html, body {
+  min-height: 100%;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2em !important;
+}
+
+.row.full-width {
+  max-width: 100%;
+}
+
+// -- top nav
+nav.top-title-bar {
+  background: darken($nav-gray, 10);
+  border-bottom: 2px solid darken($nav-gray, 20);
+  padding: 5px 0;
+  margin-bottom: 1em;
+
+  h1 {
+    font-size: 20px;
+  }
+
+}
+
+// -- Sidebar
+.off-canvas-wrapper { height: 100%; }
+.off-canvas-wrapper-inner {
+  background: #f6f6f6;
+  height: 100%;
+
+  .off-canvas { background: inherit; }
+  .off-canvas-content { min-height: 100%; }
+  
+  aside {
+    min-height: 100%;
+
+    hgroup {
+      margin: 2em 0 0;
+      border-bottom: 1px solid;
+      
+
+      h1 { font-size: 32px; margin: 0; }
+      h2 { font-size: 24px; margin: 0; }
+
+    }
+  
+    p.instructions { margin: 1em 0; font-size: 15px; }
+  } 
+
+}
+
+
+
+
+
+
+table {
+  width: 100%;
+}
+table .actions {
+  width: 5px;
+}
+
+/* New Styles */
+
+
+
+nav ul {
+  padding: 0 !important;
+}
+nav a {
+  color: #000;
+}
+nav li a:hover {
+  color: #fff;
+  background: $nav-gray-hover;
+}

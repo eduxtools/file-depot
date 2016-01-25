@@ -90,8 +90,16 @@ module InputHelper
     end
   end
 
-  def chosen_select_currency(form_object, method, options={}, html_options={})
-    chosen_select(form_object, method, options_for_select(AppConfig['currency_options'], form_object.object.send(method)), options, html_options)
+  def chosen_select_tag(name, choices=nil, options={})
+    options = {class: 'chosen'}.merge(options)
+    options[:class] = 'chosen ' + options[:class].to_s
+    options[:id] = options[:id] if options[:id]
+
+    content_tag :div, class: "input-wrapper chosen-wrapper #{options[:wrapper_class]}", id: options[:wrapper_id], 'data-overlay-label' => options[:overlay_label] do
+      concat build_label_tag_for_bar(name, options)
+      concat select_tag(name, choices, options)
+      concat build_bar
+    end
   end
 
 end

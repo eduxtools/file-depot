@@ -1,0 +1,30 @@
+<article class="level1">
+  <!-- <section class="row">
+    <div class="small-12 columns">
+      <h1>[title]</h1>
+    </div>
+  </section> -->
+
+  
+  <% if @works && @works.any? %>
+    <section class="row small-up-1 medium-up-2 large-up-3">
+      <% @works.each do |work| %>
+        <% unless work.attachments.first.nil? %>
+          <div class="columns work-card">
+            <%= link_to image_tag(work.attachments.first.file.url(:medium)), browse_work_path(work, request.query_parameters), remote: false %>
+          </div>
+        <% end %>
+      <% end %>
+
+    </section>
+  <% else %>
+    <section class="row">
+      <div class="medium-12 columns">
+        <div class="panel callout radius">
+          <h4>There is nothing to display.</h4>
+          <p>Try removing some of the search filters.</p>
+        </div>
+      </div>
+    </section>
+  <% end %>
+</article>

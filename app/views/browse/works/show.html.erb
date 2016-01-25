@@ -1,0 +1,83 @@
+<%= content_for :off_canvas do %>
+  <div class="columns">
+    <hgroup>
+      <h1 class="text-center project-title"><%= @work.project %></h1>
+      <div class="row collapse project-details">
+        <div class="medium-6 columns"><%= @work.course.try(:number) %></div>
+        <div class="medium-6 columns text-right"><%= @work.term %></div>
+      </div>
+    </hgroup>
+
+    <div class="row">
+      <div class="">Instructor</div>
+      <div class=""><%= @work.instructor %></div>
+    </div>
+
+    <div class="row">
+      <div class="">Course</div>
+      <div class=""><%= @work.course %></div>
+    </div>
+
+    <div class="row">
+      <div class="">Project</div>
+      <div class=""><%= @work.project %></div>
+    </div>
+
+  </div>
+<% end %>
+
+<article class="level2 start">
+  <section class="row full-width" data-equalizer data-equalize-by-row="true">
+    <!-- Work Details -->
+    <div class="medium-3 columns work-details" data-equalizer-watch data-sticky-container>
+      <div class="sticky" data-sticky>
+        <!-- title -->
+        <h1><%= @work.project %></h1>
+
+        <!-- details -->
+        <div class=""><%= @work.course %></div>
+        <div class=""><%= @work.project %></div>
+        <div class=""><%= @work.instructor %></div>
+
+        <!-- prev/next -->
+        <% 
+          begin
+            index = @works.find_index(@work) 
+            concat link_to 'Previous', browse_work_path(@works[index-1], request.query_parameters), remote: false
+            concat link_to 'Next', browse_work_path(@works[index+1], request.query_parameters), remote: false
+          rescue
+            nil
+          end
+        %>
+
+
+
+<!--         <div class="row collapse project-details">
+          <div class="medium-6 columns"><%= @work.course.try(:number) %></div>
+          <div class="medium-6 columns text-right"><%= @work.term %></div>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- Work Images -->
+    <div class="medium-9 columns text-center" data-equalizer-watch>
+      <% @work.attachments.each do |attachment| %>
+        <% if attachment.file_content_type.include?('image') %>
+          <%= image_tag attachment.file.url(:medium) %><br>
+        <% else %>
+          <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
+            <%= file_icon(attachment.file_content_type) %><br>
+            <%= attachment.file_file_name %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </section>
+</article>
+
+<script type="text/javascript">
+setTimeout(function() {
+  $('main article.level2').removeClass('start');
+}, 200)
+  
+</script>

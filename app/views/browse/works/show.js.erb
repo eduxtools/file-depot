@@ -1,0 +1,5 @@
+// alert('new')
+// $('main article.level1').after("<%= escape_javascript(render template: 'browse/works/show', formats: [:html], layout: false) %>");
+// $('main article.level1').addClass('fallback');
+$('main').html("<%= escape_javascript(render template: 'browse/works/show', formats: [:html], layout: false) %>");
+history.pushState({}, '', "<%= request.url.html_safe %>");

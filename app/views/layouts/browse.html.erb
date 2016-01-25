@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= AppConfig['name'] %></title>
+  <%= stylesheet_link_tag    'browse', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag     'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', media: 'all' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <meta name="viewport" content="width=device-width">
+</head>
+<body>
+
+<div class="off-canvas-wrapper">
+  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+    <aside class="off-canvas position-left reveal-for-large" id="sideMenuBar" data-off-canvas>
+      <%#= yield :off_canvas %>
+      <nav class="columns">
+        <hgroup>
+          <h1>Browse</h1>
+          <h2>Student Work</h2>
+        </hgroup>
+        <p class="instructions">Select one or more options to view student work</p>
+
+        <%= form_tag browse_works_path(), method: :get, remote: true, id: 'browse-work-filters' do %>
+          <%= chosen_select_tag :course, options_from_collection_for_select(Course.all, "id", "name", params[:course]), 
+              include_blank: true, 
+              label: true, 
+              data: {
+                placeholder: 'Select a course'
+              }  %>
+          <%#= chosen_select_tag :Project, options_from_collection_for_select(Project.all, "id", "name", params[:project]), 
+              include_blank: true, 
+              label: true, 
+              data: {
+                placeholder: 'Select a project'
+              }  %>
+          
+          <%= chosen_select_tag :instructor, options_from_collection_for_select(Instructor.all, "id", "name", params[:instructor]), 
+              include_blank: true, 
+              label: true, 
+              data: {
+                placeholder: 'Select an instructor'
+              }  %>
+
+          <%= chosen_select_tag :level, options_for_select(['Freshman', 'Sophomore', 'Junior', 'Senior'], params[:level]), 
+              include_blank: true, 
+              label: true, 
+              data: {
+                placeholder: 'Select a level'
+              }  %>
+          <%= submit_tag 'Search' %>
+        <% end %>
+      </nav>
+    </aside>
+
+    <div class="off-canvas-content" data-off-canvas-content>
+      <!-- title bar -->
+      <nav class="row full-width hide-for-large top-title-bar">
+        <div class="small-3 columns"><a class="left-off-canvas-toggle" href="#" data-toggle="sideMenuBar"><i class="fa fa-filter"></i> Filter</a></div>
+        <div class="small-6 columns end text-center"><h1>Browse Student Work</h1></div>
+      </nav>
+
+      <main>  
+        <%= yield %>
+      </main>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).foundation();
+
+  form = $('form#browse-work-filters');
+  form.find('input[type="submit"]').hide();
+  form.find('select').on('change', function() {
+    $(this).parents('form').submit();
+  })
+
+
+  $('#fallbacktest').on('click', function(e) {
+    e.preventDefault;
+    $('article.level1').toggleClass('fallback');
+  })
+
+  // $(window).bind("popstate", function() {
+  //   $.getScript(location.href);
+  // });
+  $(window).on("popstate", function(e) {
+    // location.reload();
+  });
+</script>
+
+
+</body>
+</html>
