@@ -11,7 +11,7 @@
       <% @works.each do |work| %>
         <% unless work.attachments.first.nil? %>
           <div class="columns work-card">
-            <%= link_to image_tag(work.attachments.first.file.url(:medium)), browse_work_path(work, request.query_parameters), remote: false %>
+            <%= link_to image_tag(work.attachments.first.file.url(:medium)), browse_work_path(work, request.query_parameters), remote: @use_remote %>
           </div>
         <% end %>
       <% end %>

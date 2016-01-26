@@ -27,7 +27,7 @@
 <% end %>
 
 <article class="level2 start">
-  <section class="row full-width" data-equalizer data-equalize-by-row="true">
+  <section class="row full-width image-show-row" data-equalizer data-equalize-by-row="true">
     <!-- Work Details -->
     <div class="medium-3 columns work-details" data-equalizer-watch data-sticky-container>
       <div class="sticky" data-sticky>
@@ -35,32 +35,46 @@
         <h1><%= @work.project %></h1>
 
         <!-- details -->
-        <div class=""><%= @work.course %></div>
-        <div class=""><%= @work.project %></div>
-        <div class=""><%= @work.instructor %></div>
+        <dl>
+          <% if @work.students.any? %>
+            <dt>Student<%= 's' if @work.students.count > 1 %></dt>
+            <dd><%= @work.students.to_sentence %></dd>
+          <% end %>
+
+          <% if @work.course %>
+            <dt>Course</dt>
+            <dd><%= link_to @work.course, browse_works_path(course: @work.course_id, remote: @use_remote) %></dd>
+          <% end %>
+
+          <% if @work.project %>
+            <dt>Project</dt>
+            <dd><%= link_to @work.project, browse_works_path(project: @work.project_id, remote: @use_remote) %></dd>
+          <% end %>
+
+          <% if @work.instructor %>
+            <dt>Instructor</dt>
+            <dd><%= link_to @work.instructor, browse_works_path(instructor: @work.instructor_id, remote: @use_remote) %></dd>
+          <% end %>
+        </dl>
 
         <!-- prev/next -->
         <% 
           begin
             index = @works.find_index(@work) 
-            concat link_to 'Previous', browse_work_path(@works[index-1], request.query_parameters), remote: false
-            concat link_to 'Next', browse_work_path(@works[index+1], request.query_parameters), remote: false
+            concat link_to 'Previous', browse_work_path(@works[index-1], request.query_parameters), remote: @use_remote
+            concat link_to 'Next', browse_work_path(@works[index+1], request.query_parameters), remote: @use_remote
           rescue
             nil
           end
         %>
+        <%= link_to 'Close', browse_works_path(request.query_parameters), remote: @use_remote %> 
 
 
-
-<!--         <div class="row collapse project-details">
-          <div class="medium-6 columns"><%= @work.course.try(:number) %></div>
-          <div class="medium-6 columns text-right"><%= @work.term %></div>
-        </div> -->
       </div>
     </div>
 
     <!-- Work Images -->
-    <div class="medium-9 columns text-center" data-equalizer-watch>
+    <div class="medium-9 columns text-center image-column" data-equalizer-watch>
       <% @work.attachments.each do |attachment| %>
         <% if attachment.file_content_type.include?('image') %>
           <%= image_tag attachment.file.url(:medium) %><br>
