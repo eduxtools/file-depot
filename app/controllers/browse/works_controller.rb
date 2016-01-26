@@ -16,12 +16,12 @@ class Browse::WorksController < ApplicationController
     end
 
     def load_works
-      if params[:project]
-        params[:course] = Project.find(params[:project]).try(:course).try(:id)
+      if params[:project] && !params[:project].nil?
+        params[:course] = Project.find_by_id(params[:project]).try(:course).try(:id)
       end
 
-      if params[:course]
-        params[:level] = Course.find(params[:course]).try(:level)
+      if params[:course] && !params[:course].nil?
+        # params[:level] = Course.find_by_id(params[:course]).try(:level)
       end
 
       conditions = {}

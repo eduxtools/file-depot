@@ -1,6 +1,5 @@
-// Place all the styles related to the browse/works controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$details-height: 102px;
+$link-green: #008d52;
 
 
 .work-card {
@@ -9,24 +8,29 @@
 }
 
 .image-show-row {
-  background: #f6f6f6; 
 
   .image-column {
     background: #fff;
+    margin-top: 40px;
 
     img { padding-bottom: 1em; margin-bottom: 1em; border-bottom: 1px solid #ccc; }
   }
-
 }
 
 .work-details {
-  margin-top: 2em;
+  // margin-top: 2em;
 
   h1 {
-    margin-top: 1.5em;
+    // margin-top: 1.5em;
     font-size: 25px;
     border-bottom: 1px solid;
-    visibility: hidden;
+    font-weight: bold;
+    text-align: center;
+
+    a { color: #000; }
+    a:hover { color: $link-green; }
+    
+    .project { font-weight: normal; }
   }
 
   dl {
@@ -42,6 +46,47 @@
       }
     }
   }
+}
 
+
+#details-nav {
+  left: 250px;
+  width: calc(100% - 250px);
+  background-color:#eee;
+  border-bottom: 5px solid #fff;
+  position:fixed;
+  top:0;
+  overflow: hidden;
+
+  .paginate-btn { 
+
+
+    a { 
+      display: block;
+      color: #000; 
+      border-bottom: 1px solid #ccc;
+      line-height: 30px;
+      padding: 0 1em;
+      transition: .5s all;
+      color: $link-green;
+
+      &:hover {
+        color: darken($link-green, 10);
+        // border-color: #333;
+        background: #fff;
+      }
+
+      &.inactive {
+        color: #ccc !important;
+        background: inherit !important;
+      }
+    }
+  }
 
 }
+
+
+
+
+
+

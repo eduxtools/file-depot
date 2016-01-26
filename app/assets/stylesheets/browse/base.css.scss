@@ -54,6 +54,11 @@ nav.top-title-bar {
     }
   
     p.instructions { margin: 1em 0; font-size: 15px; }
+
+    input[type="submit"] {
+      width: 100%;
+      margin-top: 1em;
+    }
   } 
 
 }

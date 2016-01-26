@@ -1,80 +1,53 @@
-<%= content_for :off_canvas do %>
-  <div class="columns">
-    <hgroup>
-      <h1 class="text-center project-title"><%= @work.project %></h1>
-      <div class="row collapse project-details">
-        <div class="medium-6 columns"><%= @work.course.try(:number) %></div>
-        <div class="medium-6 columns text-right"><%= @work.term %></div>
-      </div>
-    </hgroup>
+<% 
+    index     = @works.find_index(@work) 
+    prev_work = @works[index-1] rescue nil
+    next_work = @works[index+1] rescue nil
 
-    <div class="row">
-      <div class="">Instructor</div>
-      <div class=""><%= @work.instructor %></div>
-    </div>
-
-    <div class="row">
-      <div class="">Course</div>
-      <div class=""><%= @work.course %></div>
-    </div>
-
-    <div class="row">
-      <div class="">Project</div>
-      <div class=""><%= @work.project %></div>
-    </div>
-
-  </div>
-<% end %>
+%>
 
 <article class="level2 start">
-  <section class="row full-width image-show-row" data-equalizer data-equalize-by-row="true">
-    <!-- Work Details -->
-    <div class="medium-3 columns work-details" data-equalizer-watch data-sticky-container>
-      <div class="sticky" data-sticky>
-        <!-- title -->
-        <h1><%= @work.project %></h1>
+  <div id="details-nav">
+    <section class="row full-width collapse">
+      <!-- details -->
+      <div class="small-8 small-push-2 columns work-details">
+        <h1>
+          <%= link_to @work.course, browse_works_path(course: @work.course_id) %><%= ": #{link_to @work.project, browse_works_path(project: @work.project_id), class: 'project'}".html_safe if @work.project %>
+        </h1>
 
-        <!-- details -->
-        <dl>
-          <% if @work.students.any? %>
-            <dt>Student<%= 's' if @work.students.count > 1 %></dt>
-            <dd><%= @work.students.to_sentence %></dd>
-          <% end %>
-
-          <% if @work.course %>
-            <dt>Course</dt>
-            <dd><%= link_to @work.course, browse_works_path(course: @work.course_id, remote: @use_remote) %></dd>
-          <% end %>
-
-          <% if @work.project %>
-            <dt>Project</dt>
-            <dd><%= link_to @work.project, browse_works_path(project: @work.project_id, remote: @use_remote) %></dd>
-          <% end %>
-
-          <% if @work.instructor %>
+        <div class="row">
+          <!-- <div class="medium-6 columns">
             <dt>Instructor</dt>
             <dd><%= link_to @work.instructor, browse_works_path(instructor: @work.instructor_id, remote: @use_remote) %></dd>
-          <% end %>
-        </dl>
+          </div>
+          <div class="medium-6 columns">
+            <%= @work.students.to_sentence if @work.students.any? %>
+          </div> -->
 
-        <!-- prev/next -->
-        <% 
-          begin
-            index = @works.find_index(@work) 
-            concat link_to 'Previous', browse_work_path(@works[index-1], request.query_parameters), remote: @use_remote
-            concat link_to 'Next', browse_work_path(@works[index+1], request.query_parameters), remote: @use_remote
-          rescue
-            nil
-          end
-        %>
-        <%= link_to 'Close', browse_works_path(request.query_parameters), remote: @use_remote %> 
-
-
+          <div class="small-12 columns">
+            <%= simple_format(@work.project.try(:description)) %>
+          </div>
+        </div>
       </div>
-    </div>
 
+      <!-- nav -->
+      <div class="small-2 small-pull-8 columns paginate-btn">
+        <%= link_to (prev_work ? browse_work_path(prev_work, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless prev_work}" do %>
+          <i class="fa fa-arrow-left"></i>
+          <span class="show-for-medium">Previous</span>
+        <% end %>
+      </div>
+      <div class="small-2 columns text-right paginate-btn">
+        <%= link_to (next_work ? browse_work_path(next_work, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless next_work}" do %>
+          <span class="show-for-medium">Next</span>
+          <i class="fa fa-arrow-right"></i>
+        <% end %>
+      </div>
+    </section>
+  </div>
+
+  <section class="row full-width image-show-row" data-equalizer data-equalize-by-row="true">
     <!-- Work Images -->
-    <div class="medium-9 columns text-center image-column" data-equalizer-watch>
+    <div class="medium-12 columns text-center image-column" data-equalizer-watch>
       <% @work.attachments.each do |attachment| %>
         <% if attachment.file_content_type.include?('image') %>
           <%= image_tag attachment.file.url(:medium) %><br>
@@ -90,8 +63,32 @@
 </article>
 
 <script type="text/javascript">
-setTimeout(function() {
-  $('main article.level2').removeClass('start');
-}, 200)
-  
+var details_nav_height = '150px';
+
+$(function(){
+  // setup details_nav
+  details_nav = $('#details-nav');
+  details_nav.data('size','big');
+
+  details_nav_height = String(details_nav.find('> .row').height()) + 'px';
+  $('.image-column').css('padding-top', details_nav_height);
+});
+
+$('.off-canvas-wrapper').scroll(function(){
+  if ($('.off-canvas-wrapper').scrollTop() > 0) {
+    if (details_nav.data('size') == 'big') {
+      details_nav.data('size','small');
+      details_nav.stop().animate({
+        height:'40px'
+      }, 600);
+    }
+  } else {
+    if (details_nav.data('size') == 'small') {
+      details_nav.data('size','big');
+      details_nav.stop().animate({
+        height: details_nav_height
+      }, 600);
+    }  
+  }
+});
 </script>
