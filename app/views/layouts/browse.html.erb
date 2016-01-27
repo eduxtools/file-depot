@@ -49,6 +49,9 @@
               data: {
                 placeholder: 'Select a level'
               }  %>
+
+          <%= check_box_tag :only_images, 't', params[:only_images] == 't' %> <%= label_tag :only_images %>
+                    
           <%= submit_tag 'View' %>
         <% end %>
       </nav>
@@ -72,22 +75,19 @@
   $(document).foundation();
 
   form = $('form#browse-work-filters');
-  form.find('select').on('change', function() {
+  form.find('select, input').on('change', function() {
     $(this).parents('form').submit();
   })
+  form.find('input[type="submit"]').hide();
 
-
-  $('#fallbacktest').on('click', function(e) {
-    e.preventDefault;
-    $('article.level1').toggleClass('fallback');
+  $(document).ready(function() {
+    $("img").unveil();
   })
+
 
   // $(window).bind("popstate", function() {
   //   $.getScript(location.href);
   // });
-  $(window).on("popstate", function(e) {
-    // location.reload();
-  });
 </script>
 
 

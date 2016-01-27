@@ -1,3 +1,4 @@
 // alert('new')
 $('main').html("<%= escape_javascript(render template: 'browse/works/index', formats: [:html], layout: false) %>");
 history.pushState({}, '', "<%= request.url.html_safe %>");
+$("img").unveil();

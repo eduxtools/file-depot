@@ -1,91 +1,150 @@
 $details-height: 102px;
 $link-green: #008d52;
 
-
-.work-card {
-  // height: 250px;
-  border: 1px solid #ccc;
-}
-
-.image-show-row {
-
-  .image-column {
-    background: #fff;
-    margin-top: 40px;
-
-    img { padding-bottom: 1em; margin-bottom: 1em; border-bottom: 1px solid #ccc; }
+// -- index
+// ----- Header
+.browse-index-header {
+  hgroup {
+    margin        : 0 0 0;
+    padding-top   : 2em;
+    border-bottom : 1px solid;
+    margin-bottom : 1em;
+    position      : fixed; 
+    background    : #fff;
+    box-shadow    : 1px 1px 10px rgba(0,0,0,.25);
+    z-index       : 100;
   }
-}
-
-.work-details {
-  // margin-top: 2em;
-
   h1 {
-    // margin-top: 1.5em;
-    font-size: 25px;
-    border-bottom: 1px solid;
-    font-weight: bold;
-    text-align: center;
-
-    a { color: #000; }
-    a:hover { color: $link-green; }
-    
-    .project { font-weight: normal; }
+    font-size     : 32px;
+    margin-bottom : 0; 
   }
+  h2 {
+    font-size     : 18px;
+    margin-bottom : 0; 
+    line-height   : 28px !important;
+  }
+}
 
-  dl {
-    dt { font-weight: normal; }
-    dd { font-weight: bold; margin-bottom: 1em; }
-    
-    a { 
-      color: #000;
-      border-bottom: 1px dashed #aaa;
+// ----- Card
+section.work-cards {
+  margin-top : 125px;
+}
+.work-card {
+  text-align : center; 
+
+  a { 
+    display     : block; 
+    border      : 1px solid #bbb;
+    padding     : 1em;
+    margin      : .5em;
+    transition  : .25s all;
+
+    &:hover {
+      border-color      : #666;
+      -webkit-transform : scale(1.01);
+      box-shadow        : 1px 1px 5px #ccc;
+    }
+  }
+  .image-wrapper { 
+    display     : block; 
+    height      : 250px; 
+    overflow    : hidden; 
+  }
+  .title {
+    color       : #000;
+    font-size   : 20px;
+    border-top  : 1px solid #ddd;
+    margin-top  : .5em;
+    width       : 100%;
+    display     : block;
+  }
+  span.row {
+    display     : block;
+    color       : #aaa;
+  }
+}
+
+// ----- nothing to display
+.callout {
+  margin-top  : 100px !important;
+  padding     : 2em 1.5em !important;
+}
+
+
+
+// -- show
+// ----- Card
+
+// ------- main wrapper
+.image-show-row { 
+  .image-column {
+    background      : #f8f8f8;
+    margin-top      : 40px;
+
+    img { 
+      padding         : 1em; 
+      margin-bottom   : 1em; 
+      border-bottom   : 1px solid #ccc; 
+      background      : #fff;
+      transition      : .25s box-shadow;
 
       &:hover {
-        border-bottom: 1px solid #777;
+        box-shadow        : 1px 1px 5px #ccc;
       }
     }
   }
 }
 
 
+// ------- details (top bar)
 #details-nav {
-  left: 250px;
-  width: calc(100% - 250px);
-  background-color:#eee;
-  border-bottom: 5px solid #fff;
-  position:fixed;
-  top:0;
-  overflow: hidden;
+  width             : calc(100% - 250px);
+  background-color  : #fff;
+  border-bottom     : 1px solid #bbb;
+  box-shadow        : 1px 1px 10px rgba(0,0,0,.25);
+  position          : fixed;
+  overflow          : hidden;
+  top               : 0;
+  left              : 250px;
 
-  .paginate-btn { 
 
+  // title and description
+  .work-details {
+    h1 {
+      font-size       : 25px;
+      border-bottom   : 1px solid;
+      font-weight     : bold;
+      text-align      : center;
 
-    a { 
-      display: block;
-      color: #000; 
-      border-bottom: 1px solid #ccc;
-      line-height: 30px;
-      padding: 0 1em;
-      transition: .5s all;
-      color: $link-green;
-
-      &:hover {
-        color: darken($link-green, 10);
-        // border-color: #333;
-        background: #fff;
-      }
-
-      &.inactive {
-        color: #ccc !important;
-        background: inherit !important;
-      }
+      a { color               : #000;         }
+      a:hover { color         : $link-green;  }
+      .project { font-weight  : normal;       }
     }
   }
 
+  // pagination
+  .paginate-btn { 
+    a { 
+      display         : block;
+      color           : #000; 
+      border-bottom   : 1px solid #ccc;
+      line-height     : 30px;
+      padding         : 0 1em;
+      transition      : .5s all;
+      color           : $link-green;
+
+      &:hover {
+        color         : darken($link-green, 10);
+        border-color  : $link-green;
+        // background    : #fff;
+      }
+      &.inactive {
+        color         : #ccc !important;
+        background    : inherit !important;
+      }
+    }
+  }
 }
-
-
 
 
 

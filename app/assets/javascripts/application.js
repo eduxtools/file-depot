@@ -21,3 +21,4 @@
 //= require responsive-tables.js
 //= require chosen.jquery.min.js
 //= require dropzone.js
+//= require jquery.unveil.js

@@ -91,9 +91,10 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    pry (0.9.12.6)
-      coderay (~> 1.0)
-      method_source (~> 0.8)
+    pothoven-attachment_fu (3.2.16)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
@@ -183,6 +184,7 @@ DEPENDENCIES
   jquery-rails
   mysql2 (~> 0.3.10)
   paperclip (~> 4.3)
+  pothoven-attachment_fu
   pry-rails
   rails (= 4.2.4)
   sass-rails (~> 5.0)

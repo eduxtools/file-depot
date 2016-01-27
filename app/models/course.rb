@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   has_many :works
   has_many :projects
+  has_many :syllabi
 
   validates_presence_of :name, :number, :level, :credit_hours
 
