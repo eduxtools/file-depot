@@ -12,6 +12,7 @@ class Attachment < ActiveRecord::Base
   do_not_validate_attachment_file_type :file
   # validates_attachment_content_type :file, content_type: /\*/
 
+  before_save :update_image_cache
   after_save :update_work_caches
   before_destroy :update_work_caches_after_delete
 
@@ -19,6 +20,8 @@ class Attachment < ActiveRecord::Base
     write_attribute(:parent_id, id)
     write_attribute(:parent_type, 'temp')    
   end
+
+  # has_image returns cached boolean
 
   def is_image?
     [
@@ -39,6 +42,13 @@ class Attachment < ActiveRecord::Base
     ].include?(self.file_content_type) 
   end
 
+  def is_pdf?
+    [
+      'application/postscript',
+      'application/pdf'
+    ].include?(self.file_content_type) 
+  end
+
   def format_for_web(geometry)
     web_formats           = ['.jpg', '.jpeg', '.png', '.gif']
     options               = {}
@@ -48,6 +58,10 @@ class Attachment < ActiveRecord::Base
   end
 
   private
+    def update_image_cache
+      has_image = self.is_image?  
+    end
+
     def update_work_caches
       if parent_type != 'temp' && parent && parent.class == Work 
         parent.has_attachments = true

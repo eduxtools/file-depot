@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127135115) do
+ActiveRecord::Schema.define(version: 20160127202655) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "parent_id"
     t.string   "parent_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.boolean  "has_image",         default: true
   end
 
   add_index "attachments", ["parent_type", "parent_id"], name: "index_attachments_on_parent_type_and_parent_id"
