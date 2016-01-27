@@ -17,8 +17,8 @@ class Browse::WorksController < ApplicationController
     end
 
     def load_nav_objects
-      @courses      = Course.all.order('number ASC')
-      @instructors  = Instructor.all.order('name ASC')
+      @courses      = Course.where(has_works: true).order('number ASC')
+      @instructors  = Instructor.where(has_works: true).order('name ASC')
     end
 
     def load_works
