@@ -36,7 +36,7 @@ class Browse::WorksController < ApplicationController
         # params[:level] = Course.find_by_id(params[:course]).try(:level)
       end
 
-      conditions = {has_attachments: true}
+      conditions = {}
       conditions.merge!({instructor_id: params[:instructor]})                  unless params[:instructor].blank?
       conditions.merge!({project_id: params[:project]})                        unless params[:project].blank?
       conditions.merge!({course_id: params[:course]})                          unless params[:course].blank?
@@ -44,7 +44,7 @@ class Browse::WorksController < ApplicationController
       conditions.merge!({has_images: true})                                    if params[:only_images] == 't'
 
       unless conditions.blank?
-        @works = Work.where(conditions).includes(:instructor, :course, :project)
+        @works = Work.where({has_attachments: true}.merge(conditions)).includes(:instructor, :course, :project)
       end
     end
 end
