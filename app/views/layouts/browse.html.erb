@@ -76,11 +76,10 @@
     $(this).parents('form').submit();
   })
 
-
-  $('#fallbacktest').on('click', function(e) {
-    e.preventDefault;
-    $('article.level1').toggleClass('fallback');
+  $(document).ready(function() {
+    $("img").unveil();
   })
+
 
   // $(window).bind("popstate", function() {
   //   $.getScript(location.href);

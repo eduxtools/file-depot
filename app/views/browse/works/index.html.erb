@@ -9,11 +9,19 @@
   <% if @works && @works.any? %>
     <section class="row small-up-1 medium-up-2 large-up-3">
       <% @works.each do |work| %>
-        <% unless work.attachments.first.nil? %>
-          <div class="columns work-card">
-            <%= link_to image_tag(work.attachments.first.file.url(:medium)), browse_work_path(work, request.query_parameters), remote: @use_remote %>
-          </div>
-        <% end %>
+
+        <div class="columns work-card">
+          <%= link_to browse_work_path(work, request.query_parameters), remote: @use_remote do %>
+            <span class="image-wrapper">
+              <%= image_tag('loading-image.gif', data: { src: work.attachments.first.file.url(:medium), src_retina: work.attachments.first.file.url(:medium)}) %></span>
+            <span class="title"><%= work_title(work) %></span>
+            <span class="row">
+              <span class="medium-6 columns medium-text-left text-center"><%= work.term %></span>
+              <span class="medium-6 columns medium-text-right text-center"><%= work.instructor %></span>
+            </span>
+          <% end %>
+        </div>
+
       <% end %>
 
     </section>
