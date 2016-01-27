@@ -44,7 +44,7 @@ class Browse::WorksController < ApplicationController
       conditions.merge!({has_images: true})                                    if params[:only_images] == 't'
 
       unless conditions.blank?
-        @works = Work.where({has_attachments: true}.merge(conditions)).includes(:instructor, :course, :project)
+        @works = Work.where({has_attachments: true}.merge(conditions)).order('created_at DESC').includes(:instructor, :course, :project)
       end
     end
 end
