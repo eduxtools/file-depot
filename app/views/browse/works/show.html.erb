@@ -55,7 +55,9 @@
     <div class="medium-12 columns text-center image-column" data-equalizer-watch>
       <% @work.attachments.each do |attachment| %>
         <% if attachment.is_image? %>
-          <%= image_tag attachment.file.url(:medium) %><br>
+          <%= image_tag attachment.file.url(:medium) %>
+          <%= link_to(file_icon(attachment.file_content_type), attachment.file.url()) if attachment.is_pdf? %>
+          <br>
         <% else %>
           <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
             <%= file_icon(attachment.file_content_type) %><br>
