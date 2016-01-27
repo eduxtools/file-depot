@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015194629) do
+ActiveRecord::Schema.define(version: 20160127064555) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "parent_id"
@@ -123,14 +123,16 @@ ActiveRecord::Schema.define(version: 20151015194629) do
   end
 
   create_table "works", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "term",          limit: 255
+    t.string   "name",            limit: 255
+    t.string   "term",            limit: 255
     t.text     "description"
     t.integer  "project_id"
     t.integer  "instructor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "course_id"
+    t.boolean  "has_attachments",             default: false
+    t.boolean  "has_images",                  default: false
   end
 
 end
