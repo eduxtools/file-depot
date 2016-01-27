@@ -23,7 +23,7 @@
             <%= @work.students.to_sentence if @work.students.any? %>
           </div> -->
 
-          <div class="small-12 columns">
+          <div class="small-12 columns project-description">
             <%= simple_format(@work.project.try(:description)) %>
           </div>
         </div>
