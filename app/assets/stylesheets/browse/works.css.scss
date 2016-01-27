@@ -2,7 +2,33 @@ $details-height: 102px;
 $link-green: #008d52;
 
 // -- index
+// ----- Header
+.browse-index-header {
+  hgroup {
+    margin        : 0 0 0;
+    padding-top   : 2em;
+    border-bottom : 1px solid;
+    margin-bottom : 1em;
+    position      : fixed; 
+    background    : #fff;
+    box-shadow    : 1px 1px 10px rgba(0,0,0,.25);
+    z-index       : 100;
+  }
+  h1 {
+    font-size     : 32px;
+    margin-bottom : 0; 
+  }
+  h2 {
+    font-size     : 18px;
+    margin-bottom : 0; 
+    line-height   : 28px !important;
+  }
+}
+
 // ----- Card
+section.work-cards {
+  margin-top : 125px;
+}
 .work-card {
   text-align : center; 
 
@@ -38,6 +64,12 @@ $link-green: #008d52;
   }
 }
 
+// ----- nothing to display
+.callout {
+  margin-top  : 100px !important;
+  padding     : 2em 1.5em !important;
+}
+
 
 
 // -- show
@@ -46,13 +78,19 @@ $link-green: #008d52;
 // ------- main wrapper
 .image-show-row { 
   .image-column {
-    background      : #fff;
+    background      : #f8f8f8;
     margin-top      : 40px;
 
     img { 
-      padding-bottom  : 1em; 
+      padding         : 1em; 
       margin-bottom   : 1em; 
       border-bottom   : 1px solid #ccc; 
+      background      : #fff;
+      transition      : .25s box-shadow;
+
+      &:hover {
+        box-shadow        : 1px 1px 5px #ccc;
+      }
     }
   }
 }
@@ -61,8 +99,9 @@ $link-green: #008d52;
 // ------- details (top bar)
 #details-nav {
   width             : calc(100% - 250px);
-  background-color  : #eee;
-  border-bottom     : 5px solid #fff;
+  background-color  : #fff;
+  border-bottom     : 1px solid #bbb;
+  box-shadow        : 1px 1px 10px rgba(0,0,0,.25);
   position          : fixed;
   overflow          : hidden;
   top               : 0;
@@ -96,7 +135,8 @@ $link-green: #008d52;
 
       &:hover {
         color         : darken($link-green, 10);
-        background    : #fff;
+        border-color  : $link-green;
+        // background    : #fff;
       }
       &.inactive {
         color         : #ccc !important;
