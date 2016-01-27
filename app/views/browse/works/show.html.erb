@@ -54,7 +54,7 @@
     <!-- Work Images -->
     <div class="medium-12 columns text-center image-column" data-equalizer-watch>
       <% @work.attachments.each do |attachment| %>
-        <% if attachment.file_content_type.include?('image') %>
+        <% if attachment.is_image? %>
           <%= image_tag attachment.file.url(:medium) %><br>
         <% else %>
           <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
