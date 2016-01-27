@@ -30,15 +30,20 @@
       </div>
 
       <!-- nav -->
-      <div class="small-2 small-pull-8 columns paginate-btn">
-        <%= link_to (prev_work ? browse_work_path(prev_work, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless prev_work}" do %>
-          <i class="fa fa-arrow-left"></i>
-          <span class="show-for-medium">Previous</span>
+      <div class="small-2 columns small-pull-8 paginate-btn">
+        <%= link_to browse_works_path(request.query_parameters), remote: @use_remote do %>
+          <i class="fa fa-th-large"></i> Back
         <% end %>
       </div>
-      <div class="small-2 columns text-right paginate-btn">
+      <div class="small-1 columns text-right paginate-btn">
+        <%= link_to (prev_work ? browse_work_path(prev_work, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless prev_work}" do %>
+          <i class="fa fa-arrow-left"></i>
+          <!-- <span class="show-for-medium">Previous</span> -->
+        <% end %>
+      </div>
+      <div class="small-1 columns text-left paginate-btn">
         <%= link_to (next_work ? browse_work_path(next_work, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless next_work}" do %>
-          <span class="show-for-medium">Next</span>
+          <!-- <span class="show-for-medium">Next</span> -->
           <i class="fa fa-arrow-right"></i>
         <% end %>
       </div>

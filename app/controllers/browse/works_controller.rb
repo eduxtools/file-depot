@@ -16,22 +16,29 @@ class Browse::WorksController < ApplicationController
     end
 
     def load_works
-      if params[:project] && !params[:project].nil?
-        params[:course] = Project.find_by_id(params[:project]).try(:course).try(:id)
+      if !params[:project].nil?
+        @project        = Project.find_by_id(params[:project])
+        params[:course] = @project.try(:course).try(:id) 
       end
 
-      if params[:course] && !params[:course].nil?
+      if !params[:instructor].nil?
+        @instructor     = Instructor.find_by_id(params[:instructor])
+      end
+
+      if !params[:course].nil?
+        @course         = Course.find_by_id(params[:course])
         # params[:level] = Course.find_by_id(params[:course]).try(:level)
       end
 
-      conditions = {}
+      conditions = {has_attachments: true}
       conditions.merge!({instructor_id: params[:instructor]})                  unless params[:instructor].blank?
       conditions.merge!({project_id: params[:project]})                        unless params[:project].blank?
       conditions.merge!({course_id: params[:course]})                          unless params[:course].blank?
       conditions.merge!({course_id: Course.where(level: params[:level]).ids})  unless params[:level].blank?
+      conditions.merge!({has_images: true})                                    if params[:only_images] == 't'
 
       unless conditions.blank?
-        @works = Work.where(conditions)
+        @works = Work.where(conditions).includes(:instructor, :course, :project)
       end
     end
 end
