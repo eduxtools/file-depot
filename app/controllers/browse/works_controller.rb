@@ -2,6 +2,7 @@ class Browse::WorksController < ApplicationController
   layout 'browse'
   before_filter :load_works
   before_filter :set_use_remote
+  before_filter :load_nav_objects
   
   def index
   end
@@ -13,6 +14,11 @@ class Browse::WorksController < ApplicationController
   private
     def set_use_remote
       @use_remote = true
+    end
+
+    def load_nav_objects
+      @courses      = Course.all.order('number ASC')
+      @instructors  = Instructor.all.order('name ASC')
     end
 
     def load_works
