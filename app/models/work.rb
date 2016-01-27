@@ -9,6 +9,9 @@ class Work < ActiveRecord::Base
   attr_accessor :student_ids, :temp_image_token
 
   validates_presence_of :instructor, :course, :project_id, :term
+
+  after_save :update_work_caches
+  after_destroy :update_work_caches_after_delete
   
 
   def student_names
@@ -46,4 +49,15 @@ class Work < ActiveRecord::Base
     self.course = Course.find_or_create_by(name: value) unless value.blank?
   end
   # ----- end legacy
+
+  private
+    def update_work_caches
+      self.course.update_column(:has_works, true) if self.course
+      self.instructor.update_column(:has_works, true) if self.instructor
+    end
+
+    def update_work_caches_after_delete
+      self.course.update_column(:has_works, self.course.works.any?) if self.course
+      self.instructor.update_column(:has_works, self.instructor.works.any?) if self.instructor
+    end
 end
