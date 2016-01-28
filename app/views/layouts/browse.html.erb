@@ -23,6 +23,13 @@
         <p class="instructions">Select one or more options to view student work</p>
 
         <%= form_tag browse_works_path(), method: :get, remote: true, id: 'browse-work-filters' do %>
+          <%= chosen_select_tag :area, options_for_select(Course.areas, params[:area]), 
+              include_blank: true, 
+              label: true, 
+              data: {
+                placeholder: 'Select an area'
+              }  %>  
+
           <%= chosen_select_tag :course, options_from_collection_for_select(@courses, "id", "name", params[:course]), 
               include_blank: true, 
               label: true, 

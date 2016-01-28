@@ -37,10 +37,13 @@ class Browse::WorksController < ApplicationController
       end
 
       conditions = {}
+      
       conditions.merge!({instructor_id: params[:instructor]})                  unless params[:instructor].blank?
       conditions.merge!({project_id: params[:project]})                        unless params[:project].blank?
       conditions.merge!({course_id: params[:course]})                          unless params[:course].blank?
       conditions.merge!({course_id: Course.where(level: params[:level]).ids})  unless params[:level].blank?
+      conditions.merge!({course_id: Course.where(area: params[:area]).ids})    unless params[:area].blank?
+
       conditions.merge!({has_images: true})                                    if params[:only_images] == 't'
 
       unless conditions.blank?

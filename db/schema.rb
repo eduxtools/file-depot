@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127202655) do
+ActiveRecord::Schema.define(version: 20160128194136) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "parent_id"
@@ -36,7 +36,10 @@ ActiveRecord::Schema.define(version: 20160127202655) do
     t.datetime "updated_at"
     t.integer  "credit_hours"
     t.boolean  "has_works",                default: false
+    t.string   "area"
   end
+
+  add_index "courses", ["area"], name: "index_courses_on_area"
 
   create_table "images", force: :cascade do |t|
     t.integer  "work_id"

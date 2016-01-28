@@ -34,6 +34,15 @@
           </div>
 
           <div class="field">
+            <%= chosen_select f, :area, options_for_select(Course.areas, f.object.area), 
+                include_blank: true, 
+                label: true, 
+                data: {
+                  placeholder: 'Select an area'
+                }  %>  
+          </div>
+
+          <div class="field">
             <%= f.label :description %>
             <%= f.text_area :description %>
           </div>
