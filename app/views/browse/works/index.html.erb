@@ -20,6 +20,7 @@
           Student Work
         </h1>
         <h2>
+          <%= "in #{params[:area].gsub('+', ' ')}" unless params[:area].blank? %>
           <%= "#{@project} project" if @project %>
           <%= "taught by #{@instructor}" if @instructor %>
           &nbsp;
