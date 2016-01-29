@@ -36,13 +36,31 @@ class Browse::WorksController < ApplicationController
         # params[:level] = Course.find_by_id(params[:course]).try(:level)
       end
 
-      conditions = {}
-      
+      if !params[:course].blank? 
+        # just select course
+        course_ids = params[:course]
+
+      elsif !params[:level].blank? && !params[:area].blank?
+        # combine course ids
+        course_ids = Course.where(level: params[:level]).ids & Course.where(area: params[:area]).ids
+
+      elsif !params[:level].blank?
+        # select just level courses
+        course_ids = Course.where(level: params[:level]).ids
+
+      elsif !params[:area].blank?
+        # select just area courses
+        course_ids = Course.where(area: params[:area]).ids
+
+      else
+        # ignore course ids
+        course_ids = nil
+      end
+
+      conditions = {}      
       conditions.merge!({instructor_id: params[:instructor]})                  unless params[:instructor].blank?
       conditions.merge!({project_id: params[:project]})                        unless params[:project].blank?
-      conditions.merge!({course_id: params[:course]})                          unless params[:course].blank?
-      conditions.merge!({course_id: Course.where(level: params[:level]).ids})  unless params[:level].blank?
-      conditions.merge!({course_id: Course.where(area: params[:area]).ids})    unless params[:area].blank?
+      conditions.merge!({course_id: course_ids})                               unless course_ids.blank?
 
       conditions.merge!({has_images: true})                                    if params[:only_images] == 't'
 
