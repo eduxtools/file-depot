@@ -32,7 +32,7 @@
       <% @works.each do |work| %>
         <%
           work_count    += 1
-          work_image    = (work.has_images ? work.attachments.where(has_image: true).first.file.url(:medium) : "/assets/#{file_icon_path(work.attachments.first.file_content_type)}" )
+          work_image    = (work.has_images ? work.attachments.where(has_image: true).first.file.url(:medium) : "/#{file_icon_path(work.attachments.first.file_content_type)}" )
           default_image = (work_count <= number_of_preloaded_images ? work_image : 'loading-image.gif')
         %>
 
