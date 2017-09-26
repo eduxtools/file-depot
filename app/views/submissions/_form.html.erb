@@ -4,7 +4,7 @@
   }
 </style>
 
-<%= form_for(@submission) do |f| %>
+<%= form_for(@submission, html: {id: 'submission_form'}) do |f| %>
   <% if @submission.errors.any? %>
     <section class="row">
       <div class="large-8 medium-10 large-offset-2 medium-offset-1 columns" id="error_explanation">
@@ -105,7 +105,7 @@ var dropzoneFileCount = 0;
 var dropzoneFileCompleted = 0;
 var dropzoneFileSuccessCount = 0;
 
-var submit_button = $('#new_submission input[type="submit"]');
+var submit_button = $('#submission_form input[type="submit"]');
 submit_button.data('defaultVal', submit_button.val());
 
 var myDropzone = new Dropzone("div#upload-works", {

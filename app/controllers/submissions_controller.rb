@@ -32,6 +32,7 @@ class SubmissionsController < ApplicationController
 
   # GET /submissions/1/edit
   def edit
+    @submission.temp_image_token = Random.rand(10000000..999999999)
   end
 
   # POST /submissions
@@ -63,6 +64,8 @@ class SubmissionsController < ApplicationController
   def update
     respond_to do |format|
       if @submission.update(submission_params)
+        move_temp_ajax_images(@submission)
+
         format.html { redirect_to @submission, notice: 'Submission was successfully updated.' }
         format.json { render :show, status: :ok, location: @submission }
       else
@@ -103,7 +106,7 @@ class SubmissionsController < ApplicationController
     # This overrides the normal login behavior to allow viewing and editing of submissions uploaded during this session
     def login_required
       session[:uploaded_submission_ids] ||= [] # in case it hasn't yet been set
-      
+
       if @submission && session[:uploaded_submission_ids].include?(@submission.id)
         # return true will simply allow the application to continue, ignoring the normal login method (return true does not mean that login is required)
         return true

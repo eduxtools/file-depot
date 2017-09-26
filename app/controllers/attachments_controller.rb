@@ -1,4 +1,7 @@
 class AttachmentsController < ApplicationController
+  # login_required before_action must be skipped for the submissions page
+  skip_before_action :login_required, only: [:create]
+
   def create
     @attachment = Attachment.new(attachment_params)
 
@@ -12,7 +15,7 @@ class AttachmentsController < ApplicationController
       @attachment.parent = Course.find(params[:course_id])
 
     end
-    
+
     respond_to do |format|
       if @attachment.save
         format.any{ render :text => 'success' }
