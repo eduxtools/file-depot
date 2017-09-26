@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 
 gem "paperclip", "~> 4.3"
@@ -31,8 +31,8 @@ gem 'pothoven-attachment_fu'
 # gem 'polymer-rails'
 # gem 'nokogumbo', '1.4.2'
 
-group :production do 
-  gem 'mysql2', '~> 0.3.10'
+group :production do
+  # gem 'mysql2', '~> 0.3.10'
 end
 
 group :development, :test do

@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  # legacy route
+  get '/nasad', to: redirect('/')
 
+  get 'login' => 'sessions#new', as: 'login'
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy', as: 'logout'
+
+  resources :users
   namespace :browse do
     resources :works, only: [:index, :show]
   end
-
-  get '/nasad', to: redirect('/')
 
   resources :syllabi
   resources :projects
@@ -15,7 +20,7 @@ Rails.application.routes.draw do
   resources :attachments, only: [:create, :destroy]
 
   root 'application#index'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
