@@ -88,6 +88,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.2)
+    mysql2 (0.3.21)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     paperclip (4.3.7)
@@ -190,6 +191,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
+  mysql2 (~> 0.3.10)
   paperclip (~> 4.3)
   pothoven-attachment_fu
   pry-rails
