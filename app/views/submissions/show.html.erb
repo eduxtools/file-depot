@@ -33,6 +33,10 @@
       <%= box_heading title:'File Preview' %>
       <%= box_body do %>
 
+        <% if @submission.attachments.empty? %>
+          <p class="notice error">No files were uploaded</p>
+        <% end %>
+
         <% @submission.attachments.each do |attachment| %>
           <% if attachment.file_content_type.include?('image') %>
             <%= image_tag attachment.file.url(:small) %>

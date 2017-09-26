@@ -1,5 +1,8 @@
 class SubmissionsController < ApplicationController
+  skip_before_action :login_required
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
+  before_action :login_required, except: [:new, :create] # SubmissionsController overrides the normal method, but must come after `set_submission`
+
 
   layout 'submit'
 
@@ -41,6 +44,10 @@ class SubmissionsController < ApplicationController
         move_temp_ajax_images(@submission)
         session[:previous_submission_id] = @submission.id
 
+        # Store uploaded submissions from this session
+        # This allows these submissions to be viewed or edited without logging
+        session[:uploaded_submission_ids] ||= []
+        session[:uploaded_submission_ids] << @submission.id
 
         format.html { redirect_to @submission, notice: 'Submission was successfully uploaded.' }
         format.json { render :show, status: :created, location: @submission }
@@ -83,13 +90,25 @@ class SubmissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def submission_params
-      params.require(:submission).permit(:temp_image_token, data: CustomField.fields, student_attributes: [:name])
+      params.require(:submission).permit(:temp_image_token, data: CustomField.fields, student_attributes: [:id, :name])
     end
 
     def move_temp_ajax_images(submission=@submission)
       Attachment.where(parent_id: submission.temp_image_token, parent_type: 'temp').each do |attachment|
         attachment.parent = submission
         attachment.save
+      end
+    end
+
+    # This overrides the normal login behavior to allow viewing and editing of submissions uploaded during this session
+    def login_required
+      session[:uploaded_submission_ids] ||= [] # in case it hasn't yet been set
+      
+      if @submission && session[:uploaded_submission_ids].include?(@submission.id)
+        # return true will simply allow the application to continue, ignoring the normal login method (return true does not mean that login is required)
+        return true
+      else
+        super
       end
     end
 end

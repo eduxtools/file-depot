@@ -69,6 +69,7 @@
 
         <%# --- Student ---- %>
         <%= f.fields_for :student do |f_student| %>
+          <%= f_student.hidden_field :id %>
           <%= text_field_with_bar f_student, :name, label: 'Student Name', required: true %>
         <% end %>
 
@@ -92,6 +93,7 @@
   <div class="large-8 medium-10 large-offset-2 medium-offset-1 columns actions text-right" style="margin-bottom: 5em;">
     <%= f.hidden_field :temp_image_token %>
     <%= f.submit 'Save Submission' %>
+    <%= link_to 'Cancel Changes', @submission, class: 'cancel' unless @submission.new_record? %>
   </div>
 </section>
 
