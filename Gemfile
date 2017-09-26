@@ -52,6 +52,5 @@ group :development do
   gem 'pry-rails'
   gem 'sqlite3'
   gem 'unicorn'
-  gem 'xray-rails'
+  # gem 'xray-rails'
 end
-
