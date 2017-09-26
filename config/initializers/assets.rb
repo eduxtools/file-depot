@@ -8,4 +8,4 @@ Rails.application.config.assets.version = '1.2'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( browse.css submit.css loading-image.gif )
+Rails.application.config.assets.precompile += %w( browse.css sessions.css submit.css loading-image.gif )

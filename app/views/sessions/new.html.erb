@@ -1,0 +1,15 @@
+<h1>Login</h1>
+
+<%= form_tag login_url do %>
+
+  <%= label_tag :login %>
+  <%= text_field_tag :login, '', placeholder: 'login name or email address' %>
+
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+
+  <div class="actions text-right">
+    <%= submit_tag 'Login', class: 'button' %>
+  </div>
+  
+<% end %>

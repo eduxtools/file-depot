@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # legacy route
+  get '/nasad', to: redirect('/')
+
+  get 'login' => 'sessions#new', as: 'login'
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy', as: 'logout'
+  resources :users
 
   get '/submit', to: 'submissions#new', as: 'new_submission'
   resources :submissions
@@ -6,8 +13,6 @@ Rails.application.routes.draw do
   namespace :browse do
     resources :works, only: [:index, :show]
   end
-
-  get '/nasad', to: redirect('/')
 
   resources :syllabi
   resources :projects
