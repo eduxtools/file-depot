@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get '/submit', to: 'submissions#new', as: 'new_submission'
+  resources :submissions
+
   namespace :browse do
     resources :works, only: [:index, :show]
   end
@@ -15,7 +18,7 @@ Rails.application.routes.draw do
   resources :attachments, only: [:create, :destroy]
 
   root 'application#index'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

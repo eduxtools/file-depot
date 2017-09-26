@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726093456) do
+ActiveRecord::Schema.define(version: 20170921182851) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "parent_id"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20170726093456) do
   end
 
   add_index "courses", ["area"], name: "index_courses_on_area"
+
+  create_table "custom_fields", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "required",   default: false
+    t.boolean  "persistent", default: false
+    t.integer  "position"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "images", force: :cascade do |t|
     t.integer  "work_id"
@@ -97,6 +106,15 @@ ActiveRecord::Schema.define(version: 20170726093456) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer  "student_id"
+    t.text     "data",       limit: 4294967295
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "submissions", ["student_id"], name: "index_submissions_on_student_id"
 
   create_table "syllabi", force: :cascade do |t|
     t.string   "term"

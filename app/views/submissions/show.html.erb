@@ -1,0 +1,55 @@
+<style media="screen">
+  th {
+    width: 275px;
+  }
+</style>
+
+<section class="row">
+  <div class="columns">
+    <%= box do %>
+      <%= box_heading title: 'Submission Info' %>
+      <%= box_body do %>
+        <table style="width: 100%;">
+          <tbody>
+            <tr>
+              <th>Student Name</th>
+              <td><%= @submission.student %></td>
+            </tr>
+
+            <% @submission.data.each do |key, value| %>
+              <% unless value.blank? %>
+                <tr>
+                  <th><%= key %></th>
+                  <td><%= value %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      <% end #box_body %>
+    <% end #box %>
+
+    <%= box do %>
+      <%= box_heading title:'File Preview' %>
+      <%= box_body do %>
+
+        <% @submission.attachments.each do |attachment| %>
+          <% if attachment.file_content_type.include?('image') %>
+            <%= image_tag attachment.file.url(:small) %>
+          <% else %>
+            <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
+              <%= file_icon(attachment.file_content_type) %><br>
+              <%= attachment.file_file_name %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Submit More', new_submission_path %>

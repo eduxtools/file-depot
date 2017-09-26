@@ -11,8 +11,8 @@ $value-red-hover: #9E0505;
 $gray: #787878;
 
 $input-background: #F9F9F9;
-$input-background: rgba(243,243,243,0.5); 
-$input-background: #fff; 
+$input-background: rgba(243,243,243,0.5);
+$input-background: #fff;
 
 
 
@@ -73,8 +73,8 @@ table.input-grid {
 
   td.collapse ~ td:not(.collapse), th.collapse ~ th:not(.collapse) {
     padding-left: 20px;
-  } 
-  
+  }
+
   td {
     // padding: 0;
 
@@ -117,7 +117,7 @@ table.input-grid {
   // }
 
   tbody tr:hover > td
-  // , tbody tr:hover > td input 
+  // , tbody tr:hover > td input
   {
     background-color: #fffef2;
   }
@@ -318,15 +318,16 @@ a.cancel:active {
     background: $input-background !important;
     border: 1px solid $wrapper-color !important;
     padding: 5px 10px !important;
-    width: calc(100% - 20px);
+    margin-bottom: 0;
     color: $input-color;
     // position: relative;
+    // width: calc(100% - 20px);
 
-    -moz-transition: .25s color; 
+    -moz-transition: .25s color;
     -webkit-transition: .25s color;
     transition: .25s color;
-    
-    
+
+
     &:not([disabled]):not([readonly]):focus {
       background-color: #fff !important;
       color: #000 !important;
@@ -361,28 +362,28 @@ a.cancel:active {
   }
 
   // bar
-  .bar  { 
-    position: relative; 
-    display: block; 
-    width: 100%; 
+  .bar  {
+    position: relative;
+    display: block;
+    width: 100%;
   }
   .bar:before, .bar:after {
     content:'';
-    height:2px; 
+    height:2px;
     width:0;
-    bottom:0px; 
+    bottom:0px;
     position:absolute;
-    background:$bar-color; 
+    background:$bar-color;
 
-    -moz-transition:0.2s ease all; 
+    -moz-transition:0.2s ease all;
     -webkit-transition:0.2s ease all;
-    transition:0.2s ease all; 
+    transition:0.2s ease all;
   }
   .bar:before {
     left:50%;
   }
   .bar:after {
-    right:50%; 
+    right:50%;
   }
 
   // bar position for textarea
@@ -391,9 +392,9 @@ a.cancel:active {
   }
 
   // bar active state
-  input:not([disabled]):not([readonly]):not(.plain):focus ~ .bar:before, 
-  input:not([disabled]):not([readonly]):not(.plain):focus ~ .bar:after, 
-  textarea:not([disabled]):not([readonly]):not(.plain):focus ~ .bar:before, 
+  input:not([disabled]):not([readonly]):not(.plain):focus ~ .bar:before,
+  input:not([disabled]):not([readonly]):not(.plain):focus ~ .bar:after,
+  textarea:not([disabled]):not([readonly]):not(.plain):focus ~ .bar:before,
   textarea:not([disabled]):not([readonly]):not(.plain):focus ~ .bar:after {
     width:50%;
   }
@@ -442,7 +443,7 @@ a.cancel:active {
     width:50%;
   }
 
-  
+
 
 }
 
@@ -481,7 +482,7 @@ a.cancel:active {
   height: 50px;
   background: #ccc;
 
-    
+
   -webkit-animation: ripple-animation 2s;
 }
 
@@ -506,6 +507,3 @@ tr.allocation-row td:first-child {
       opacity: 0;
     }
 }
-
-
-

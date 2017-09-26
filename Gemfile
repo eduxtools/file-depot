@@ -31,8 +31,8 @@ gem 'pothoven-attachment_fu'
 # gem 'polymer-rails'
 # gem 'nokogumbo', '1.4.2'
 
-group :production do 
-  gem 'mysql2', '~> 0.3.10'
+group :production do
+  # gem 'mysql2', '~> 0.3.10'
 end
 
 group :development, :test do
@@ -52,6 +52,5 @@ group :development do
   gem 'pry-rails'
   gem 'sqlite3'
   gem 'unicorn'
-  gem 'xray-rails'
+  # gem 'xray-rails'
 end
-

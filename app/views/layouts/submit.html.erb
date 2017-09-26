@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= AppConfig['name'] %></title>
+  <%= stylesheet_link_tag    'submit', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', media: 'all' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <meta name="viewport" content="width=device-width">
+</head>
+<body>
+  <main class="row">
+    <div class="column">
+      <% if notice %>
+        <p class="notice success" id="notice"><%= notice %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </main>
+</div>
+
+<script type="text/javascript">
+  $(document).foundation();
+
+  $(document).ready(function() {
+    $("img").unveil();
+  })
+</script>
+
+
+</body>
+</html>
