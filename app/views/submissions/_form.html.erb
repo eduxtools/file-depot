@@ -105,7 +105,7 @@
 <section class="row">
   <div class="large-8 medium-10 large-offset-2 medium-offset-1 columns actions text-right" style="margin-bottom: 5em;">
     <%= f.hidden_field :temp_image_token %>
-    <%= f.submit "#{@submission.new_record ? 'Submit' : 'Update'} Entry" %>
+    <%= f.submit "#{@submission.new_record? ? 'Submit' : 'Update'} Entry" %>
     <%= link_to 'Cancel Changes', @submission, class: 'cancel' unless @submission.new_record? %>
   </div>
 </section>
