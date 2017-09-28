@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926083732) do
+ActiveRecord::Schema.define(version: 20170928194718) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "parent_id"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20170926083732) do
   end
 
   add_index "courses", ["area"], name: "index_courses_on_area"
+
+  create_table "custom_field_options", force: :cascade do |t|
+    t.integer  "custom_field_id"
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "custom_field_options", ["custom_field_id"], name: "index_custom_field_options_on_custom_field_id"
 
   create_table "custom_fields", force: :cascade do |t|
     t.string   "name"

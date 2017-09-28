@@ -77,7 +77,11 @@
         <%= f.fields_for :data, OpenStruct.new(f.object.data || {}) do |f_data| %>
           <% CustomField.all.each do |custom_field| %>
             <div class="field">
-              <%= text_field_with_bar f_data, custom_field.name, label: true, required: custom_field.required %>
+              <% if custom_field.options.any? %>
+                <%= chosen_select f_data, custom_field.name, options_for_select(custom_field.options.map(&:name), f_data.object[custom_field.name]) %>
+              <% else %>
+                <%= text_field_with_bar f_data, custom_field.name, label: true, required: custom_field.required %>
+              <% end %>
             </div>
           <% end %>
         <% end %>

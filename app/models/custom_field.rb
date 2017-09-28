@@ -1,9 +1,7 @@
 class CustomField < ActiveRecord::Base
-
+  has_many :options, class_name: 'CustomFieldOption'
   validates_presence_of :name
-
   before_save :default_position
-
   default_scope { order(position: :asc) }
 
   def self.fields
