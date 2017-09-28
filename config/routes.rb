@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   resources :works
   resources :attachments, only: [:create, :destroy]
 
+  # MTRSAE specific
+  get '/pdf', to: 'application#download_pdf', as: 'download_pdf'
+
   root 'application#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

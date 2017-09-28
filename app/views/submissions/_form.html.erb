@@ -4,6 +4,15 @@
   }
 </style>
 
+<section class="row">
+  <div class="large-8 medium-10 large-offset-2 medium-offset-1 columns">
+    <p>
+      <b>By submitting this form, students and teachers agree to the below statement:</b><br>
+      I give permission for the Leu Center for the Visual Arts to display my art and to use it in any promotional materials created for the Middle Tennessee Regional Student Art Exhibition. I fully understand that the Leu Center for the Visual Arts and the MTRSAE Committee will take reasonable care of entries and that I must reclaim my work by the date requested. I understand that Belmont University will assume no liability for lost or damaged work. I also understand that if selected for the Best of the Best exhibition my work cannot be picked up until the conclusion of that exhibition. Also, if selected as Best of Show my artwork will be purchased for a permanent collection.
+    </p>
+  </div>
+</section>
+
 <%= form_for(@submission, html: {id: 'submission_form'}) do |f| %>
   <% if @submission.errors.any? %>
     <section class="row">
@@ -78,7 +87,7 @@
           <% CustomField.all.each do |custom_field| %>
             <div class="field">
               <% if custom_field.options.any? %>
-                <%= chosen_select f_data, custom_field.name, options_for_select(custom_field.options.map(&:name), f_data.object[custom_field.name]) %>
+                <%= chosen_select f_data, custom_field.name, options_for_select(custom_field.options.map(&:name), f.object[custom_field.name]) %>
               <% else %>
                 <%= text_field_with_bar f_data, custom_field.name, label: true, required: custom_field.required %>
               <% end %>
@@ -96,7 +105,7 @@
 <section class="row">
   <div class="large-8 medium-10 large-offset-2 medium-offset-1 columns actions text-right" style="margin-bottom: 5em;">
     <%= f.hidden_field :temp_image_token %>
-    <%= f.submit 'Save Submission' %>
+    <%= f.submit "#{@submission.new_record ? 'Submit' : 'Update'} Entry" %>
     <%= link_to 'Cancel Changes', @submission, class: 'cancel' unless @submission.new_record? %>
   </div>
 </section>

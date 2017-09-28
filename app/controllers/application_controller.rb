@@ -5,10 +5,21 @@ class ApplicationController < ActionController::Base
   #
 
   helper_method :current_user, :logged_in?, :login, :logout
-  before_action :login_required
+  before_action :login_required, except: [:index, :download_pdf]
 
   def index
     # application 'start page'
+    # MTRSAE specific
+    render layout: 'sessions'
+  end
+
+  # MTRSAE specific
+  def download_pdf
+    send_file(
+      "#{Rails.root}/public/MTRSAE-prospectus-2017.pdf",
+      filename: "MTRSAE-prospectus-2017.pdf",
+      type: "application/pdf"
+    )
   end
 
   private
