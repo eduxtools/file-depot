@@ -87,7 +87,7 @@
           <% CustomField.all.each do |custom_field| %>
             <div class="field">
               <% if custom_field.options.any? %>
-                <%= chosen_select f_data, custom_field.name, options_for_select(custom_field.options.map(&:name), f.object[custom_field.name]) %>
+                <%= chosen_select f_data, custom_field.name, options_for_select(custom_field.options.map(&:name), f.object[custom_field.name]), label: true, required: custom_field.required %>
               <% else %>
                 <%= text_field_with_bar f_data, custom_field.name, label: true, required: custom_field.required %>
               <% end %>
