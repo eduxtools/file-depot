@@ -54,7 +54,6 @@
 </section>
 
 
-<% if current_user.try(:id) == 1 %>
-  <%= link_to 'Edit', edit_submission_path(@submission) %> |
-<% end %>
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
 <%= link_to 'Submit More', new_submission_path %>
