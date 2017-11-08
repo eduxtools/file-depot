@@ -1,9 +1,11 @@
 class Browse::WorksController < ApplicationController
+  before_action :login_required
+  
   layout 'browse'
   before_filter :load_works
   before_filter :set_use_remote
   before_filter :load_nav_objects
-  
+
   def index
   end
 
@@ -17,6 +19,7 @@ class Browse::WorksController < ApplicationController
     end
 
     def load_nav_objects
+      @areas        = Course.areas
       @courses      = Course.where(has_works: true).order('number ASC')
       @instructors  = Instructor.where(has_works: true).order('name ASC')
     end
@@ -24,7 +27,7 @@ class Browse::WorksController < ApplicationController
     def load_works
       if !params[:project].nil?
         @project        = Project.find_by_id(params[:project])
-        params[:course] = @project.try(:course).try(:id) 
+        params[:course] = @project.try(:course).try(:id)
       end
 
       if !params[:instructor].nil?
@@ -36,7 +39,7 @@ class Browse::WorksController < ApplicationController
         # params[:level] = Course.find_by_id(params[:course]).try(:level)
       end
 
-      if !params[:course].blank? 
+      if !params[:course].blank?
         # just select course
         course_ids = params[:course]
 
@@ -57,7 +60,7 @@ class Browse::WorksController < ApplicationController
         course_ids = nil
       end
 
-      conditions = {}      
+      conditions = {}
       conditions.merge!({instructor_id: params[:instructor]})                  unless params[:instructor].blank?
       conditions.merge!({project_id: params[:project]})                        unless params[:project].blank?
       conditions.merge!({course_id: course_ids})                               unless course_ids.blank?

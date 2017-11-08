@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :submissions
 
   namespace :browse do
+    resources :submissions, only: [:index, :show]
     resources :works, only: [:index, :show]
   end
 

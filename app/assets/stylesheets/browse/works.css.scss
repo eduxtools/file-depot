@@ -9,18 +9,18 @@ $link-green: #008d52;
     padding-top   : 2em;
     border-bottom : 1px solid;
     margin-bottom : 1em;
-    position      : fixed; 
+    position      : fixed;
     background    : #fff;
     box-shadow    : 1px 1px 10px rgba(0,0,0,.25);
     z-index       : 100;
   }
   h1 {
     font-size     : 32px;
-    margin-bottom : 0; 
+    margin-bottom : 0;
   }
   h2 {
     font-size     : 18px;
-    margin-bottom : 0; 
+    margin-bottom : 0;
     line-height   : 28px !important;
   }
 }
@@ -30,10 +30,10 @@ section.work-cards {
   margin-top : 125px;
 }
 .work-card {
-  text-align : center; 
+  text-align : center;
 
-  a { 
-    display     : block; 
+  a {
+    display     : block;
     border      : 1px solid #bbb;
     padding     : 1em;
     margin      : .5em;
@@ -45,10 +45,10 @@ section.work-cards {
       box-shadow        : 1px 1px 5px #ccc;
     }
   }
-  .image-wrapper { 
-    display     : block; 
-    height      : 250px; 
-    overflow    : hidden; 
+  .image-wrapper {
+    display     : block;
+    height      : 250px;
+    overflow    : hidden;
   }
   .title {
     color       : #000;
@@ -76,17 +76,22 @@ section.work-cards {
 // ----- Card
 
 // ------- main wrapper
-.image-show-row { 
+.image-show-row {
   .image-column {
     background      : #f8f8f8;
     margin-top      : 40px;
 
-    img { 
-      padding         : 1em; 
-      margin-bottom   : 1em; 
-      border-bottom   : 1px solid #ccc; 
+    .img-container {
+      display         : inline-block;
+      padding         : 1em;
+      margin-bottom   : 1em;
+      border-bottom   : 1px solid #ccc;
       background      : #fff;
       transition      : .25s box-shadow;
+
+      img {
+        padding-bottom    : 1em; 
+      }
 
       &:hover {
         box-shadow        : 1px 1px 5px #ccc;
@@ -130,10 +135,10 @@ section.work-cards {
   }
 
   // pagination
-  .paginate-btn { 
-    a { 
+  .paginate-btn {
+    a {
       display         : block;
-      color           : #000; 
+      color           : #000;
       border-bottom   : 1px solid #ccc;
       line-height     : 30px;
       padding         : 0 1em;
@@ -152,7 +157,3 @@ section.work-cards {
     }
   }
 }
-
-
-
-

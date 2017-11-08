@@ -1,0 +1,2 @@
+module Browse::SubmissionsHelper
+end

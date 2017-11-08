@@ -1,7 +1,7 @@
 <%
-    index     = @works.find_index(@work)
-    prev_work = @works[index-1] rescue nil
-    next_work = @works[index+1] rescue nil
+    index           = @submissions.find_index(@submission)
+    prev_submission = @submissions[index-1] rescue nil
+    next_submission = @submissions[index+1] rescue nil
 
 %>
 
@@ -11,38 +11,48 @@
       <!-- details -->
       <div class="small-8 small-push-2 columns work-details">
         <h1>
-          <%= link_to @work.course, browse_works_path(course: @work.course_id) %><%= ": #{link_to @work.project, browse_works_path(project: @work.project_id), class: 'project'}".html_safe if @work.project %>
+          Submission: <%= @submission.id %>
+          <%#= link_to @work.course, browse_works_path(course: @work.course_id) %><%#= ": #{link_to @work.project, browse_works_path(project: @work.project_id), class: 'project'}".html_safe if @work.project %>
         </h1>
 
         <div class="row">
-          <!-- <div class="medium-6 columns">
-            <dt>Instructor</dt>
-            <dd><%= link_to @work.instructor, browse_works_path(instructor: @work.instructor_id, remote: @use_remote) %></dd>
+          <div class="medium-4 columns">
+            Grade:
+            <% if @submission.data['Grade'] %>
+              <%= link_to @submission.data['Grade'], browse_submissions_path(grade: @submission.data['Grade'], remote: @use_remote) %>
+            <% else %>
+              N/A
+            <% end %>
           </div>
-          <div class="medium-6 columns">
-            <%= @work.students.to_sentence if @work.students.any? %>
-          </div> -->
+          <div class="medium-8 columns medium-text-right">
+            <%= categories_array(@submission).count > 1 ? 'Categories' : 'Category' %>:
+            <%= 'N/A' if categories_array(@submission).empty? %>
+            <% categories_array(@submission).each do |category| %>
+              <%= link_to category, browse_submissions_path(category: category, remote: @use_remote) %>
+              <%= ' & ' unless category == categories_array(@submission).last %>
+            <% end %>
+          </div>
 
           <div class="small-12 columns project-description">
-            <%= simple_format(@work.project.try(:description)) %>
+            <%#= simple_format(@work.project.try(:description)) %>
           </div>
         </div>
       </div>
 
       <!-- nav -->
       <div class="small-2 columns small-pull-8 paginate-btn">
-        <%= link_to browse_works_path(request.query_parameters), remote: @use_remote do %>
+        <%= link_to browse_submissions_path(request.query_parameters), remote: @use_remote do %>
           <i class="fa fa-th-large"></i> Back
         <% end %>
       </div>
       <div class="small-1 columns text-right paginate-btn">
-        <%= link_to (prev_work ? browse_work_path(prev_work, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless prev_work}" do %>
+        <%= link_to (prev_submission ? browse_submission_path(prev_submission, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless prev_submission}" do %>
           <i class="fa fa-arrow-left"></i>
           <!-- <span class="show-for-medium">Previous</span> -->
         <% end %>
       </div>
       <div class="small-1 columns text-left paginate-btn">
-        <%= link_to (next_work ? browse_work_path(next_work, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless next_work}" do %>
+        <%= link_to (next_submission ? browse_submission_path(next_submission, request.query_parameters) : '#'), remote: @use_remote, class: "#{'inactive' unless next_submission}" do %>
           <!-- <span class="show-for-medium">Next</span> -->
           <i class="fa fa-arrow-right"></i>
         <% end %>
@@ -53,16 +63,18 @@
   <section class="row full-width image-show-row" data-equalizer data-equalize-by-row="true">
     <!-- Work Images -->
     <div class="medium-12 columns text-center image-column" data-equalizer-watch>
-      <% @work.attachments.each do |attachment| %>
+      <% @submission.attachments.each do |attachment| %>
         <div class="img-container">
           <% if attachment.is_image? %>
             <%= image_tag attachment.file.url(:medium) %>
             <%= link_to(file_icon(attachment.file_content_type), attachment.file.url()) if attachment.is_pdf? %>
             <br>
+            <%= "#{@submission.id}-#{attachment.id}" %>
           <% else %>
             <%= link_to attachment.file.url(), class: 'file-attachment medium' do %>
               <%= file_icon(attachment.file_content_type) %><br>
               <%= attachment.file_file_name %>
+              <%= "#{@submission.id}-#{attachment.id}" %>
             <% end %>
           <% end %>
         </div>

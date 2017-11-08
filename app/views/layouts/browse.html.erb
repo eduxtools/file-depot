@@ -18,47 +18,70 @@
       <nav class="columns">
         <hgroup>
           <h1>Browse</h1>
-          <h2>Student Work</h2>
+          <h2>
+            <%= controller.controller_name == 'submissions' ? 'Submissions' : 'Student Work' %>
+          </h2>
         </hgroup>
         <p class="instructions">Select one or more options to view student work</p>
 
-        <%= form_tag browse_works_path(), method: :get, remote: true, id: 'browse-work-filters' do %>
-          <%= chosen_select_tag :area, options_for_select(Course.areas, params[:area]), 
-              include_blank: true, 
-              label: true, 
-              data: {
-                placeholder: 'Select an area'
-              }  %>  
+        <%= form_tag send("browse_#{controller.controller_name}_path"), method: :get, remote: true, id: 'browse-work-filters' do %>
 
-          <%= chosen_select_tag :course, options_from_collection_for_select(@courses, "id", "name", params[:course]), 
-              include_blank: true, 
-              label: true, 
-              data: {
-                placeholder: 'Select a course'
-              }  %>
-          <%#= chosen_select_tag :Project, options_from_collection_for_select(Project.all, "id", "name", params[:project]), 
-              include_blank: true, 
-              label: true, 
-              data: {
-                placeholder: 'Select a project'
-              }  %>
-          
-          <%= chosen_select_tag :instructor, options_from_collection_for_select(@instructors, "id", "name", params[:instructor]), 
-              include_blank: true, 
-              label: true, 
-              data: {
-                placeholder: 'Select an instructor'
-              }  %>
+          <% if @areas %>
+            <%= chosen_select_tag :area, options_for_select(@areas, params[:area]),
+                include_blank: true,
+                label: true,
+                data: {
+                  placeholder: 'Select an area'
+                }  %>
+          <% end %>
 
-          <%= chosen_select_tag :level, options_for_select(['Freshman', 'Sophomore', 'Junior', 'Senior'], params[:level]), 
-              include_blank: true, 
-              label: true, 
-              data: {
-                placeholder: 'Select a level'
-              }  %>
+          <% if @categories %>
+            <%= chosen_select_tag :category, options_for_select(@categories, params[:category]),
+                include_blank: 'All',
+                label: true,
+                data: {
+                  placeholder: 'Select a category'
+                }  %>
+          <% end %>
+
+          <% if @grades %>
+            <%= chosen_select_tag :grade, options_for_select(@grades, params[:grade]),
+                include_blank: 'All',
+                label: true,
+                data: {
+                  placeholder: 'Select a category'
+                }  %>
+          <% end %>
+
+          <% if @courses %>
+            <%= chosen_select_tag :course, options_from_collection_for_select(@courses, "id", "name", params[:course]),
+                include_blank: true,
+                label: true,
+                data: {
+                  placeholder: 'Select a course'
+                }  %>
+          <% end %>
+
+          <% if @instructors %>
+            <%= chosen_select_tag :instructor, options_from_collection_for_select(@instructors, "id", "name", params[:instructor]),
+                include_blank: true,
+                label: true,
+                data: {
+                  placeholder: 'Select an instructor'
+                }  %>
+          <% end %>
+
+          <% if @levels %>
+            <%= chosen_select_tag :level, options_for_select(@levels, params[:level]),
+                include_blank: true,
+                label: true,
+                data: {
+                  placeholder: 'Select a level'
+                }  %>
+          <% end %>
 
           <%= check_box_tag :only_images, 't', params[:only_images] == 't' %> <%= label_tag :only_images %>
-                    
+
           <%= submit_tag 'View' %>
         <% end %>
       </nav>
@@ -71,7 +94,7 @@
         <div class="small-6 columns end text-center"><h1>Browse Student Work</h1></div>
       </nav>
 
-      <main>  
+      <main>
         <%= yield %>
       </main>
     </div>

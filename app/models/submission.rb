@@ -8,4 +8,6 @@ class Submission < ActiveRecord::Base
   accepts_nested_attributes_for :student
   validates_presence_of :student
 
+  # may want to add has_images boolean column like Work
+
 end

@@ -1,0 +1,4 @@
+// alert('new')
+$('main').html("<%= escape_javascript(render template: 'browse/submissions/index', formats: [:html], layout: false) %>");
+history.pushState({}, '', "<%= request.url.html_safe %>");
+$("img").unveil();
