@@ -10,14 +10,9 @@
     <section class="row browse-index-header">
       <hgroup class="small-12 columns">
         <h1>
-          <%
-            if @course
-              concat @course
-            elsif !params[:level].blank?
-              concat "#{params[:level]} Level"
-            end
-          %>
-          Student Work
+          <%= params[:grade].blank? ? 'All' : "#{params[:grade]}th Grade" %>
+          <%= params[:category] unless params[:category].blank? %>
+          Submissions
         </h1>
         <h2>
           <%= "in #{params[:area].gsub('+', ' ')}" unless params[:area].blank? %>

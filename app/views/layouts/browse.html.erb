@@ -22,7 +22,7 @@
             <%= controller.controller_name == 'submissions' ? 'Submissions' : 'Student Work' %>
           </h2>
         </hgroup>
-        <p class="instructions">Select one or more options to view student work</p>
+        <p class="instructions">Select one or more options to view <%= controller.controller_name == 'submissions' ? 'submissions' : 'student work' %></p>
 
         <%= form_tag send("browse_#{controller.controller_name}_path"), method: :get, remote: true, id: 'browse-work-filters' do %>
 
@@ -80,7 +80,9 @@
                 }  %>
           <% end %>
 
-          <%= check_box_tag :only_images, 't', params[:only_images] == 't' %> <%= label_tag :only_images %>
+          <% if controller.controller_name == 'works' %>
+            <%= check_box_tag :only_images, 't', params[:only_images] == 't' %> <%= label_tag :only_images %>
+          <% end %>
 
           <%= submit_tag 'View' %>
         <% end %>
