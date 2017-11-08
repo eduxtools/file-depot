@@ -16,7 +16,7 @@
         </h1>
 
         <div class="row">
-          <div class="medium-4 columns">
+          <div class="column">
             Grade:
             <% if @submission.data['Grade'] %>
               <%= link_to @submission.data['Grade'], browse_submissions_path(grade: @submission.data['Grade'], remote: @use_remote) %>
@@ -24,12 +24,22 @@
               N/A
             <% end %>
           </div>
-          <div class="medium-8 columns medium-text-right">
-            <%= categories_array(@submission).count > 1 ? 'Categories' : 'Category' %>:
-            <%= 'N/A' if categories_array(@submission).empty? %>
-            <% categories_array(@submission).each do |category| %>
-              <%= link_to category, browse_submissions_path(category: category, remote: @use_remote) %>
-              <%= ' & ' unless category == categories_array(@submission).last %>
+          <div class="medium-8 columns">
+            Entry 1:
+            <%= @submission.data['Entry 1 Title'] %>
+            <%= link_to @submission.data['Entry 1 Category'], browse_submissions_path(category: @submission.data['Entry 1 Category'], remote: @use_remote) unless @submission.data['Entry 1 Category'].blank? %><br>
+
+            Entry 2:
+            <%= @submission.data['Entry 2 Title'] %>
+            <%= link_to @submission.data['Entry 2 Category'], browse_submissions_path(category: @submission.data['Entry 2 Category'], remote: @use_remote) unless @submission.data['Entry 2 Category'].blank?  %>
+
+            <% if false %>
+              <%= categories_array(@submission).count > 1 ? 'Categories' : 'Category' %>:
+              <%= 'N/A' if categories_array(@submission).empty? %>
+              <% categories_array(@submission).each do |category| %>
+                <%= link_to category, browse_submissions_path(category: category, remote: @use_remote) %>
+                <%= ' & ' unless category == categories_array(@submission).last %>
+              <% end %>
             <% end %>
           </div>
 
@@ -96,20 +106,20 @@ $(function(){
 });
 
 $('.off-canvas-wrapper').scroll(function(){
-  if ($('.off-canvas-wrapper').scrollTop() > 0) {
-    if (details_nav.data('size') == 'big') {
-      details_nav.data('size','small');
-      details_nav.stop().animate({
-        height:'40px'
-      }, 600);
-    }
-  } else {
-    if (details_nav.data('size') == 'small') {
-      details_nav.data('size','big');
-      details_nav.stop().animate({
-        height: details_nav_height
-      }, 600);
-    }
-  }
+  // if ($('.off-canvas-wrapper').scrollTop() > 0) {
+  //   if (details_nav.data('size') == 'big') {
+  //     details_nav.data('size','small');
+  //     details_nav.stop().animate({
+  //       height:'40px'
+  //     }, 600);
+  //   }
+  // } else {
+  //   if (details_nav.data('size') == 'small') {
+  //     details_nav.data('size','big');
+  //     details_nav.stop().animate({
+  //       height: details_nav_height
+  //     }, 600);
+  //   }
+  // }
 });
 </script>
