@@ -17,8 +17,10 @@
         <td><%= submission.student %></td>
         <td><%= submission.data %></td>
         <td><%= link_to 'Show', submission %></td>
-        <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
-        <td><%= link_to 'Destroy', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.try(:id) == 1 %>
+          <td><%= link_to 'Edit', edit_submission_path(submission) %></td>
+          <td><%= link_to 'Destroy', submission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
