@@ -32,7 +32,7 @@ class Browse::SubmissionsController < ApplicationController
       @submissions = Submission.all
 
       if !params[:grade].blank?
-        @submissions = @submissions.where("data like ?", "%Grade: #{params[:grade].to_i}%")
+        @submissions = @submissions.where("data like ?", "%Grade: '#{params[:grade].to_i}'%")
       end
 
       if !params[:category].blank?
