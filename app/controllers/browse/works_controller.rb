@@ -1,6 +1,7 @@
 class Browse::WorksController < ApplicationController
   before_action :login_required
-  
+  before_action :prevent_reviewer_access
+
   layout 'browse'
   before_filter :load_works
   before_filter :set_use_remote

@@ -38,6 +38,13 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    # NOTE Not automatically called, must be added to applicable controllers
+    def prevent_reviewer_access
+      if current_user.try(:name).to_s.downcase.include?('reviewer')
+        redirect_to browse_submissions_path()
+      end
+    end
+
     def login(user)
       session[:user_id] = user.id
     end

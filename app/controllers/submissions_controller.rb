@@ -2,6 +2,7 @@ class SubmissionsController < ApplicationController
   skip_before_action :login_required
   before_action :set_submission, only: [:show, :edit, :update, :destroy]
   before_action :login_required, except: [:new, :create] # SubmissionsController overrides the normal method, but must come after `set_submission`
+  before_action :prevent_reviewer_access
 
 
   layout 'submit'
