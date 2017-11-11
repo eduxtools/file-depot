@@ -11,6 +11,12 @@ class SubmissionsController < ApplicationController
   # GET /submissions.json
   def index
     @submissions = Submission.all
+    @custom_fields = CustomField.all.map(&:name)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data render_to_string('index.csv', layout: false), type: 'text/csv; charset=utf-8' }
+    end
   end
 
   # GET /submissions/1

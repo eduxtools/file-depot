@@ -1,0 +1,4 @@
+id, Name, <%= @custom_fields.join(', ') %>, Submission Date
+<% @submissions.each do |submission| %>
+<%= submission.id %>, "<%= submission.student.to_s %>", <%= @custom_fields.map{|field| submission.data[field]}.join(', ') %>, <%= submission.created_at.to_s(:date_slashed_full) %>
+<% end %>
