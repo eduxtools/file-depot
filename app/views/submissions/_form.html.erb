@@ -89,7 +89,11 @@
               <% if custom_field.options.any? %>
                 <%= chosen_select f_data, custom_field.name, options_for_select(custom_field.options.map(&:name), f.object[custom_field.name]), include_blank: (custom_field.options.count > 1), label: true, required: custom_field.required %>
               <% else %>
-                <%= text_field_with_bar f_data, custom_field.name, label: true, required: custom_field.required %>
+                <% if custom_field.input_type == 'textarea' %>
+                  <%= text_area_with_bar f_data, custom_field.name, label: true, required: custom_field.required %>
+                <% else %>
+                  <%= text_field_with_bar f_data, custom_field.name, label: true, required: custom_field.required %>
+                <% end %>
               <% end %>
             </div>
           <% end %>
