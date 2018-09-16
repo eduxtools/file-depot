@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170928194718) do
+ActiveRecord::Schema.define(version: 20180916023303) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "parent_id"
@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(version: 20170928194718) do
     t.boolean  "required",   default: false
     t.boolean  "persistent", default: false
     t.integer  "position"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "input_type", default: "string"
   end
 
   create_table "images", force: :cascade do |t|
