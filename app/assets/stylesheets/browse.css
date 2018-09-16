@@ -17,5 +17,5 @@
  * Vendor
  *= require normalize.css
  *= require foundation.min.css
- *= require chosen.min.css
+ *= require chosen-modified/chosen.css
  */

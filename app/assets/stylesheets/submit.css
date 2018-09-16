@@ -19,6 +19,6 @@
  *= require normalize.css
  *= require foundation.min.css
  *= require responsive-tables.css
- *= require chosen.min.css
+ *= require chosen-modified/chosen.css
  *= require dropzone.css
  */
