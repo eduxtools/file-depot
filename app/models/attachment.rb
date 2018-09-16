@@ -1,7 +1,7 @@
 class Attachment < ActiveRecord::Base
   belongs_to :parent, polymorphic: true
 
-  has_attached_file :file, whiny: false, default_url: "/images/:style/missing.png", 
+  has_attached_file :file, whiny: false, default_url: "/images/:style/missing.png",
                     styles: lambda { |file| {
                                 large:  file.instance.format_for_web("1200x900>"),
                                 medium: file.instance.format_for_web("950x700>"),
@@ -18,7 +18,7 @@ class Attachment < ActiveRecord::Base
 
   def temp_id=(id)
     write_attribute(:parent_id, id)
-    write_attribute(:parent_type, 'temp')    
+    write_attribute(:parent_type, 'temp')
   end
 
   # has_image returns cached boolean
@@ -28,8 +28,8 @@ class Attachment < ActiveRecord::Base
       'image/jpg',
       'image/jpeg',
       'image/pjpeg',
-      'image/png', 
-      'image/x-png', 
+      'image/png',
+      'image/x-png',
       'image/gif',
       'image/svg+xml',
       'image/tiff',
@@ -39,14 +39,14 @@ class Attachment < ActiveRecord::Base
       'application/x-photoshop',
       'application/postscript',
       'application/pdf'
-    ].include?(self.file_content_type) 
+    ].include?(self.file_content_type)
   end
 
   def is_pdf?
     [
       'application/postscript',
       'application/pdf'
-    ].include?(self.file_content_type) 
+    ].include?(self.file_content_type)
   end
 
   def format_for_web(geometry)
@@ -59,11 +59,11 @@ class Attachment < ActiveRecord::Base
 
   private
     def update_image_cache
-      has_image = self.is_image?  
+      has_image = self.is_image?
     end
 
     def update_work_caches
-      if parent_type != 'temp' && parent && parent.class == Work 
+      if parent_type != 'temp' && parent && parent.class == Work
         parent.has_attachments = true
         parent.has_images      = true if self.is_image?
         parent.save
@@ -71,7 +71,7 @@ class Attachment < ActiveRecord::Base
     end
 
     def update_work_caches_after_delete
-      if parent_type != 'temp' && parent && parent.class == Work 
+      if parent_type != 'temp' && parent && parent.class == Work
         other_attachments      = (parent.attachments - self)
         parent.has_attachments = other_attachments.any?
         parent.has_images      = other_attachments.any? && other_attachments.map(&:is_image?).include?(true)
