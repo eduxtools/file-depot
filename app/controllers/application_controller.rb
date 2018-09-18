@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
   # MTRSAE specific
   def download_pdf
     send_file(
-      "#{Rails.root}/public/MTRSAE-prospectus-2017.pdf",
-      filename: "MTRSAE-prospectus-2017.pdf",
+      "#{Rails.root}/public/MTRSAE-prospectus-2018.pdf",
+      filename: "MTRSAE-prospectus-2018.pdf",
       type: "application/pdf"
     )
   end
