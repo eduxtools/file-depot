@@ -39,7 +39,7 @@ class Browse::SubmissionsController < ApplicationController
         # To sanatize, make sure category param is in list of options
         category = (@categories & [params[:category]])[0]
         if category
-          @submissions = @submissions.where("data like ? OR data like ?", "%Entry 1 Category: #{category}%", "%Entry 2 Category: #{category}%")
+          @submissions = @submissions.where("data like ?", "%Entry Category: #{category}%")
         end
       end
 
