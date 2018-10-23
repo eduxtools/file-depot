@@ -26,9 +26,11 @@
           </div>
           <div class="medium-8 columns">
             Title:
-            <%= @submission.data['Entry Title'] %>
+            <%= @submission.data['Entry Title'] %> - 
             <%= link_to @submission.data['Entry Category'], browse_submissions_path(category: @submission.data['Entry Category'], remote: @use_remote) unless @submission.data['Entry Category'].blank? %><br>
 
+          </div>
+          <div class="medium-12 columns">
             Description:
             <%= @submission.data['Optional: Artwork Description (250 characters or less)'] %>
               
