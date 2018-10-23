@@ -25,14 +25,13 @@
             <% end %>
           </div>
           <div class="medium-8 columns">
-            Entry 1:
-            <%= @submission.data['Entry 1 Title'] %>
-            <%= link_to @submission.data['Entry 1 Category'], browse_submissions_path(category: @submission.data['Entry 1 Category'], remote: @use_remote) unless @submission.data['Entry 1 Category'].blank? %><br>
+            Title:
+            <%= @submission.data['Entry Title'] %>
+            <%= link_to @submission.data['Entry Category'], browse_submissions_path(category: @submission.data['Entry Category'], remote: @use_remote) unless @submission.data['Entry Category'].blank? %><br>
 
-            Entry 2:
-            <%= @submission.data['Entry 2 Title'] %>
-            <%= link_to @submission.data['Entry 2 Category'], browse_submissions_path(category: @submission.data['Entry 2 Category'], remote: @use_remote) unless @submission.data['Entry 2 Category'].blank?  %>
-
+            Description:
+            <%= @submission.data['Optional: Artwork Description (250 characters or less)'] %>
+              
             <% if false %>
               <%= categories_array(@submission).count > 1 ? 'Categories' : 'Category' %>:
               <%= 'N/A' if categories_array(@submission).empty? %>
