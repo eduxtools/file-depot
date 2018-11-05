@@ -1,4 +1,4 @@
 id,Name,<%= @custom_fields.join(',').html_safe %>,Submission Date
 <% @submissions.each do |submission| %>
-<%= submission.id %>,"<%= submission.student.to_s %>",<%= @custom_fields.map{|field| "\"#{submission.data[field].gsub('"', '\"')}\""}.join(',').html_safe %>,<%= submission.created_at.to_s(:date_slashed_full) %>
+<%= submission.id %>,"<%= submission.student.to_s %>",<%= @custom_fields.map{|field| "\"#{submission.data[field].gsub('"', "'")}\""}.join(',').html_safe %>,<%= submission.created_at.to_s(:date_slashed_full) %>
 <% end %>
